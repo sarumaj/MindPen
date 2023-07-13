@@ -1,0 +1,16 @@
+{% extends "Journaling/base.html" %}
+{% block content %}
+
+<div class="card w-">
+  <div class="card-body">
+        <h3>This program starts in: {{ object.start_day }},
+            and will last for {{ object.duration }} month(s).</h3>
+        <a href="{% url 'delete_endeavor' object.pk %}" class="btn btn-danger mt-4">Delete Program</a>
+        <a class="btn btn-primary mt-4 " href="{% url 'list_endeavor' %}">Go, Back</a>
+  </div>
+</div>
+
+{% endblock content %}
+
+
+

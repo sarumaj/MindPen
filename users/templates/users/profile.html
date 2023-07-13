@@ -1,0 +1,63 @@
+{% extends "users/base.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'users/style.css' %}">
+
+<div class="container text-center">
+  <div class="row">
+    <div class="col-8" id="data_visualization">
+      <a href="{% url 'data' %}" class="btn btn-secondary btn-sm"><h4>Data Visualization</h4></a>
+      <div class="mt-3" ><img src="{% static 'odometer.png' %}" height="160" width="320"></div>
+    </div>
+    <div class="col" id="journaling">
+<!--      <a href="{% url 'journal' %}" class="btn btn-secondary btn-sm"><h4>Journaling</h4></a>-->
+      <form class="form-control form-control-sm" method="post" >
+        {% csrf_token %}
+        {{ form.content }}
+        {{ form.title }}
+        <input class="btn btn-secondary" type="submit">
+      </form>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col" id="mymood"><a href="{% url 'mood' %}" class="btn btn-secondary btn-sm"><h4>MyMood</h4></a>
+      <div class="emoji">
+        <p><h4><span>😨</span><span>😀</span><span>😐</span></h4></p>
+        <p><h4><span>😟</span><span>😠</span><span>😕</span></h4></p>
+        <p><h4><span>🤑</span><span>🤒</span><span>😎</span></h4></p>
+      </div>
+    </div>
+    <div class="col" id="endeavors"><a href="{% url 'list_endeavor' %}" class="btn btn-secondary btn-sm">
+      <h4>Endeavors</h4></a>
+      {% if list_endeavor %}
+        {% for program_title in list_endeavor %}
+          <div class="card">
+            <div class="card-body">
+              {{ program_title }}
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <h6 class="container mt-5">No programs to display, add your programs here!</h6>
+      {% endif %}
+    </div>
+    <div class="col" id="to_do"><a href="{% url 'todos' %}" class="btn btn-secondary btn-sm">
+      <h4>To-Do List</h4></a>
+      {% if list_task %}
+        {% for task_title in list_task %}
+          <div class="card">
+            <div class="card-body">
+              {{ task_title }}
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <h6 class="container mt-5">No tasks to display, add your tasks here!</h6>
+      {% endif %}
+    </div>
+    <div class="col" id="accomplished"><a href="{% url 'done' %}" class="btn btn-secondary btn-sm"><h4>Accomplished</h4></a></div>
+  </div>
+</div>
+
+{% endblock content %}

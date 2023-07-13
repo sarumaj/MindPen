@@ -1,0 +1,43 @@
+#journaling {
+    height: 250px;
+    width: 500px;
+    border: 5px solid black;
+
+}
+#data_visualization {
+    height: 250px;
+    width: 500px;
+    border: 5px solid black;
+}
+#mymood {
+    height: 200px;
+    width: 500px;
+    border: 5px solid black;
+    margin-top: 10px
+}
+#endeavors {
+    height: 200px;
+    width: 500px;
+    border: 5px solid black;
+    margin-top: 10px
+}
+#to_do {
+    height: 200px;
+    width: 500px;
+    border: 5px solid black;
+    margin-top: 10px
+}
+#accomplished {
+    height: 200px;
+    width: 500px;
+    border: 5px solid black;
+    margin-top: 10px
+}
+
+#story{
+    padding: 20px;
+}
+
+#submit-journal{
+    margin-top: 163px;
+}

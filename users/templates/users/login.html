@@ -1,0 +1,31 @@
+{% extends "users/base.html" %}
+{% block content %}
+<!--Showing one-time-alert message-->
+{% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">
+        {{ message }}
+    </div>
+    {% endfor %}
+{% endif %}
+
+<div class="row">
+<!--Login-form-->
+    <div class="col">
+        <div class="container mt-5">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="btn btn-secondary btn-lg mt-3" href="{% url 'logout' %}" type="submit" >Login</button>
+            </form>
+                <!--Link to registration -->
+                <a class="btn btn-secondary btn-lg mt-3" href="{% url 'register' %}" >Register</a>
+        </div>
+    </div>
+<!--Adding a photo-->
+    <div class="col-9">
+        {% load static %}
+        <img src="{% static 'PenMind2.png' %}" height="450" width="800">
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,32 @@
+{% extends "Journaling/base.html" %}
+
+{% block content %}
+    {% if goals %}
+        {%  for goal in goals  %}
+        <div class="card w-75">
+          <div class="card-body">
+            <a class="btn btn-secondary" href="{% url 'detail_endeavor' goal.pk %}">
+                <h3>Title: {{ goal.program_title }}</h3>
+            </a>
+          </div>
+        </div>
+        {%  endfor%}
+<a href="{% url 'create_endeavor' %}" class="btn btn-primary btn-lg mt-4">Add a new program </a>
+    {% else %}
+        <div class="card text-center">
+          <div class="card-header">
+              <h4>List of Endeavors is empty</h4>
+          </div>
+          <div class="card-body">
+            <h3> Add a new program?</h3>
+          </div>
+          <div class="card-footer text-body-secondary">
+            <a href="{% url 'create_endeavor' %}" class="btn btn-primary mt-4">Yes, Add</a>
+          </div>
+        </div>
+    {% endif %}
+
+{% endblock content %}
+
+
+

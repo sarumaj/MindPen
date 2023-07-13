@@ -1,0 +1,18 @@
+{% extends "Journaling/base.html" %}
+{% load static %}
+{% block content %}
+<div class="card text-center mt-3">
+  <div class="card-header">
+      <h3>Diary Details</h3>
+  </div>
+  <div class="card-body">
+    <h3 class="card-title">Title: {{ post.title }}</h3>
+    <h6 class="card-title">{{ post.content }}</h6>
+  </div>
+  <div class="card-footer text-body-secondary">
+    <a class="btn btn-primary btn-lg" href="{% url 'journal_update' post.id %}">Edit Post</a>
+    <a class="btn btn-danger btn-lg" href="{% url 'journal_delete' post.id %}">Delete Post</a>
+  </div>
+</div>
+
+{% endblock %}

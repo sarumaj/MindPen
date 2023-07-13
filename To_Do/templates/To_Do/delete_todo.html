@@ -1,0 +1,19 @@
+{% extends "Journaling/base.html" %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        <div class="card text-center">
+          <div class="card-header">
+              <h3>Warning Message</h3>
+          </div>
+          <div class="card-body">
+            <h4 class="card-title">Are you sure you want to delete "{{ object}}"?</h4>
+            <input class="btn btn-danger" type="submit" value="Confirm">
+          </div>
+          <div class="card-footer text-body-secondary">
+            <a class="btn btn-primary btn-lg" href="{% url 'todos' %}">NO, Cancel</a>
+          </div>
+        </div>
+    </form>
+{% endblock content %}

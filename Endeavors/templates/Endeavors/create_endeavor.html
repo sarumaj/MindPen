@@ -1,0 +1,21 @@
+{% extends "Journaling/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    <div class="card text-center">
+      <div class="card-header">
+          <h3>Create a new program</h3>
+      </div>
+      <div class="card-body">
+        {{ form|crispy }}
+        <input class="btn btn-primary" type="submit" value="Save Program">
+      </div>
+      <div class="card-footer text-body-secondary">
+<!--        <a class="btn btn-secondary" href="{% url 'programtask' %}">Create Tasks</a>-->
+          <input  formaction="{% url 'programtask' %}" class="btn btn-primary" type="submit" value="Create Tasks">
+      </div>
+    </div>
+
+</form>
+{% endblock content %}

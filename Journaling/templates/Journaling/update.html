@@ -1,0 +1,18 @@
+{% extends "Journaling/base.html" %}
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        <div class="card text-center">
+          <div class="card-header">
+              <h3>Change Diary</h3>
+          </div>
+          <div class="card-body">
+            <h4 class="card-title">{{ form }}</h4>
+          </div>
+          <div class="card-footer text-body-secondary">
+          <input class="btn btn-primary btn-lg" type="submit" value="Save, changes">
+              <a href="{%  url 'journal'%}" class="btn btn-secondary btn-lg" type="submit">Go, Back</a>
+          </div>
+        </div>
+    </form>
+{% endblock content %}
