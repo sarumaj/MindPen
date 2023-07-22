@@ -1,4 +1,4 @@
-from django.views.generic import ListView, DetailView, DeleteView, CreateView
+from django.views.generic import ListView, DetailView, DeleteView, CreateView, UpdateView
 from Endeavors.models import Endeavor
 from .models import Task
 from .forms import TaskModelForm2
@@ -27,4 +27,11 @@ class TaskCreateView(CreateView):
     model = Task
     form_class = TaskModelForm2
     template_name = "To_Do/create_task.html"
+    success_url = "/todos/"
+
+
+class TasklUpdateView(UpdateView):
+    model = Task
+    template_name = "To_Do/update_task.html"
+    fields = ["task_title", "set_time"]
     success_url = "/todos/"

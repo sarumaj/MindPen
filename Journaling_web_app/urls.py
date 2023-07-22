@@ -3,7 +3,7 @@ from django.contrib.auth import views as auth_views
 from django.urls import path, include
 from Endeavors.views import CreateEndeavorView, ListEndeavorView, DeleteEndeavorView, DetailEndeavorView
 from Journaling.views import JournalListView, JournalDetailView, JournalUpdateView, JournalDeleteView
-from To_Do.views import TaskListView, TaskDetailView, TaskDeleteView, TaskCreateView
+from To_Do.views import TaskListView, TaskDetailView, TaskDeleteView, TaskCreateView, TasklUpdateView
 from MyMood.views import MoodFromView
 from users.views import ProfileTemplateViews
 from django.contrib.auth.decorators import login_required
@@ -41,8 +41,5 @@ urlpatterns = [
     path('detail_todo/<int:pk>/detail/', TaskDetailView.as_view(), name='detail_todo'),
     path('delete_todo/<int:pk>/delete/', TaskDeleteView.as_view(), name='delete_todo'),
     path('create_todo/', TaskCreateView.as_view(), name='create_todo'),
-
+    path('update_todo/<int:pk>/update/', TasklUpdateView.as_view(), name='update_todo'),
 ]
-
-
-

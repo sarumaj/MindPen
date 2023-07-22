@@ -5,12 +5,14 @@
     <h4>Task Detail</h4>
   </div>
   <div class="card-body">
+    <h6 class="card-text">{{ object.task_title }} </h6>
     <h6 class="card-title">This task starts at: {{ object.set_time }}</h6>
-    <p class="card-text">completed? {{ object.is_done }} .</p>
+    <h6 class="card-text">completed? {{ object.is_done }} </h6>
   </div>
   <div class="card-footer text-body-secondary">
-    <a href="{% url 'delete_todo' object.pk %}" class="btn btn-danger mt-4">Delete Task</a>
+    <a href="{% url 'update_todo' object.pk %}" class="btn btn-success mt-4">Update Task</a>
     <a class="btn btn-primary mt-4 " href="{% url 'todos' %}">Go, Back</a>
+    <a href="{% url 'delete_todo' object.pk %}" class="btn btn-danger mt-4">Delete Task</a>
   </div>
 </div>
 {% endblock content %}

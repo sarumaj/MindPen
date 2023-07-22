@@ -9,14 +9,12 @@
                 <div class="card-body">
                     {% for task in tasks %}
                         {% if program == task.endeavor %}
-                            <h6 class="card-title">Title: {{ task.task_title }}</h6>
+                            <a href="{% url 'detail_todo' task.pk %}"><h6 class="card-title">Title: {{ task.task_title }}</h6></a>
                         {% endif %}
                     {% endfor %}
                 </div>
                 <div class="card-footer">
                     <a href="{% url 'create_todo' %}" class="btn btn-primary btn-lg">Add Task</a>
-                    <a href="{% url 'detail_todo' program.pk %}" class="btn btn-primary btn-lg">Detail</a>
-
                 </div>
             </div>
         {% endfor %}

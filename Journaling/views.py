@@ -9,7 +9,7 @@ from .forms import JournalModelForm
 class JournalListView(ListView):
     model = Journal
     template_name = "Journaling/journal.html"
-    paginate_by = 3
+    paginate_by = 2
 
     def get_context_data(self, **kwargs):
         form = JournalModelForm()
