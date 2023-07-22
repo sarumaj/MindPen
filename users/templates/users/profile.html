@@ -10,7 +10,7 @@
       <div class="mt-3" ><img src="{% static 'odometer.png' %}" height="160" width="320"></div>
     </div>
     <div class="col" id="journaling">
-<!--      <a href="{% url 'journal' %}" class="btn btn-secondary btn-sm"><h4>Journaling</h4></a>-->
+      <a href="{% url 'journal' %}" ><h6>Journaling</h6></a>
       <form class="form-control form-control-sm" method="post" >
         {% csrf_token %}
         {{ form.content }}

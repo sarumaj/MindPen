@@ -1,12 +1,9 @@
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path, include
-
 from Endeavors.views import CreateEndeavorView, ListEndeavorView, DeleteEndeavorView, DetailEndeavorView
-from Journaling.views import JournalModelFromView, JournalDetailView, JournalUpdateView, JournalDeleteView
-
+from Journaling.views import JournalListView, JournalDetailView, JournalUpdateView, JournalDeleteView
 from To_Do.views import TaskListView, TaskDetailView, TaskDeleteView, TaskCreateView
-
 from MyMood.views import MoodFromView
 from users.views import ProfileTemplateViews
 from django.contrib.auth.decorators import login_required
@@ -15,24 +12,21 @@ from Endeavors.views import endeavor_task_forms
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('register/', include('users.urls')),
-    path('profile/', ProfileTemplateViews.as_view(), name='profile'),
     path('data/', include('DataVisualization.urls'), name='data'),
     path('mood/', login_required(MoodFromView.as_view()), name='mood'),
     path('done/', include('Accomplished.urls'), name='done'),
 
-
-    # Login-Logout routes
+    # user's routes
     path('', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
-
+    path('profile/', login_required(ProfileTemplateViews.as_view()), name='profile'),
+    path('register/', include('users.urls')),
 
     # Journaling Routes
-    path('journal/<int:pk>/', JournalDetailView.as_view(), name='journal_detail'),
+    path('journal/<int:pk>/', login_required(JournalDetailView.as_view()), name='journal_detail'),
     path('journal/<int:pk>/update/', JournalUpdateView.as_view(), name='journal_update'),
     path('journal/<int:pk>/delete/', JournalDeleteView.as_view(), name='journal_delete'),
-    path('journal/', login_required(JournalModelFromView.as_view()), name='journal'),
-
+    path('journal/', login_required(JournalListView.as_view()), name='journal'),
 
     # Endeavor Routes
     path('create_endeavor/', login_required(CreateEndeavorView.as_view()), name='create_endeavor'),
@@ -44,12 +38,11 @@ urlpatterns = [
 
     # To-Do Routes
     path('todos/', TaskListView.as_view(), name='todos'),
-    path('todo_detail/<int:pk>/', TaskDetailView.as_view(), name='todo_detail'),
-    path('delete_todo/<int:pk>/delete', TaskDeleteView.as_view(), name='delete_todo'),
+    path('detail_todo/<int:pk>/detail/', TaskDetailView.as_view(), name='detail_todo'),
+    path('delete_todo/<int:pk>/delete/', TaskDeleteView.as_view(), name='delete_todo'),
     path('create_todo/', TaskCreateView.as_view(), name='create_todo'),
 
-
-
-
-
 ]
+
+
+

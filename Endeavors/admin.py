@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Endeavor, Task
+from .models import Endeavor
 
 admin.site.register(Endeavor)
-admin.site.register(Task)
+

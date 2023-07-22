@@ -1,6 +1,7 @@
 from django.views.generic import ListView, DetailView, DeleteView, CreateView
-from Endeavors.models import Task, Endeavor
-from Endeavors.forms import TaskModelForm
+from Endeavors.models import Endeavor
+from .models import Task
+from .forms import TaskModelForm2
 
 
 class TaskListView(ListView):
@@ -13,6 +14,7 @@ class TaskListView(ListView):
 class TaskDetailView(DetailView):
     model = Task
     template_name = "To_Do/detail_todo.html"
+    context_object_name = "post"
 
 
 class TaskDeleteView(DeleteView):
@@ -23,6 +25,6 @@ class TaskDeleteView(DeleteView):
 
 class TaskCreateView(CreateView):
     model = Task
-    form_class = TaskModelForm
+    form_class = TaskModelForm2
     template_name = "To_Do/create_task.html"
     success_url = "/todos/"
