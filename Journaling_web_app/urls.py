@@ -40,6 +40,6 @@ urlpatterns = [
     path('todos/', TaskListView.as_view(), name='todos'),
     path('detail_todo/<int:pk>/detail/', TaskDetailView.as_view(), name='detail_todo'),
     path('delete_todo/<int:pk>/delete/', TaskDeleteView.as_view(), name='delete_todo'),
-    path('create_todo/', TaskCreateView.as_view(), name='create_todo'),
+    path('create_todo/<str:program>/create', TaskCreateView.as_view(), name='create_todo'),
     path('update_todo/<int:pk>/update/', TasklUpdateView.as_view(), name='update_todo'),
 ]

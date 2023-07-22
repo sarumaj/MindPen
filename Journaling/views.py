@@ -1,6 +1,6 @@
 from django.shortcuts import redirect
 from django.views.generic import DetailView, DeleteView, ListView
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import UpdateView
 from .models import Journal
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .forms import JournalModelForm
@@ -46,8 +46,6 @@ class JournalListView(ListView):
 #     def form_valid(self, form):
 #         form.instance.author = self.request.user
 #         return super().form_valid(form)
-
-
 class JournalUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Journal
     template_name = "Journaling/update.html"

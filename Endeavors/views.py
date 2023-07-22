@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect
+
+from To_Do.models import Task
 from .forms import EndeavorModelForm
 from To_Do.forms import TaskModelForm1
 from .models import Endeavor
@@ -33,6 +35,12 @@ class DeleteEndeavorView(DeleteView):
 class DetailEndeavorView(DetailView):
     model = Endeavor
     template_name = "Endeavors/detail_endeavor.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        program = self.get_object()
+        context["tasks"] = Task.objects.filter(endeavor=program)
+        return context
 
 
 def endeavor_task_forms(request):

@@ -1,3 +1,4 @@
+from django.shortcuts import get_object_or_404
 from django.views.generic import ListView, DetailView, DeleteView, CreateView, UpdateView
 from Endeavors.models import Endeavor
 from .models import Task
@@ -9,6 +10,7 @@ class TaskListView(ListView):
     template_name = "To_Do/to_do.html"
     context_object_name = "tasks"
     extra_context = {'programs': Endeavor.objects.all()}
+    ordering = ["-id"]
 
 
 class TaskDetailView(DetailView):
@@ -28,6 +30,13 @@ class TaskCreateView(CreateView):
     form_class = TaskModelForm2
     template_name = "To_Do/create_task.html"
     success_url = "/todos/"
+
+    def get_initial(self):
+        initial = super().get_initial()
+        program_title = self.kwargs.get("program")  # Retrieve the program title from URL parameters
+        program = Endeavor.objects.get(program_title=program_title)
+        initial["endeavor"] = program
+        return initial
 
 
 class TasklUpdateView(UpdateView):

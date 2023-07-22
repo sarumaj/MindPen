@@ -2,7 +2,7 @@
 {% block content %}
     {% if programs %}
         {% for program in programs %}
-            <div class="card text-center">
+            <div class="card text-center mt-2">
                 <div class="card-header">
                     <h3 class="">Program name: {{ program }}</h3>
                 </div>
@@ -14,7 +14,7 @@
                     {% endfor %}
                 </div>
                 <div class="card-footer">
-                    <a href="{% url 'create_todo' %}" class="btn btn-primary btn-lg">Add Task</a>
+                    <a href="{% url 'create_todo' program=program %}" class="btn btn-primary btn-lg">Add Task</a>
                 </div>
             </div>
         {% endfor %}

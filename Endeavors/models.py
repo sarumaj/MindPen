@@ -8,3 +8,6 @@ class Endeavor(models.Model):
 
     def __str__(self):
         return self.program_title
+
+    class Meta:
+        ordering = ["-id"]

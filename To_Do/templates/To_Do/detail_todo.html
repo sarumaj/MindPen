@@ -2,12 +2,11 @@
 {% block content %}
   <div class="card text-center mt-3">
   <div class="card-header">
-    <h4>Task Detail</h4>
+    <h4>Task Detail for: {{ object.task_title }}</h4>
   </div>
   <div class="card-body">
-    <h6 class="card-text">{{ object.task_title }} </h6>
-    <h6 class="card-title">This task starts at: {{ object.set_time }}</h6>
-    <h6 class="card-text">completed? {{ object.is_done }} </h6>
+    <h6 class="card-title">Starts at: {{ object.set_time }}</h6>
+    <h6 class="card-text">Done? {{ object.is_done }} </h6>
   </div>
   <div class="card-footer text-body-secondary">
     <a href="{% url 'update_todo' object.pk %}" class="btn btn-success mt-4">Update Task</a>
