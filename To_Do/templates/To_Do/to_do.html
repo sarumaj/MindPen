@@ -1,35 +1,35 @@
 {% extends "Journaling/base.html" %}
 {% block content %}
-    {% if programs %}
-        {% for program in programs %}
-            <div class="card text-center mt-2">
-                <div class="card-header">
-                    <h3 class="">Program name: {{ program }}</h3>
-                </div>
-                <div class="card-body">
-                    {% for task in tasks %}
-                        {% if program == task.endeavor %}
-                            <a href="{% url 'detail_todo' task.pk %}"><h6 class="card-title">Title: {{ task.task_title }}</h6></a>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-                <div class="card-footer">
-                    <a href="{% url 'create_todo' program=program %}" class="btn btn-primary btn-lg">Add Task</a>
-                </div>
-            </div>
-        {% endfor %}
-
-    {% else %}
-        <div class="card text-center">
+<h1 class="text ml-4 mt-2">To-Do-List</h1>
+{% if programs %}
+    {% for program in programs %}
+        <div class="card text-center mb-5">
             <div class="card-header">
-                <h4>List of tasks is empty</h4>
+                <h4 class="text-center">{{ program }}</h4>
             </div>
             <div class="card-body">
-                <h3>Add a new task?</h3>
+                {% for task in tasks %}
+                    {% if program == task.endeavor %}
+                        <a class="btn btn-outline-secondary btn-lg" href="{% url 'detail_todo' task.pk %}"><h5 class="card-title">{{ task.task_title.title }}</h5></a>
+                    {% endif %}
+                {% endfor %}
             </div>
-            <div class="card-footer text-body-secondary">
-                <a href="{% url 'create_todo' %}" class="btn btn-primary mt-4">Yes, Add</a>
+            <div class="card-footer">
+                <a href="{% url 'create_todo' program=program %}" class="btn btn-primary btn-lg">Add Task</a>
             </div>
         </div>
-    {% endif %}
+    {% endfor %}
+{% else %}
+    <div class="card text-center">
+        <div class="card-header">
+            <h4>List of tasks is empty</h4>
+        </div>
+        <div class="card-body">
+            <h3>Add a new task?</h3>
+        </div>
+        <div class="card-footer text-body-secondary">
+            <a href="{% url 'create_todo' %}" class="btn btn-primary mt-4">Yes, Add</a>
+        </div>
+    </div>
+{% endif %}
 {% endblock content %}

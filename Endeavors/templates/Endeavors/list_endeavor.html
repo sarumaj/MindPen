@@ -1,6 +1,7 @@
 {% extends "Journaling/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
+<h1 class="text ml-4 mt-2">Endeavors</h1>
     {% if goals %}
         <div class="card text-center mt-2">
           <div class="card-header">
@@ -8,7 +9,7 @@
           </div>
           <div class="card-body">
           {%  for goal in goals  %}
-            <a href="{% url 'detail_endeavor' goal.id %}" class="btn btn-secondary btn-lg">{{ goal.program_title }}</a><br><br>
+            <a href="{% url 'detail_endeavor' goal.id %}" class="btn btn-outline-secondary btn-lg">{{ goal.program_title }}</a><br><br>
           {% endfor %}
           </div>
           <div class="card-footer text-body-secondary">

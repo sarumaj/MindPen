@@ -1,9 +1,10 @@
 {% extends "Journaling/base.html" %}
 {% load static %}
 {% block content %}
+<h1 class="text ml-4 mt-2"></h1>
 <div class="row">
     <div class="col mt-1">
-        <h2 class="text-center mt-2">{{ user.username.title }}'s Diaries</h2>
+        <h3 class="text-center mt-2">{{ user.username.title }}'s Diary</h3>
         <hr>
         {% if posts %}
             {% for post in posts %}

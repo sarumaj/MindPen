@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path, include
+
+from Accomplished.views import UpdateAccomplishedView
 from Endeavors.views import CreateEndeavorView, ListEndeavorView, DeleteEndeavorView, DetailEndeavorView
 from Journaling.views import JournalListView, JournalDetailView, JournalUpdateView, JournalDeleteView
 from To_Do.views import TaskListView, TaskDetailView, TaskDeleteView, TaskCreateView, TasklUpdateView
@@ -10,11 +12,12 @@ from django.contrib.auth.decorators import login_required
 from Endeavors.views import endeavor_task_forms
 
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('data/', include('DataVisualization.urls'), name='data'),
     path('mood/', login_required(MoodFromView.as_view()), name='mood'),
-    path('done/', include('Accomplished.urls'), name='done'),
+
 
     # user's routes
     path('', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
@@ -42,4 +45,8 @@ urlpatterns = [
     path('delete_todo/<int:pk>/delete/', TaskDeleteView.as_view(), name='delete_todo'),
     path('create_todo/<str:program>/create', TaskCreateView.as_view(), name='create_todo'),
     path('update_todo/<int:pk>/update/', TasklUpdateView.as_view(), name='update_todo'),
+
+    # Accomplished
+    path('done/', include('Accomplished.urls'), name='done'),
+    path('done_update/<int:pk>/', login_required(UpdateAccomplishedView.as_view()), name='done_update'),
 ]

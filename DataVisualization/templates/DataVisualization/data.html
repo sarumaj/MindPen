@@ -1,5 +1,61 @@
 {% extends "Journaling/base.html" %}
 
 {% block content %}
-    <h1>DataVisualization page!</h1>
+<h1 class="text ml-4 mt-2">Data Visualization</h1>
+    {% for data in progress_data %}
+        <div class="card text-center mb-5">
+          <div class="card-header">
+            <h4> {{ data.program }}</h4>
+          </div>
+          <div class="card-body">
+            {% if data.progress_percentage >= 0 and data.progress_percentage < 20 %}
+                <div class="progress">
+                  <div class="progress-bar progress-bar-striped bg-danger" role="progressbar"
+                       aria-valuenow="{{ data.progress_percentage }}" aria-valuemin="0" aria-valuemax="100"
+                       style="width: {{ data.progress_percentage }}%;">
+                    {{ data.progress_percentage }}%
+                  </div>
+                </div>
+            {% elif data.progress_percentage >= 20 and data.progress_percentage < 40 %}
+                <div class="progress">
+                  <div class="progress-bar progress-bar-striped bg-warning" role="progressbar"
+                       aria-valuenow="{{ data.progress_percentage }}" aria-valuemin="0" aria-valuemax="100"
+                       style="width: {{ data.progress_percentage }}%;">
+                    {{ data.progress_percentage }}%
+                  </div>
+                </div>
+            {% elif data.progress_percentage >= 40 and data.progress_percentage < 60 %}
+                <div class="progress">
+                  <div class="progress-bar progress-bar-striped bg-info" role="progressbar"
+                       aria-valuenow="{{ data.progress_percentage }}" aria-valuemin="0" aria-valuemax="100"
+                       style="width: {{ data.progress_percentage }}%;">
+                    {{ data.progress_percentage }}%
+                  </div>
+                </div>
+            {% elif data.progress_percentage >= 60 and data.progress_percentage < 80 %}
+                <div class="progress">
+                  <div class="progress-bar progress-bar-striped" role="progressbar"
+                       aria-valuenow="{{ data.progress_percentage }}" aria-valuemin="0" aria-valuemax="100"
+                       style="width: {{ data.progress_percentage }}%;">
+                    {{ data.progress_percentage }}%
+                  </div>
+                </div>
+            {% elif data.progress_percentage >= 80 and data.progress_percentage <= 100 %}
+                <div class="progress">
+                  <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
+                       aria-valuenow="{{ data.progress_percentage }}" aria-valuemin="0" aria-valuemax="100"
+                       style="width: {{ data.progress_percentage }}%;">
+                      {{ data.progress_percentage }}%
+                  </div>
+                </div>
+            {% endif %}
+          </div>
+          <div class="card-footer text-body-secondary">
+            <h4>You have more {{data.remaining_tasks}} task(s) to complete this program!</h4>
+          </div>
+        </div>
+    {% endfor %}
 {% endblock content %}
+
+
+

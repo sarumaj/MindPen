@@ -8,9 +8,14 @@ from .forms import TaskModelForm2
 class TaskListView(ListView):
     model = Task
     template_name = "To_Do/to_do.html"
-    context_object_name = "tasks"
-    extra_context = {'programs': Endeavor.objects.all()}
     ordering = ["-id"]
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["programs"] = Endeavor.objects.filter(author=self.request.user)
+        context["tasks"] = Task.objects.filter(endeavor__author=self.request.user)
+        return context
+
 
 
 class TaskDetailView(DetailView):
@@ -42,5 +47,5 @@ class TaskCreateView(CreateView):
 class TasklUpdateView(UpdateView):
     model = Task
     template_name = "To_Do/update_task.html"
-    fields = ["task_title", "set_time"]
+    fields = ["task_title", "set_time", "completed"]
     success_url = "/todos/"

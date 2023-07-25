@@ -32,10 +32,8 @@
       <h4>Endeavors</h4></a>
       {% if list_endeavor %}
         {% for program_title in list_endeavor %}
-          <div class="card">
-            <div class="card-body">
-              {{ program_title }}
-            </div>
+          <div>
+            <a class="btn btn-outline-secondary btn-sm mt-1" href="{% url 'detail_endeavor' program_title.pk %}">{{ program_title|title}}</a>
           </div>
         {% endfor %}
       {% else %}
@@ -46,17 +44,26 @@
       <h4>To-Do List</h4></a>
       {% if list_task %}
         {% for task_title in list_task %}
-          <div class="card">
-            <div class="card-body">
-              {{ task_title }}
-            </div>
+          <div>
+            <a class="btn btn-outline-secondary btn-sm mt-1" href="{% url 'detail_todo' task_title.pk %}">{{ task_title|title}}</a>
           </div>
         {% endfor %}
       {% else %}
         <h6 class="container mt-5">No tasks to display, add your tasks here!</h6>
       {% endif %}
     </div>
-    <div class="col" id="accomplished"><a href="{% url 'done' %}" class="btn btn-secondary btn-sm"><h4>Accomplished</h4></a></div>
+    <div class="col" id="accomplished"><a href="{% url 'done' %}" class="btn btn-secondary btn-sm">
+      <h4>Accomplished</h4></a>
+      {% if list_accomplished %}
+        {% for program_title in list_accomplished %}
+          <div>
+            <a class="btn btn-outline-secondary btn-sm mt-1" href="#">{{ program_title|title}}</a>
+          </div>
+        {% endfor %}
+      {% else %}
+        <h6 class="container mt-5">{{user.username|title}} you have to work on your tasks!</h6>
+      {% endif %}
+    </div>
   </div>
 </div>
 

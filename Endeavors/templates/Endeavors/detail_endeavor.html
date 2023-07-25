@@ -2,13 +2,12 @@
 {% block content %}
 <div class="card text-center mt-2">
    <div class="card-header">
-       <h3>This program starts in: {{ object.start_day }}</h3>
+       <h3>This program starts in: {{ object.start_day }} has a duration of: {{ object.duration }} month(s), and has the following {{ tasks.count }} task(s)</h3>
    </div>
    <div class="card-body">
        {% if tasks %}
-     <h5 class="card-text"><p>Has a duration of: {{ object.duration }} month(s), and has the following task(s):</p></h5>
            {% for task in tasks %}
-           <h5 class="mt-4">{{task|title}}</h5>
+           <h6 class="mt-4">{{task|title}}</h6>
            {% endfor %}
        {% else %}
            <h5 class="card-text"><p>Has a duration of: {{ object.duration }} month(s), and it has no task yet!</p></h5>

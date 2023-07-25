@@ -2,15 +2,19 @@
 {% block content %}
   <div class="card text-center mt-3">
   <div class="card-header">
-    <h4>Task Detail for: {{ object.task_title }}</h4>
+    <h4>{{ object.task_title.title }}</h4>
   </div>
   <div class="card-body">
     <h6 class="card-title">Starts at: {{ object.set_time }}</h6>
-    <h6 class="card-text">Done? {{ object.is_done }} </h6>
+    {% if object.completed == False  %}
+      <h6 class="card-text">Completed? No </h6>
+    {% else %}
+      <h6 class="card-text">Completed? Yes </h6>
+    {% endif %}
   </div>
   <div class="card-footer text-body-secondary">
-    <a href="{% url 'update_todo' object.pk %}" class="btn btn-success mt-4">Update Task</a>
-    <a class="btn btn-primary mt-4 " href="{% url 'todos' %}">Go, Back</a>
+    <a href="{% url 'update_todo' object.pk %}" class="btn btn-primary mt-4">Update Task</a>
+    <a href="{% url 'todos' %}" class="btn btn-secondary mt-4 " >Go, Back</a>
     <a href="{% url 'delete_todo' object.pk %}" class="btn btn-danger mt-4">Delete Task</a>
   </div>
 </div>

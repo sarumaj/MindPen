@@ -9,11 +9,11 @@
       </div>
       <div class="card-body">
         {{ form|crispy }}
-        <input class="btn btn-primary" type="submit" value="Save Program">
+        <input class="btn btn-outline-primary" type="submit" value="Save Program">
       </div>
       <div class="card-footer text-body-secondary">
-<!--        <a class="btn btn-secondary" href="{% url 'programtask' %}">Create Tasks</a>-->
-          <input  formaction="{% url 'programtask' %}" class="btn btn-primary" type="submit" value="Create Tasks">
+        <input  formaction="{% url 'programtask' %}" class="btn btn-primary" type="submit" value="Create Tasks">
+        <a class="btn btn-secondary" href="{% url 'list_endeavor' %}">Go, Back</a>
       </div>
     </div>
 

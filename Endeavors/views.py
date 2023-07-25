@@ -15,7 +15,14 @@ class CreateEndeavorView(CreateView):
     model = Endeavor
     form_class = EndeavorModelForm
     template_name = "Endeavors/create_endeavor.html"
-    success_url = "/list_endeavor/"
+
+    def post(self, request, *args, **kwargs):
+        form = EndeavorModelForm(request.POST)
+        if form.is_valid():
+            form_endeavor = form.save(commit=False)
+            form_endeavor.author = self.request.user
+            form_endeavor.save()
+            return redirect("list_endeavor")
 
 
 class ListEndeavorView(ListView):
@@ -24,6 +31,11 @@ class ListEndeavorView(ListView):
     context_object_name = "goals"
     ordering = ["-pk"]
     paginate_by = 3
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["goals"] = Endeavor.objects.filter(author=self.request.user)
+        return context
 
 
 class DeleteEndeavorView(DeleteView):

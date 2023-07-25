@@ -1,11 +1,12 @@
 from django.contrib import messages
+from django.http import request
 from django.shortcuts import render, redirect
 from Endeavors.models import Endeavor
 from To_Do.models import Task
 from Journaling.forms import JournalModelForm
 from .form import LoginForm
 from django.views.generic.base import TemplateView
-
+from Accomplished.views import AccomplishedGoal
 
 def register(request):
     if request.method == "POST":
@@ -24,9 +25,10 @@ class ProfileTemplateViews(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['form'] = JournalModelForm()
-        context['list_endeavor'] = Endeavor.objects.all()[:2]
-        context['list_task'] = Task.objects.all()[:2]
+        context["form"] = JournalModelForm()
+        context["list_endeavor"] = Endeavor.objects.filter(author=self.request.user)[:4]
+        context["list_task"] = Task.objects.filter(endeavor__author=self.request.user)[:4]
+        context["list_accomplished"] = AccomplishedGoal.objects.filter(author=self.request.user)[:4]
         return context
 
     def post(self, request, *args, **kwargs):

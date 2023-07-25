@@ -1,7 +1,27 @@
 {% extends "Journaling/base.html" %}
-
 {% block content %}
 <h1>
-    Accomplished page!
+    <h1 class="text ml-4 mb-3">Accomplishments</h1>
 </h1>
+{% if accomplished_goal %}
+    {% for item in accomplished_goal %}
+        <div class="card text-center mb-5">
+          <div class="card-header">
+              <h5>🎉 Congratulations on completing {{item.program_title|title}} program 🎉</h5>
+          </div>
+          <div class="card-body">
+            <h6 class="card-title">Started on {{item.start_day}} and completed on {{item.end_day|date}}</h6>
+            <p class="card-text">{{item.summary}}</p>
+          </div>
+          <div class="card-footer text-body-secondary">
+            <a class="btn btn-primary" href="{% url 'done_update' item.pk %}">Add Reflection</a>
+            <a class="btn btn-danger" href="#">Delete</a>
+          </div>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>Empty</p>
+{%endif  %}
 {% endblock content %}
+
+
