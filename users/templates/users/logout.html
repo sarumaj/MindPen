@@ -1,14 +1,14 @@
 {% extends "users/base.html" %}
 {% block content %}
-<div class="card text-center mt-3">
+<div class="card text-center mt-5">
     <div class="card-header">
-        <h3>You are logged out!</h3>
+        <h2>Logged out successfully</h2>
     </div>
     <div class="card-body">
-      <h4 class="card-text">Tell me your plans...</h4>
+      <h4 class="card-text">"We hope to see you again soon! Stay inspired and keep journaling."</h4>
     </div>
     <div class="card-footer text-body-secondary">
-      <a class="btn btn-secondary btn-lg" href="{% url 'login' %}"><h3>Log-in</h3></a>
+      <a class="btn btn-secondary" href="{% url 'login' %}"><h3>Log-in</h3></a>
     </div>
 </div>
 {% endblock content %}

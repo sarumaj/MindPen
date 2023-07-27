@@ -1,0 +1,13 @@
+{% extends "Journaling/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<form action="{% url 'tasks' %}" method="post">
+  {% csrf_token %}
+  {{ formset.management_form }}
+  {% for form in formset %}
+    {{form|crispy}}
+  <br><br>
+  {% endfor %}
+<input type="submit" value="Add tasks">
+</form>
+{% endblock content %}

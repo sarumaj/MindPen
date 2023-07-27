@@ -44,6 +44,7 @@ class TaskCreateView(CreateView):
         return initial
 
 
+
 class TasklUpdateView(UpdateView):
     model = Task
     template_name = "To_Do/update_task.html"

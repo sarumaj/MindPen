@@ -8,6 +8,7 @@ from .form import LoginForm
 from django.views.generic.base import TemplateView
 from Accomplished.views import AccomplishedGoal
 
+
 def register(request):
     if request.method == "POST":
         form = LoginForm(request.POST)
@@ -25,10 +26,11 @@ class ProfileTemplateViews(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["form"] = JournalModelForm()
-        context["list_endeavor"] = Endeavor.objects.filter(author=self.request.user)[:4]
-        context["list_task"] = Task.objects.filter(endeavor__author=self.request.user)[:4]
-        context["list_accomplished"] = AccomplishedGoal.objects.filter(author=self.request.user)[:4]
+        context["form"] = JournalModelForm(initial={"content": "Start journaling now! Share your thoughts, experiences,"
+                                                               " and memories right here."})
+        context["list_endeavor"] = Endeavor.objects.filter(author=self.request.user)[:3]
+        context["list_task"] = Task.objects.filter(endeavor__author=self.request.user)[:3]
+        context["list_accomplished"] = AccomplishedGoal.objects.filter(author=self.request.user)[:3]
         return context
 
     def post(self, request, *args, **kwargs):

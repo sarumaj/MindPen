@@ -1,10 +1,12 @@
+from django.contrib.auth.mixins import UserPassesTestMixin
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from Endeavors.models import Endeavor
 from To_Do.models import Task
 from .models import AccomplishedGoal
 from .forms import SummaryModelForm
-from django.views.generic import UpdateView
+from django.views.generic import UpdateView, DeleteView
+
 
 @login_required()
 def done(request):
@@ -55,3 +57,15 @@ class UpdateAccomplishedView(UpdateView):
     template_name = "Accomplished/accomplishedgoal_detail.html"
     fields = ["summary"]
     success_url = "/done/"
+
+
+class DeleteAccomplishedView(UserPassesTestMixin, DeleteView):
+    model = AccomplishedGoal
+    template_name = "Accomplished/delete.html"
+    success_url = "/done/"
+
+    def test_func(self):
+        accomplished = self.get_object()
+        if self.request.user == accomplished.author:
+            return True
+        return False

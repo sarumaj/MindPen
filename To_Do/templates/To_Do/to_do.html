@@ -3,14 +3,14 @@
 <h1 class="text ml-4 mt-2">To-Do-List</h1>
 {% if programs %}
     {% for program in programs %}
-        <div class="card text-center mb-5">
+        <div class="card text-center text-primary mb-5">
             <div class="card-header">
                 <h4 class="text-center">{{ program }}</h4>
             </div>
             <div class="card-body">
                 {% for task in tasks %}
                     {% if program == task.endeavor %}
-                        <a class="btn btn-outline-secondary btn-lg" href="{% url 'detail_todo' task.pk %}"><h5 class="card-title">{{ task.task_title.title }}</h5></a>
+                        <a class="btn btn-outline-dark btn-lg" href="{% url 'detail_todo' task.pk %}"><h5 class="card-title">{{ task.task_title.title }}</h5></a>
                     {% endif %}
                 {% endfor %}
             </div>
@@ -22,13 +22,16 @@
 {% else %}
     <div class="card text-center">
         <div class="card-header">
-            <h4>List of tasks is empty</h4>
+            <h4>Task List is Empty</h4>
         </div>
         <div class="card-body">
-            <h3>Add a new task?</h3>
+           <p>In order to create a new task, you need to set up a program first.</p>
+           <p>A program helps you organize your tasks and keep track of your progress towards your goals.</p>
+           <p>Don't worry, it's easy to set up! Just click the button "Create Program" and add a new program title and start date.</p>
+           <p>Once you have a program set up, you can create tasks and start making progress!</p>
         </div>
         <div class="card-footer text-body-secondary">
-            <a href="{% url 'create_todo' %}" class="btn btn-primary mt-4">Yes, Add</a>
+            <a href="{% url 'create_endeavor' %}" class="btn btn-primary mt-2">Create Program</a>
         </div>
     </div>
 {% endif %}

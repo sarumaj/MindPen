@@ -15,12 +15,23 @@
           </div>
           <div class="card-footer text-body-secondary">
             <a class="btn btn-primary" href="{% url 'done_update' item.pk %}">Add Reflection</a>
-            <a class="btn btn-danger" href="#">Delete</a>
+            <a class="btn btn-danger" href="{% url 'done_delete' item.pk %}">Delete</a>
           </div>
         </div>
     {% endfor %}
 {% else %}
-    <p>Empty</p>
+    <div class="card text-center">
+          <div class="card-header">
+              <h3>Accomplished Programs</h3>
+          </div>
+          <div class="card-body">
+            <h4 class="card-title">No programs have been accomplished yet. Keep up the good work!</h4>
+
+          </div>
+          <div class="card-footer text-body-secondary">
+              <a href="{% url 'profile' %}" class="btn btn-secondary">Go, Back</a>
+          </div>
+        </div>
 {%endif  %}
 {% endblock content %}
 

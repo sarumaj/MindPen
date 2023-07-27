@@ -1,0 +1,20 @@
+{% extends "Journaling/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<form method = post>
+     {% csrf_token %}
+     {{ just_prog_form|crispy }}
+     <input type="submit" value="Save">
+</form>
+
+
+<br><br>
+
+
+Create small tasks?
+<form action="{% url 'tasks' %}" method="get">
+    {{multiple_form|crispy}}
+    <input type="submit" value="Add Task">
+</form>
+
+{% endblock content %}

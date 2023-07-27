@@ -10,12 +10,11 @@
       <div class="mt-3" ><img src="{% static 'odometer.png' %}" height="160" width="320"></div>
     </div>
     <div class="col" id="journaling">
-      <a href="{% url 'journal' %}" ><h6>Journaling</h6></a>
-      <form class="form-control form-control-sm" method="post" >
+      <a href="{% url 'journal' %}" class="btn btn-secondary btn-sm"><h4>Journaling</h4></a>
+      <form id="form" class="form-control form-control-sm" method="post" >
         {% csrf_token %}
-        {{ form.content }}
-        {{ form.title }}
-        <input class="btn btn-secondary" type="submit">
+        {{ form.as_p }}
+          <input class="btn btn-secondary btn-sm" type="submit">
       </form>
     </div>
   </div>
@@ -33,35 +32,37 @@
       {% if list_endeavor %}
         {% for program_title in list_endeavor %}
           <div>
-            <a class="btn btn-outline-secondary btn-sm mt-1" href="{% url 'detail_endeavor' program_title.pk %}">{{ program_title|title}}</a>
+            <a class="btn btn-light btn-lg mt-1" href="{% url 'detail_endeavor' program_title.pk %} ">{{ program_title|title}}</a>
           </div>
         {% endfor %}
       {% else %}
-        <h6 class="container mt-5">No programs to display, add your programs here!</h6>
+        <h6 class="container mt-3">"No programs set up yet. Start by creating your first program to organize your tasks and goals."</h6>
       {% endif %}
     </div>
     <div class="col" id="to_do"><a href="{% url 'todos' %}" class="btn btn-secondary btn-sm">
-      <h4>To-Do List</h4></a>
+      <h4>To-Do-List</h4></a>
       {% if list_task %}
         {% for task_title in list_task %}
           <div>
-            <a class="btn btn-outline-secondary btn-sm mt-1" href="{% url 'detail_todo' task_title.pk %}">{{ task_title|title}}</a>
+            <a class="btn btn-light btn-lg mt-1" href="{% url 'detail_todo' task_title.pk %}">{{ task_title|title}}</a>
           </div>
         {% endfor %}
       {% else %}
-        <h6 class="container mt-5">No tasks to display, add your tasks here!</h6>
+        <h6 class="container mt-3">"No tasks available yet. Add tasks to your programs to track your progress and accomplishments."</h6>
       {% endif %}
     </div>
-    <div class="col" id="accomplished"><a href="{% url 'done' %}" class="btn btn-secondary btn-sm">
-      <h4>Accomplished</h4></a>
+    <div class="col" id="accomplished"><a href="{% url 'done' %}" class="btn btn-secondary btn-sm mb-1">
+      <h4>Accomplishments</h4></a>
       {% if list_accomplished %}
         {% for program_title in list_accomplished %}
           <div>
-            <a class="btn btn-outline-secondary btn-sm mt-1" href="#">{{ program_title|title}}</a>
+            <a style="background: white" class="btn btn-light btn-lg mt-1" href="#">{{ program_title|title}}</a>
           </div>
         {% endfor %}
       {% else %}
-        <h6 class="container mt-5">{{user.username|title}} you have to work on your tasks!</h6>
+      <div style="background: white; padding: 1px;">
+        <h6 class="container mt-3">"You haven't accomplished any programs yet. Keep working on your tasks and goals to mark your progress and celebrate your achievements!"</h6>
+      </div>
       {% endif %}
     </div>
   </div>

@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 
 from To_Do.models import Task
-from .forms import EndeavorModelForm
+from .forms import EndeavorModelForm, MultipleTaskForms
+from django.forms import formset_factory
 from To_Do.forms import TaskModelForm1
 from .models import Endeavor
 from django.views.generic import (CreateView,
@@ -11,18 +12,54 @@ from django.views.generic import (CreateView,
                                   )
 
 
-class CreateEndeavorView(CreateView):
-    model = Endeavor
-    form_class = EndeavorModelForm
-    template_name = "Endeavors/create_endeavor.html"
+# class CreateEndeavorView(CreateView):
+#     model = Endeavor
+#     form_class = EndeavorModelForm
+#     template_name = "Endeavors/create_endeavor.html"
+#
+#     def post(self, request, *args, **kwargs):
+#         form = EndeavorModelForm(request.POST)
+#         if form.is_valid():
+#             form_endeavor = form.save(commit=False)
+#             form_endeavor.author = self.request.user
+#             form_endeavor.save()
+#             return redirect("list_endeavor")
 
-    def post(self, request, *args, **kwargs):
-        form = EndeavorModelForm(request.POST)
-        if form.is_valid():
-            form_endeavor = form.save(commit=False)
-            form_endeavor.author = self.request.user
-            form_endeavor.save()
-            return redirect("list_endeavor")
+def add_endeavor(request):
+    multiple_form = MultipleTaskForms()
+    if request.method == "POST":
+        just_prog_form = EndeavorModelForm(request.POST)
+        if just_prog_form.is_valid():
+            prog_form = just_prog_form.save(commit=False)
+            prog_form.author = request.user
+            prog_form.save()
+            return render(request, "Endeavors/endeavor_tasks.html", {"just_prog_form": just_prog_form,
+                                                                     "multiple_form": multiple_form})
+            # return redirect("/list_endeavor/")
+    else:
+        just_prog_form = EndeavorModelForm()
+    return render(request, "Endeavors/endeavor_tasks.html", {"just_prog_form": just_prog_form})
+
+
+def tasks(request):
+    number = 2
+    formset = None  # Initialize formset to None or an empty value
+    filled_multiple_tasks_form = MultipleTaskForms(request.GET)
+    if filled_multiple_tasks_form.is_valid():
+        number = filled_multiple_tasks_form.cleaned_data["number"]
+        TaskFormSet = formset_factory(TaskModelForm1, extra=number)
+        formset = TaskFormSet()
+        if request.method == "POST":
+            filled_formset = TaskFormSet(request.POST)
+            if filled_formset.is_valid():
+                filled_formset.save()
+                return redirect("list_endeavor")
+        else:
+            return render(request, "Endeavors/tasks.html", {"formset": formset})
+
+    # Make sure to handle the case when the formset is not defined
+    return render(request, "Endeavors/tasks.html", {"formset": formset})
+
 
 
 class ListEndeavorView(ListView):
@@ -55,22 +92,40 @@ class DetailEndeavorView(DetailView):
         return context
 
 
-def endeavor_task_forms(request):
-    if request.method == "POST":
-        program_form = EndeavorModelForm(request.POST)
-        task_form = TaskModelForm1(request.POST)
-        if program_form.is_valid() and task_form.is_valid():
-            program = program_form.save()  # Save the program and get the created object
-            task = task_form.save(commit=False)  # Create the task object but don't save it yet
-            task.endeavor = program  # Set the program for the task
-            task.user = request.user
-            task.save()  # Save the task with the program relationship
-            return redirect("list_endeavor")
-    else:
-        program_form = EndeavorModelForm()
-        task_form = TaskModelForm1()
-    context = {
-        "program_form": program_form,
-        "task_form": task_form
-    }
-    return render(request, "Endeavors/endeavor_task_forms.html", context)
+# def endeavor_task_forms(request):
+#     multiple_tasks = MultipleTaskForms()
+#     if request.method == "POST":
+#         endeavor_form = EndeavorModelForm(request.POST)
+#         if endeavor_form.is_valid():
+#             endeavor_form.save()
+#             return redirect("list_endeavor")
+#     else:
+#         endeavor_form = EndeavorModelForm()
+#     context = {
+#         "endeavor_form": EndeavorModelForm,
+#         "multiple_tasks": multiple_tasks
+#     }
+#     return render(request, "Endeavors/endeavor_task_forms.html", context)
+
+
+# def tasks(request):
+#     task_number = 2
+#     multiple_task_forms = MultipleTaskForms(request.get)
+#     if multiple_task_forms.is_valid():
+#         task_number = multiple_task_forms.cleaned_data("number")
+#     TaskFormSet= formset_factory(EndeavorModelForm, extra=task_number)
+#     formset = TaskFormSet()
+#     if request.method == "POST":
+#         filled_formset = TaskFormSet(request)
+#         if filled_formset.is_valid():
+#             for form in filled_formset:
+#                 print(form.cleaned_data["task_title"])
+#             note = "Task have been registered"
+#         else:
+#             note = "Task was not created, try again"
+#         return (request,"Endeavors/tasks.html", {"note": note, "formset": formset})
+#     else:
+#         return (request, "Endeavors/tasks.html", {"formset": formset})
+
+
+

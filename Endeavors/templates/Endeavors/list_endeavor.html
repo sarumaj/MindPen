@@ -3,37 +3,17 @@
 {% block content %}
 <h1 class="text ml-4 mt-2">Endeavors</h1>
     {% if goals %}
-        <div class="card text-center mt-2">
+        <div class="card text-center text-primary mt-2">
           <div class="card-header">
-              <h3>{{ user.username.title }}'s Endeavors</h3>
+              <h3>Your Journey to Greatness Begins Here</h3>
           </div>
           <div class="card-body">
           {%  for goal in goals  %}
-            <a href="{% url 'detail_endeavor' goal.id %}" class="btn btn-outline-secondary btn-lg">{{ goal.program_title }}</a><br><br>
+            <a href="{% url 'detail_endeavor' goal.id %}" class="btn btn-outline-dark btn-lg">{{ goal.program_title }}</a>
           {% endfor %}
           </div>
           <div class="card-footer text-body-secondary">
-            {% if is_paginated %}
-                {% if page_obj.has_previous %}
-                  <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
-                  <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
-                {% endif %}
 
-                {% for num in page_obj.paginator.page_range %}
-                  {% if page_obj.number == num %}
-                    <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
-                  {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-                    <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
-                  {% endif %}
-                {% endfor %}
-
-                {% if page_obj.has_next %}
-                  <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
-                  <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
-                {% endif %}
-            {% endif %}
-          </div>
-        </div>
     <div class="text-center mt-4">
         <a href="{% url 'create_endeavor' %}" class="btn btn-primary btn-lg">Add a program</a>
     </div>

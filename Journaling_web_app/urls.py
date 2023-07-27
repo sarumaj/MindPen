@@ -2,14 +2,14 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path, include
 
-from Accomplished.views import UpdateAccomplishedView
-from Endeavors.views import CreateEndeavorView, ListEndeavorView, DeleteEndeavorView, DetailEndeavorView
+from Accomplished.views import UpdateAccomplishedView, DeleteAccomplishedView
+from Endeavors.views import add_endeavor, ListEndeavorView, DeleteEndeavorView, DetailEndeavorView, tasks
 from Journaling.views import JournalListView, JournalDetailView, JournalUpdateView, JournalDeleteView
 from To_Do.views import TaskListView, TaskDetailView, TaskDeleteView, TaskCreateView, TasklUpdateView
 from MyMood.views import MoodFromView
 from users.views import ProfileTemplateViews
 from django.contrib.auth.decorators import login_required
-from Endeavors.views import endeavor_task_forms
+
 
 
 
@@ -32,11 +32,11 @@ urlpatterns = [
     path('journal/', login_required(JournalListView.as_view()), name='journal'),
 
     # Endeavor Routes
-    path('create_endeavor/', login_required(CreateEndeavorView.as_view()), name='create_endeavor'),
+    path('create_endeavor/', add_endeavor, name='create_endeavor'),
     path('list_endeavor/', login_required(ListEndeavorView.as_view()), name='list_endeavor'),
     path('detail_endeavor/<pk>/detail/', login_required(DetailEndeavorView.as_view()), name='detail_endeavor'),
     path('delete_endeavor/<pk>/delete/', login_required(DeleteEndeavorView.as_view()), name='delete_endeavor'),
-    path('programtask/', endeavor_task_forms, name='programtask'),
+    path('tasks/', tasks, name='tasks'),
 
 
     # To-Do Routes
@@ -49,4 +49,5 @@ urlpatterns = [
     # Accomplished
     path('done/', include('Accomplished.urls'), name='done'),
     path('done_update/<int:pk>/', login_required(UpdateAccomplishedView.as_view()), name='done_update'),
+    path('done_delete/<int:pk>/', login_required(DeleteAccomplishedView.as_view()), name='done_delete'),
 ]
