@@ -6,7 +6,7 @@ from Accomplished.views import UpdateAccomplishedView, DeleteAccomplishedView
 from Endeavors.views import add_endeavor, ListEndeavorView, DeleteEndeavorView, DetailEndeavorView, tasks
 from Journaling.views import JournalListView, JournalDetailView, JournalUpdateView, JournalDeleteView
 from To_Do.views import TaskListView, TaskDetailView, TaskDeleteView, TaskCreateView, TasklUpdateView
-from MyMood.views import MoodFromView
+from MyMood.views import mood
 from users.views import ProfileTemplateViews
 from django.contrib.auth.decorators import login_required
 
@@ -16,7 +16,7 @@ from django.contrib.auth.decorators import login_required
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('data/', include('DataVisualization.urls'), name='data'),
-    path('mood/', login_required(MoodFromView.as_view()), name='mood'),
+
 
 
     # user's routes
@@ -50,4 +50,7 @@ urlpatterns = [
     path('done/', include('Accomplished.urls'), name='done'),
     path('done_update/<int:pk>/', login_required(UpdateAccomplishedView.as_view()), name='done_update'),
     path('done_delete/<int:pk>/', login_required(DeleteAccomplishedView.as_view()), name='done_delete'),
+
+    # MyMood
+    path('mood/', login_required(mood), name='mood'),
 ]

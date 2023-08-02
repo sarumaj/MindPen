@@ -1,10 +1,8 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class DataMood(models.Model):
-    mood = models.CharField(max_length=30)
-    mood_score = models.IntegerField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    mood_score = models.CharField(max_length=1)
     mood_date = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.mood
