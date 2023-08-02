@@ -2,20 +2,18 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% block content %}
-<h1 class="text ml-4 mt-2"></h1>
 <div class="row">
-    <div class="col mt-1">
+    <div class="col mt-2">
         <h3 class="text-center mt-2">{{ user.username.title }}'s Diary</h3>
         <hr>
         {% if posts %}
             {% for post in posts %}
-                <div class="card text-center">
-                  <div class="card-header">
-                      <a class="#">{{post.author}}</a>
-                      posted on: {{ post.journal_date }}
+                <div class="card text-center mt-2">
+                  <div class="card-header text-primary">
+                      <h4>Posted on: {{ post.journal_date|date }}</h4>
                   </div>
                   <div class="card-body">
-                      <h5>Title: {{post.title}}</h5>
+                      <h4>{{post.title|title}}</h4>
                       <p class="card-text">{{ post.content }}</p>
                   </div>
                   <div class="card-footer text-body-secondary">
@@ -24,28 +22,32 @@
                   </div>
                 </div>
             {% endfor %}
-        {% if is_paginated %}
-          {% if page_obj.has_previous %}
-            <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
-            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
-          {% endif %}
-          {% for num in page_obj.paginator.page_range %}
-            {% if page_obj.number == num %}
-              <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
-            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-              <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
-            {% endif %}
-          {% endfor %}
-          {% if page_obj.has_next %}
-            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
-            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
-          {% endif %}
-        {% endif %}
         {% else %}
-            <div class="container mt-5">
-                <h4>"No journal entries found. Begin writing your thoughts and experiences to create your personal diary."</h4>
+            <div style="background: white" class="container mt-5">
+                <hp>"No journal entries found.</hp>
+                <hp>Begin writing your thoughts and experiences to create your personal diary."</hp>
             </div>
         {% endif %}
+        <div class="text-center mt-3">
+          {% if is_paginated %}
+              {% if page_obj.has_previous %}
+                <a class=" text-center btn btn-outline-primary" href="?page=1">First</a>
+                <a class="btn btn-outline-primary" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+              {% endif %}
+              {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                  <a class="btn btn-primary" href="?page={{ num }}">{{ num }}</a>
+                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                  <a class="btn btn-outline-primary" href="?page={{ num }}">{{ num }}</a>
+                {% endif %}
+              {% endfor %}
+              {% if page_obj.has_next %}
+                <a class="btn btn-outline-primary" href="?page={{ page_obj.next_page_number }}">Next</a>
+                <a class="btn btn-outline-primary" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+              {% endif %}
+          {% endif %}
+        </div>
+
     </div>
 
     <div class="col mt-5">
@@ -53,7 +55,7 @@
             <form method="post">
                 {% csrf_token %}
                 <div class="card text-center mt-3">
-                  <div class="card-header">
+                  <div class="card-header text-primary">
                       <h3>Journaling Here</h3>
                   </div>
                   <div class="card-body">

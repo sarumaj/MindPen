@@ -4,8 +4,8 @@
 <h1 class="text ml-4 mt-2">Data Visualization</h1>
     {% for data in progress_data %}
         <div class="card text-center mb-5">
-          <div class="card-header">
-            <h4> {{ data.program }}</h4>
+          <div class="card-header text-primary">
+            <h3> {{ data.program }}</h3>
           </div>
           <div class="card-body">
             {% if data.progress_percentage >= 0 and data.progress_percentage < 20 %}
@@ -50,7 +50,7 @@
                 </div>
             {% endif %}
           </div>
-          <div class="card-footer text-body-secondary">
+          <div class="card-footer">
             <h4>You have more {{data.remaining_tasks}} task(s) to complete this program!</h4>
           </div>
         </div>

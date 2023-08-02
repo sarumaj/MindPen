@@ -1,16 +1,18 @@
 {% extends "Journaling/base.html" %}
 {% block content %}
-<h1 class="text ml-4 mt-2">To-Do-List</h1>
+<h1 class="text ml-4 mt-2 text-dark">To-Do-List</h1>
 {% if programs %}
     {% for program in programs %}
         <div class="card text-center text-primary mb-5">
             <div class="card-header">
-                <h4 class="text-center">{{ program }}</h4>
+                <h3 class="text-center">{{ program }}</h3>
             </div>
             <div class="card-body">
                 {% for task in tasks %}
                     {% if program == task.endeavor %}
-                        <a class="btn btn-outline-dark btn-lg" href="{% url 'detail_todo' task.pk %}"><h5 class="card-title">{{ task.task_title.title }}</h5></a>
+                        <a class="btn btn-outline-dark btn-lg" href="{% url 'detail_todo' task.pk %}">
+                            <h5 class="card-title">{{ task.task_title.title }}</h5>
+                        </a>
                     {% endif %}
                 {% endfor %}
             </div>
@@ -21,8 +23,8 @@
     {% endfor %}
 {% else %}
     <div class="card text-center">
-        <div class="card-header">
-            <h4>Task List is Empty</h4>
+        <div class="card-header text-primary">
+            <h3>Task List is Empty</h3>
         </div>
         <div class="card-body">
            <p>In order to create a new task, you need to set up a program first.</p>

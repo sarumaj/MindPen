@@ -7,7 +7,9 @@
    <div class="card-body">
        {% if tasks %}
            {% for task in tasks %}
-                <a class="btn btn-outline-dark btn-lg" href="{% url 'detail_todo' task.id %}">{{task|title}}</a>
+                <a class="btn btn-outline-dark btn-lg" href="{% url 'detail_todo' task.id %}">
+                    <h5 class="card-title">{{task|title}}</h5>
+                </a>
            {% endfor %}
        {% else %}
            <h5 class="card-text"><p>Has a duration of: {{ object.duration }} month(s), and it has no task yet!</p></h5>

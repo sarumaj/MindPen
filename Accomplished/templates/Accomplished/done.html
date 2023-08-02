@@ -6,8 +6,8 @@
 {% if accomplished_goal %}
     {% for item in accomplished_goal %}
         <div class="card text-center mb-5">
-          <div class="card-header">
-              <h5>🎉 Congratulations on completing {{item.program_title|title}} program 🎉</h5>
+          <div class="card-header text-primary">
+              <h3>🎉 Congratulations on completing {{item.program_title|title}} program 🎉</h3>
           </div>
           <div class="card-body">
             <h6 class="card-title">Started on {{item.start_day}} and completed on {{item.end_day|date}}</h6>

@@ -13,7 +13,7 @@
 <!-- Navbar -->
 <nav class="navbar bg-body-tertiary">
     <div class="container-fluid">
-        <span class="navbar-text"><h1>PenMind</h1></span>
+        <span class="navbar-text text-primary"><h1>PenMind</h1></span>
         <span><a class="btn btn-secondary btn-lg" href="{% url 'logout' %}" href="{% url 'logout' %}">{{ user.username.title }} - Log out</a></span>
     </div>
 </nav>
@@ -25,13 +25,14 @@
             <span class="fs-4">Navigation Bar</span>
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
-                <li><a href="{% url 'journal' %}" class="nav-link link-body-emphasis">Journaling</a></li>
-                <li><a href="{% url 'data' %}" class="nav-link link-body-emphasis">Data Visualization</a></li>
-                <li><a href="{% url 'list_endeavor' %}" class="nav-link link-body-emphasis">Endeavors</a></li>
-                <li><a href="{% url 'mood' %}" class="nav-link link-body-emphasis">MyMood</a></li>
-                <li><a href="{% url 'todos' %}" class="nav-link link-body-emphasis">To-Do List</a></li>
-                <li><a href="{% url 'done' %}" class="nav-link link-body-emphasis">Accomplished</a></li>
                 <li><a href="{% url 'profile' %}" class="nav-link link-body-emphasis">Dashboard</a></li>
+                <li><a href="{% url 'journal' %}" class="nav-link link-body-emphasis">Journaling</a></li>
+                <li><a href="{% url 'list_endeavor' %}" class="nav-link link-body-emphasis">Endeavors</a></li>
+                <li><a href="{% url 'todos' %}" class="nav-link link-body-emphasis">To-Do List</a></li>
+                <li><a href="{% url 'mood' %}" class="nav-link link-body-emphasis">MyMood</a></li>
+                <li><a href="{% url 'data' %}" class="nav-link link-body-emphasis">Data Visualization</a></li>
+                <li><a href="{% url 'done' %}" class="nav-link link-body-emphasis">Accomplished</a></li>
+
             </ul>
             <hr>
         </div>

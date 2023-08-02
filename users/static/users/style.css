@@ -1,40 +1,40 @@
 #journaling {
     height: 250px;
     width: 500px;
-    border: 5px solid black;
+    border: 5px solid grey;
 
 }
 #data_visualization {
     height: 250px;
     width: 500px;
-    border: 5px solid black;
+    border: 5px solid grey;
     margin-right: 5px;
 }
 #mymood {
     height: 220px;
     width: 500px;
-    border: 5px solid black;
+    border: 5px solid grey;
     margin-top: 10px;
     margin-right: 5px;
 }
 #endeavors {
     height: 220px;
     width: 500px;
-    border: 5px solid black;
+    border: 5px solid grey;
     margin-top: 10px;
     margin-right: 5px;
 }
 #to_do {
     height: 220px;
     width: 500px;
-    border: 5px solid black;
+    border: 5px solid grey;
     margin-top: 10px;
     margin-right: 5px;
 }
 #accomplished {
     height: 220px;
     width: 500px;
-    border: 5px solid black;
+    border: 5px solid grey;
     margin-top: 10px
 }
 #form {

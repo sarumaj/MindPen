@@ -33,33 +33,33 @@ def add_endeavor(request):
             prog_form = just_prog_form.save(commit=False)
             prog_form.author = request.user
             prog_form.save()
-            return render(request, "Endeavors/endeavor_tasks.html", {"just_prog_form": just_prog_form,
-                                                                     "multiple_form": multiple_form})
-            # return redirect("/list_endeavor/")
+        return render(request, "Endeavors/endeavor_tasks.html", {"just_prog_form": just_prog_form,
+                                                                 "multiple_form": multiple_form})
+
     else:
         just_prog_form = EndeavorModelForm()
     return render(request, "Endeavors/endeavor_tasks.html", {"just_prog_form": just_prog_form})
 
 
 def tasks(request):
-    number = 2
-    formset = None  # Initialize formset to None or an empty value
+    number = 1
+    program = Endeavor.objects.first()
     filled_multiple_tasks_form = MultipleTaskForms(request.GET)
     if filled_multiple_tasks_form.is_valid():
         number = filled_multiple_tasks_form.cleaned_data["number"]
-        TaskFormSet = formset_factory(TaskModelForm1, extra=number)
-        formset = TaskFormSet()
-        if request.method == "POST":
-            filled_formset = TaskFormSet(request.POST)
-            if filled_formset.is_valid():
-                filled_formset.save()
-                return redirect("list_endeavor")
-        else:
-            return render(request, "Endeavors/tasks.html", {"formset": formset})
-
-    # Make sure to handle the case when the formset is not defined
+    TaskFormSet = formset_factory(TaskModelForm1, extra=number)
+    formset = TaskFormSet()
+    if request.method == "POST":
+        filled_formset = TaskFormSet(request.POST)
+        if filled_formset.is_valid():
+            for form in filled_formset:
+                task = form.save(commit=False)
+                task.endeavor = program
+                task.save()
+            return redirect("list_endeavor")
+    else:
+        return render(request, "Endeavors/tasks.html", {"formset": formset})
     return render(request, "Endeavors/tasks.html", {"formset": formset})
-
 
 
 class ListEndeavorView(ListView):

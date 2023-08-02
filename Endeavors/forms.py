@@ -9,4 +9,4 @@ class EndeavorModelForm(forms.ModelForm):
 
 
 class MultipleTaskForms(forms.Form):
-    number = forms.IntegerField(min_value=1, max_value=6)
+    number = forms.IntegerField(min_value=1, max_value=5)

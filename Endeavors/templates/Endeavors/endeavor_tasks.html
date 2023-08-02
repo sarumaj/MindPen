@@ -1,20 +1,26 @@
 {% extends "Journaling/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-<form method = post>
-     {% csrf_token %}
-     {{ just_prog_form|crispy }}
-     <input type="submit" value="Save">
-</form>
+<div class="card text-center mt-2">
+      <div class="card-header">
+          <h3>Create a new program</h3>
+      </div>
+      <div class="card-body">
+        <form method = post>
+             {% csrf_token %}
+             {{ just_prog_form|crispy }}
+             <input class="btn btn-outline-primary" type="submit" value="Save Program">
+        </form>
 
+      </div>
+      <div class="card-footer">
+        <h4>Want to add small tasks?</h4>
+        <form action="{% url 'tasks' %}" method="get">
 
-<br><br>
-
-
-Create small tasks?
-<form action="{% url 'tasks' %}" method="get">
-    {{multiple_form|crispy}}
-    <input type="submit" value="Add Task">
-</form>
-
+            {{multiple_form|crispy}}
+            <input class="btn btn-outline-primary mb-3" type="submit" value="Add Task">
+        </form>
+        <a  class="btn btn-outline-secondary" href="{% url 'list_endeavor' %}">Go, Back</a>
+      </div>
+</div>
 {% endblock content %}

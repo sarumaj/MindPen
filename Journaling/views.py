@@ -7,7 +7,7 @@ from .forms import JournalModelForm
 
 
 class JournalListView(ListView):
-    paginate_by = 2
+    paginate_by = 3
     model = Journal
     template_name = "Journaling/journal.html"
 

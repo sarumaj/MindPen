@@ -3,15 +3,15 @@
     <form method="post">
         {% csrf_token %}
         <div class="card text-center">
-          <div class="card-header">
+          <div class="card-header text-primary">
               <h3>Warning Message</h3>
           </div>
           <div class="card-body">
             <h4 class="card-title">Are you sure you want to delete "{{ object.title}}"?</h4>
-            <input class="btn btn-danger" type="submit" value="Yes, Delete">
+            <input class="btn btn-danger mt-2" type="submit" value="Yes, Delete">
           </div>
           <div class="card-footer text-body-secondary">
-            <a class="btn btn-primary btn-lg" href="{% url 'journal'  %}">NO, Cancel</a>
+            <a class="btn btn-primary" href="{% url 'journal'  %}">NO, Cancel</a>
           </div>
         </div>
     </form>

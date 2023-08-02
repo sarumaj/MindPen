@@ -5,9 +5,22 @@
   {% csrf_token %}
   {{ formset.management_form }}
   {% for form in formset %}
-    {{form|crispy}}
-  <br><br>
+  <div class="card text-center mt-2">
+      <div class="card-header">
+        <h3>Add Task</h3>
+      </div>
+
+      <div class="card-body">
+        <p class="card-text">{{form|crispy}}</p>
+      </div>
+
+      <div class="card-footer text-body-secondary">
+        <a class="btn btn-outline-secondary" href="{% url 'create_endeavor' %}">Cancel, Go Back</a>
+      </div>
+  </div>
   {% endfor %}
-<input type="submit" value="Add tasks">
+<div class="d-grid gap-2">
+  <input class="btn btn-primary btn-lg mt-2" type="submit">
+</div>
 </form>
 {% endblock content %}
