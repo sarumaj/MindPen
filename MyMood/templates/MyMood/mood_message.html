@@ -1,0 +1,26 @@
+{% extends "Journaling/base.html" %}
+{% block content %}
+<h1 class="text ml-4 mt-2">MyMood</h1>
+<div class="card text-center">
+  <div class="card-header text-primary">
+    <h3>Thank You for Sharing Your Mood!</h3>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Your Mood Matters</h5>
+    <p class="card-text">
+        "🌈✨ Your emotions are a valuable part of your journey.
+        We invite you to take a moment and reflect on the reasons or events that may have influenced your mood.
+        Writing about your experiences can help you gain deeper insights into your emotions and foster greater self-awareness.
+        Feel free to start journaling about your day, thoughts, and feelings,
+        and remember that behind each mood is a unique story waiting to be explored."
+        <h5>Happy journaling! 📝😊</h5>
+    </p>
+    <a href="{% url 'journal' %}" class="btn btn-primary">Start Journaling</a>
+  </div>
+  <div class="card-footer text-body-dark">
+    <h5>
+        Mood Recorded: {{ time|date }}
+    </h5>
+  </div>
+</div>
+{% endblock content %}

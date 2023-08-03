@@ -2,10 +2,17 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from Endeavors.models import Endeavor
 from To_Do.models import Task
+from MyMood.models import DataMood
+from .utils import get_plot
 
 
 @login_required()
 def data(request):
+    qs = DataMood.objects.filter(user=request.user)
+    # x = [x.mood_date for x in qs]
+    x = range(6)
+    y = [int(y.mood_score) for y in qs]
+    chart = get_plot(x, y)
     all_programs = Endeavor.objects.filter(author=request.user)
     progress_data = []
 
@@ -24,7 +31,7 @@ def data(request):
         progress_data.append({"program": program, "progress_percentage": progress_percentage,
                               "remaining_tasks": remaining_tasks})
 
-    return render(request, "DataVisualization/data.html", {"progress_data": progress_data})
+    return render(request, "DataVisualization/data.html", {"progress_data": progress_data, "chart": chart})
 
 
 

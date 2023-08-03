@@ -3,6 +3,7 @@ from django.http import request
 from django.shortcuts import render, redirect
 from Endeavors.models import Endeavor
 from To_Do.models import Task
+from MyMood.models import DataMood
 from Journaling.forms import JournalModelForm
 from .form import LoginForm
 from django.views.generic.base import TemplateView
@@ -31,6 +32,8 @@ class ProfileTemplateViews(TemplateView):
         context["list_endeavor"] = Endeavor.objects.filter(author=self.request.user)[:3]
         context["list_task"] = Task.objects.filter(endeavor__author=self.request.user)[:3]
         context["list_accomplished"] = AccomplishedGoal.objects.filter(author=self.request.user)[:3]
+        context["mood"] = DataMood.objects.filter(user=self.request.user).last()
+        context["mood_date"] = DataMood.objects.last().mood_date
         return context
 
     def post(self, request, *args, **kwargs):

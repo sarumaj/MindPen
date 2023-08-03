@@ -6,11 +6,9 @@ from Accomplished.views import UpdateAccomplishedView, DeleteAccomplishedView
 from Endeavors.views import add_endeavor, ListEndeavorView, DeleteEndeavorView, DetailEndeavorView, tasks
 from Journaling.views import JournalListView, JournalDetailView, JournalUpdateView, JournalDeleteView
 from To_Do.views import TaskListView, TaskDetailView, TaskDeleteView, TaskCreateView, TasklUpdateView
-from MyMood.views import mood
+from MyMood.views import mood,  mood_message
 from users.views import ProfileTemplateViews
 from django.contrib.auth.decorators import login_required
-
-
 
 
 urlpatterns = [
@@ -53,4 +51,5 @@ urlpatterns = [
 
     # MyMood
     path('mood/', login_required(mood), name='mood'),
+    path('mood_msg/', mood_message, name='mood_msg'),
 ]

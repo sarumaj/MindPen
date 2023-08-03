@@ -1,7 +1,7 @@
 {% extends "Journaling/base.html" %}
 
 {% block content %}
-<h1 class="text ml-4 mt-2">Data Visualization</h1>
+<h1 class="text ml-4 mt-2">Data Visualization - Work In Progress</h1>
     {% for data in progress_data %}
         <div class="card text-center mb-5">
           <div class="card-header text-primary">
@@ -55,6 +55,10 @@
           </div>
         </div>
     {% endfor %}
+<h1 class="text ml-4">Data Visualization - Mood Tracker</h1>
+{% if chart %}
+    <img src="data:image/png;base64, {{chart|safe}}">
+  {% endif %}
 {% endblock content %}
 
 

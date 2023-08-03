@@ -9,5 +9,8 @@ class AccomplishedGoal (models.Model):
     end_day = models.DateTimeField(auto_now_add=True)
     summary = models.TextField(null=True, blank=True)
 
+    class Meta:
+        ordering = ["-id"]
+
     def __str__(self):
         return self.program_title

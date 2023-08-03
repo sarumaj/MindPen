@@ -1,16 +1,20 @@
 from django.shortcuts import render
 from .forms import MoodModelForm
-from django.http import HttpResponse
+from django.utils import timezone
 
 
 def mood(request):
-    mood_form = MoodModelForm(initial={"mood_score": 1})
+    time = timezone.now()
+    mood_form = MoodModelForm(initial={"mood_score": 0})
     if request.method == "POST":
         mood_form = MoodModelForm(request.POST)
         if mood_form.is_valid():
             my_mood = mood_form.save(commit=False)
             my_mood.user = request.user
             my_mood.save()
-            return HttpResponse("Thank you for submitting your mood.")
+    return render(request, "MyMood/mood.html", {"mood_form": mood_form, "time": time})
 
-    return render(request, "MyMood/mood.html", {"mood_form": mood_form})
+
+def mood_message(request):
+    time = timezone.now()
+    return render(request, "MyMood/mood_message.html", {"time": time})
