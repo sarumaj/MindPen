@@ -1,11 +1,11 @@
 {% extends "Journaling/base.html" %}
-
 {% block content %}
-<h1 class="text ml-4 mt-2">Data Visualization - Work In Progress</h1>
+<h1 class="text ml-4 mt-2">Data Visualization</h1>
+{% if progress_data %}
     {% for data in progress_data %}
         <div class="card text-center mb-5">
           <div class="card-header text-primary">
-            <h3> {{ data.program }}</h3>
+            <h3> {{ data.program|title }}</h3>
           </div>
           <div class="card-body">
             {% if data.progress_percentage >= 0 and data.progress_percentage < 20 %}
@@ -51,14 +51,31 @@
             {% endif %}
           </div>
           <div class="card-footer">
-            <h4>You have more {{data.remaining_tasks}} task(s) to complete this program!</h4>
+            <h4>{{data.remaining_tasks}} task(s) left to complete this goal!</h4>
           </div>
         </div>
     {% endfor %}
-<h1 class="text ml-4">Data Visualization - Mood Tracker</h1>
-{% if chart %}
-    <img src="data:image/png;base64, {{chart|safe}}">
-  {% endif %}
+{% else %}
+    <div class="card text-center">
+      <div class="card-header">
+          <h3 class="text-center text-primary">Work-in-Progress</h3>
+      </div>
+      <div class="card-body">
+        <p class="card-text">"Currently, there are no work-in-progress programs to display progress.
+            To see the progress bars, make sure you have set up a program and added tasks to it.
+            Once you have tasks associated with a program, the progress will be visible here.
+            Start tracking your tasks and stay motivated on your journey!"</p>
+      </div>
+      <div class="card-footer text-body-secondary">
+        <a href="{% url 'create_endeavor' %}" class="btn btn-primary">Add Program</a>
+      </div>
+    </div>
+{% endif %}
+<br><br>
+<!--{% if chart %}-->
+<!--    <img src="data:image/png;base64, {{chart|safe}}">-->
+<!--  {% endif %}-->
+{{chart|safe}}
 {% endblock content %}
 
 

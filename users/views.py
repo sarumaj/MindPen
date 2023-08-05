@@ -30,10 +30,10 @@ class ProfileTemplateViews(TemplateView):
         context["form"] = JournalModelForm(initial={"content": "Start journaling now! Share your thoughts, experiences,"
                                                                " and memories right here."})
         context["list_endeavor"] = Endeavor.objects.filter(author=self.request.user)[:3]
-        context["list_task"] = Task.objects.filter(endeavor__author=self.request.user)[:3]
+        context["list_task"] = Task.objects.filter(goal__author=self.request.user)[:3]
         context["list_accomplished"] = AccomplishedGoal.objects.filter(author=self.request.user)[:3]
-        context["mood"] = DataMood.objects.filter(user=self.request.user).last()
-        context["mood_date"] = DataMood.objects.last().mood_date
+        # context["mood"] = DataMood.objects.filter(user=self.request.user).last()
+        # context["mood_date"] = DataMood.objects.last().mood_date
         return context
 
     def post(self, request, *args, **kwargs):

@@ -1,39 +1,44 @@
 {% extends "Journaling/base.html" %}
 {% block content %}
-<h1 class="text ml-4 mt-2 text-dark">To-Do-List</h1>
+<h1 class="text ml-4 mt-2 text-dark">Tasks</h1>
 {% if programs %}
     {% for program in programs %}
-        <div class="card text-center text-primary mb-5">
-            <div class="card-header">
-                <h3 class="text-center">{{ program }}</h3>
+        <div class="card text-center mb-5">
+            <div class="card-header text-primary">
+                <h3 class="text-center">Goal: {{ program }}</h3>
             </div>
             <div class="card-body">
-                {% for task in tasks %}
-                    {% if program == task.endeavor %}
-                        <a class="btn btn-outline-dark btn-lg" href="{% url 'detail_todo' task.pk %}">
-                            <h5 class="card-title">{{ task.task_title.title }}</h5>
-                        </a>
-                    {% endif %}
-                {% endfor %}
+                {% if tasks %}
+                <h4 class="card-title">List of Task:</h4>
+                    {% for task in tasks %}
+                        {% if program == task.goal %}
+                            <a class="btn btn-dark btn-lg" href="{% url 'detail_todo' task.pk %}">
+                                <h5 class="card-title">{{ task.title|title }}</h5>
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <h4 class="card-title">No Task Yet!</h4>
+                {% endif %}
             </div>
             <div class="card-footer">
-                <a href="{% url 'create_todo' program=program %}" class="btn btn-primary btn-lg">Add Task</a>
+                <a href="{% url 'create_todo' program=program %}" class="btn btn-primary btn-lg">Add a Task</a>
             </div>
         </div>
     {% endfor %}
 {% else %}
     <div class="card text-center">
         <div class="card-header text-primary">
-            <h3>Task List is Empty</h3>
+            <h3>List of Task Is Empty</h3>
         </div>
         <div class="card-body">
-           <p>In order to create a new task, you need to set up a program first.</p>
-           <p>A program helps you organize your tasks and keep track of your progress towards your goals.</p>
-           <p>Don't worry, it's easy to set up! Just click the button "Create Program" and add a new program title and start date.</p>
-           <p>Once you have a program set up, you can create tasks and start making progress!</p>
+           <p>In order to create a new task, you need to set up a goal first.</p>
+           <p>A goal helps you organize your tasks and keep track of your progress towards your goals.</p>
+           <p>Don't worry, it's easy to set up! Just click the button "Create Goal" and add a new Goal title and start date.</p>
+           <p>Once you have a goal set up, you can create tasks and start making progress!</p>
         </div>
         <div class="card-footer text-body-secondary">
-            <a href="{% url 'create_endeavor' %}" class="btn btn-primary mt-2">Create Program</a>
+            <a href="{% url 'create_endeavor' %}" class="btn btn-primary mt-2">Create Goal</a>
         </div>
     </div>
 {% endif %}

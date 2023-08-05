@@ -22,7 +22,7 @@
   <div class="row">
     <div class="col" id="mymood"><a href="{% url 'mood' %}" class="btn btn-light btn-sm mt-1"><h4>MyMood</h4></a>
       <div class="emoji">
-        <p class="text-center mt-3" style="background: white">
+        <p class="text-center text-light mt-3" style="background: black">
           "Latest Mood: {{mood}} [mood type] on {{mood_date|date}} - Keep tracking your moods to stay mindful and improve emotional well-being! 😊🌈"
 <!--          "Let's track your mood!-->
 <!--          Select how you are feeling today and gain insights into your emotional well-being. 😊📈"-->
@@ -35,12 +35,12 @@
       {% if list_endeavor %}
         {% for program_title in list_endeavor %}
           <div>
-            <a class="btn btn-light mt-3" href="{% url 'detail_endeavor' program_title.pk %} ">{{ program_title|title}}</a>
+            <a class="btn btn-dark  mt-3" href="{% url 'detail_endeavor' program_title.pk %} ">{{ program_title|title}}</a>
           </div>
         {% endfor %}
       {% else %}
-        <h6 style="background: white" class="container mt-3">"No programs set up yet.
-          Start by creating your first program to organize your tasks and goals."</h6>
+        <p style="background: black" class="container mt-3 text-light">"No programs set up yet.
+          Start by creating your first program to organize your tasks and goals."</p>
       {% endif %}
     </div>
     <div class="col" id="to_do"><a href="{% url 'todos' %}" class="btn btn-light btn-sm mt-1">
@@ -48,12 +48,12 @@
       {% if list_task %}
         {% for task_title in list_task %}
           <div>
-            <a class="btn btn-light mt-3" href="{% url 'detail_todo' task_title.pk %}">{{ task_title|title}}</a>
+            <a class="btn btn-dark mt-3" href="{% url 'detail_todo' task_title.pk %}">{{ task_title|title}}</a>
           </div>
         {% endfor %}
       {% else %}
-        <h6 style="background: white" class="container mt-3">"No tasks available yet.
-          Add tasks to your programs to track your progress and accomplishments."</h6>
+        <p style="background: black" class="container mt-3 text-light">"No tasks available yet.
+          Add tasks to your programs to track your progress and accomplishments."</p>
       {% endif %}
     </div>
     <div class="col" id="accomplished"><a href="{% url 'done' %}" class="btn btn-light btn-sm mt-1">
@@ -61,17 +61,16 @@
       {% if list_accomplished %}
         {% for program_title in list_accomplished %}
           <div>
-            <a class="btn btn-light mt-3" href="#">{{ program_title|title}}</a>
+            <a class="btn btn-dark mt-3" href="#">{{ program_title|title}}</a>
           </div>
         {% endfor %}
       {% else %}
-      <div style="background: lightgray; padding: 1px;">
-        <h6 class="container mt-3">"You haven't accomplished any programs yet.
-          Keep working on your tasks and goals to mark your progress and celebrate your achievements!"</h6>
+      <div style="background: black;">
+        <p class="container text-light mt-3">"You haven't accomplished any programs yet.
+          Keep working on your tasks and goals to mark your progress and celebrate your achievements!"</p>
       </div>
       {% endif %}
     </div>
   </div>
 </div>
-
 {% endblock content %}

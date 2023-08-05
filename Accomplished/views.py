@@ -12,13 +12,13 @@ from django.views.generic import UpdateView, DeleteView
 def done(request):
     all_programs = Endeavor.objects.filter(author=request.user)
     for program in all_programs:
-        all_tasks = Task.objects.filter(endeavor=program).count()
-        all_completed_tasks = Task.objects.filter(endeavor=program).filter(completed=True).count()
-        if all_tasks == all_completed_tasks:
+        all_tasks = Task.objects.filter(goal=program).count()
+        all_completed_tasks = Task.objects.filter(goal=program).filter(completed=True).count()
+        if (all_tasks != 0) and (all_tasks == all_completed_tasks):
             # Save a copy of the completed program in AccomplishedGoal model
             accomplished_program = AccomplishedGoal.objects.create(author=program.author,
-                                                                   program_title=program.program_title,
-                                                                   start_day=program.start_day,
+                                                                   program_title=program.title,
+                                                                   start_day=program.start_date,
                                                                    )
             accomplished_program.save()
             # Delete the completed program from the Endeavor model

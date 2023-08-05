@@ -1,7 +1,7 @@
 {% extends "Journaling/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-<h1 class="text ml-4 mt-2">Endeavors</h1>
+<h1 class="text ml-4 mt-2">Goals</h1>
     {% if goals %}
         <div class="card text-center text-primary mt-2">
           <div class="card-header">
@@ -9,30 +9,30 @@
           </div>
           <div class="card-body">
           {%  for goal in goals  %}
-            <a href="{% url 'detail_endeavor' goal.id %}" class="btn btn-outline-dark btn-lg">
-                <h5>{{ goal.program_title }}</h5>
+            <a href="{% url 'detail_endeavor' goal.id %}" class="btn btn-dark btn-lg">
+                <h5>{{ goal.title }}</h5>
             </a>
           {% endfor %}
           </div>
           <div class="card-footer text-body-secondary">
-
-    <div class="text-center mt-4">
-        <a href="{% url 'create_endeavor' %}" class="btn btn-primary btn-lg">Add a program</a>
-    </div>
+            <div class="text-center">
+                <a href="{% url 'create_endeavor' %}" class="btn btn-primary btn-lg">Add a Goal</a>
+            </div>
+        </div>
     {% else %}
         <div class="card text-center">
           <div class="card-header text-primary">
-              <h3>List of Endeavors is empty</h3>
+              <h3>List of Goals Is Empty</h3>
           </div>
           <div class="card-body">
-              <p>"Welcome to your endeavor list!</p>
-              <p>It looks like you don't have any programs added yet.</p>
-              <p>🌟 Why not get started by creating your first program?</p>
-              <p>Adding programs will help you stay organized and focused on your goals.</p>
-              <p>Click the 'Add Program' button below to begin your journey towards success! 🚀"</p>
+              <p>"Welcome to your goal list!</p>
+              <p>It looks like you don't have any goal added yet.</p>
+              <p>🌟 Why not get started by creating your first goal?</p>
+              <p>Adding goals will help you stay organized and focused on your goals.</p>
+              <p>Click the 'Add Goal' button below to begin your journey towards success! 🚀"</p>
           </div>
           <div class="card-footer text-body-secondary">
-            <a href="{% url 'create_endeavor' %}" class="btn btn-primary mt-4">Add, Program</a>
+            <a href="{% url 'create_endeavor' %}" class="btn btn-primary mt-4">Add, Goal</a>
           </div>
         </div>
     {% endif %}

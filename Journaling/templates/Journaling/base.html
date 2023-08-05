@@ -22,16 +22,19 @@
 <div class="row">
     <div class="col-2">
         <div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary h-100">
-            <span class="fs-4">Navigation Bar</span>
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+              <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+              <span class="fs-4">Sidebar</span>
+            </a>
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
-                <li><a href="{% url 'profile' %}" class="nav-link link-body-emphasis">Dashboard</a></li>
+                <li><a href="{% url 'list_endeavor' %}" class="nav-link link-body-emphasis">Goals</a></li>
+                <li><a href="{% url 'todos' %}" class="nav-link link-body-emphasis">Tasks</a></li>
+                <li><a href="{% url 'mood' %}" class="nav-link link-body-emphasis">Mood</a></li>
                 <li><a href="{% url 'journal' %}" class="nav-link link-body-emphasis">Journaling</a></li>
-                <li><a href="{% url 'list_endeavor' %}" class="nav-link link-body-emphasis">Endeavors</a></li>
-                <li><a href="{% url 'todos' %}" class="nav-link link-body-emphasis">To-Do List</a></li>
-                <li><a href="{% url 'mood' %}" class="nav-link link-body-emphasis">MyMood</a></li>
-                <li><a href="{% url 'data' %}" class="nav-link link-body-emphasis">Data Visualization</a></li>
+                <li><a href="{% url 'profile' %}" class="nav-link link-body-emphasis">Dashboard</a></li>
                 <li><a href="{% url 'done' %}" class="nav-link link-body-emphasis">Accomplished</a></li>
+                <li><a href="{% url 'data' %}" class="nav-link link-body-emphasis">Data Visualization</a></li>
 
             </ul>
             <hr>

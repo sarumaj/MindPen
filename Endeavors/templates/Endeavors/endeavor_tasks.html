@@ -2,25 +2,24 @@
 {% load crispy_forms_tags %}
 {% block content %}
 <div class="card text-center mt-2">
-      <div class="card-header">
-          <h3>Create a new program</h3>
+      <div class="card-header text-primary">
+          <h3>Create a New Goal</h3>
       </div>
       <div class="card-body">
         <form method = post>
              {% csrf_token %}
              {{ just_prog_form|crispy }}
-             <input class="btn btn-outline-primary" type="submit" value="Save Program">
+             <input class="btn btn-primary" type="submit" value="Save Goal">
         </form>
 
       </div>
       <div class="card-footer">
-        <h4>Want to add small tasks?</h4>
+        <h5>Add a Task To Reach Your Goal?</h5>
         <form action="{% url 'tasks' %}" method="get">
-
             {{multiple_form|crispy}}
-            <input class="btn btn-outline-primary mb-3" type="submit" value="Add Task">
+            <input class="btn btn-primary" type="submit" value="Yes, Add Task">
+            <a  class="btn btn-secondary" href="{% url 'list_endeavor' %}">No, Go Back</a>
         </form>
-        <a  class="btn btn-outline-secondary" href="{% url 'list_endeavor' %}">Go, Back</a>
       </div>
 </div>
 {% endblock content %}

@@ -1,4 +1,3 @@
-from django.shortcuts import get_object_or_404
 from django.views.generic import ListView, DetailView, DeleteView, CreateView, UpdateView
 from Endeavors.models import Endeavor
 from .models import Task
@@ -13,9 +12,8 @@ class TaskListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["programs"] = Endeavor.objects.filter(author=self.request.user)
-        context["tasks"] = Task.objects.filter(endeavor__author=self.request.user)
+        context["tasks"] = Task.objects.filter(goal__author=self.request.user)
         return context
-
 
 
 class TaskDetailView(DetailView):
@@ -39,14 +37,13 @@ class TaskCreateView(CreateView):
     def get_initial(self):
         initial = super().get_initial()
         program_title = self.kwargs.get("program")  # Retrieve the program title from URL parameters
-        program = Endeavor.objects.get(program_title=program_title)
-        initial["endeavor"] = program
+        program = Endeavor.objects.get(title=program_title)
+        initial["goal"] = program
         return initial
-
 
 
 class TasklUpdateView(UpdateView):
     model = Task
     template_name = "To_Do/update_task.html"
-    fields = ["task_title", "set_time", "completed"]
+    fields = ["title", "starting_time", "completed"]
     success_url = "/todos/"

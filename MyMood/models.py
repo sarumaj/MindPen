@@ -9,3 +9,4 @@ class DataMood(models.Model):
 
     class Meta:
         ordering = ["id"]
+

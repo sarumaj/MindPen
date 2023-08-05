@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import MoodModelForm
 from django.utils import timezone
 
@@ -12,6 +12,7 @@ def mood(request):
             my_mood = mood_form.save(commit=False)
             my_mood.user = request.user
             my_mood.save()
+            return redirect("mood_msg")
     return render(request, "MyMood/mood.html", {"mood_form": mood_form, "time": time})
 
 

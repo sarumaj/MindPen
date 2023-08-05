@@ -16,6 +16,9 @@
                       <h4>{{post.title|title}}</h4>
                       <p class="card-text">{{ post.content }}</p>
                   </div>
+                    <div>
+                        {{ post.mood}}
+                    </div>
                   <div class="card-footer text-body-secondary">
                       <a href="{% url 'journal_update' post.id %}" class="btn btn-primary">Edit Diary</a>
                       <span><a href="{% url 'journal_delete' post.id %}" class="btn btn-danger">Delete Diary</a></span>

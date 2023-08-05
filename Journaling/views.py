@@ -4,15 +4,18 @@ from django.views.generic.edit import UpdateView
 from .models import Journal
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .forms import JournalModelForm
+from MyMood.models import DataMood
 
 
 class JournalListView(ListView):
-    paginate_by = 3
+    paginate_by = 1
     model = Journal
     template_name = "Journaling/journal.html"
 
     def get_context_data(self, **kwargs):
-        form = JournalModelForm(initial={"content": "Start journaling now! Share your thoughts, experiences, and memories right here."})
+        form = JournalModelForm(initial={"content": "Start journaling now! Share your thoughts,"
+                                                    " experiences, and memories right here.",
+                                         "mood": 0})
         context = super().get_context_data(**kwargs)
         context["posts"] = Journal.objects.filter(author=self.request.user)
         context["form"] = form
