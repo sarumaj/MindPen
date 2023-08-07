@@ -3,54 +3,35 @@
 {% load crispy_forms_tags %}
 {% block content %}
 <div class="row">
-    <div class="col mt-2">
-        <h3 class="text-center mt-2">{{ user.username.title }}'s Diary</h3>
+    <div class="col mt-3">
+        <h3 class="text-center">{{ user.username.title }}'s Diary</h3>
         <hr>
         {% if posts %}
             {% for post in posts %}
-                <div class="card text-center mt-2">
-                  <div class="card-header text-primary">
-                      <h4>Posted on: {{ post.journal_date|date }}</h4>
-                  </div>
-                  <div class="card-body">
-                      <h4>{{post.title|title}}</h4>
-                      <p class="card-text">{{ post.content }}</p>
-                  </div>
-                    <div>
-                        {{ post.mood}}
+                <div class="card text-center mt-3">
+                    <div class="card-header text-primary">
+                        <h4>Posted on: {{ post.journal_date|date }}</h4>
                     </div>
-                  <div class="card-footer text-body-secondary">
-                      <a href="{% url 'journal_update' post.id %}" class="btn btn-primary">Edit Diary</a>
-                      <span><a href="{% url 'journal_delete' post.id %}" class="btn btn-danger">Delete Diary</a></span>
-                  </div>
+                    <div class="card-body">
+                        <h4>{{ post.title|title }}</h4>
+                        <p class="card-text">{{ post.content }}</p>
+                    </div>
+                    <div>
+                        {{ post.mood }}
+                    </div>
+                    <div class="card-footer text-body-secondary">
+                        <a href="{% url 'journal_update' post.id %}" class="btn btn-primary">Edit Diary</a>
+                        <span><a href="{% url 'journal_delete' post.id %}" class="btn btn-danger">Delete Diary</a></span>
+                    </div>
                 </div>
             {% endfor %}
         {% else %}
             <div style="background: white" class="container mt-5">
-                <hp>"No journal entries found.</hp>
-                <hp>Begin writing your thoughts and experiences to create your personal diary."</hp>
+                <p>"No journal entries found."</p>
+                <p>Begin writing your thoughts and experiences to create your personal diary.</p>
             </div>
         {% endif %}
-        <div class="text-center mt-3">
-          {% if is_paginated %}
-              {% if page_obj.has_previous %}
-                <a class=" text-center btn btn-outline-primary" href="?page=1">First</a>
-                <a class="btn btn-outline-primary" href="?page={{ page_obj.previous_page_number }}">Previous</a>
-              {% endif %}
-              {% for num in page_obj.paginator.page_range %}
-                {% if page_obj.number == num %}
-                  <a class="btn btn-primary" href="?page={{ num }}">{{ num }}</a>
-                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-                  <a class="btn btn-outline-primary" href="?page={{ num }}">{{ num }}</a>
-                {% endif %}
-              {% endfor %}
-              {% if page_obj.has_next %}
-                <a class="btn btn-outline-primary" href="?page={{ page_obj.next_page_number }}">Next</a>
-                <a class="btn btn-outline-primary" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
-              {% endif %}
-          {% endif %}
-        </div>
-
+        <div class="text-center mt-3"></div>
     </div>
 
     <div class="col mt-5">
@@ -58,17 +39,30 @@
             <form method="post">
                 {% csrf_token %}
                 <div class="card text-center mt-3">
-                  <div class="card-header text-primary">
-                      <h3>Journaling Here</h3>
-                  </div>
-                  <div class="card-body">
-                    {{ form|crispy }}
-                  </div>
-                  <div class="card-footer text-body-secondary">
-                    <input class="btn btn-primary btn-lg" type="submit">
-                  </div>
+                    <div class="card-header text-primary">
+                        <h3>Journaling Here</h3>
+                    </div>
+                    <div class="card-body">
+                        {{ form|crispy }}
+                    </div>
+                    <div class="card-footer text-body-secondary">
+                        <input class="btn btn-primary btn-lg" type="submit">
+                    </div>
                 </div>
             </form>
+            <div class="card text-center mt-3">
+                <div class="card-header text-primary">
+                    <h4>Search a Journal</h4>
+                </div>
+                <div class="card-body">
+                    <form method="get" action="{% url 'journal' %}">
+                        {{ SearchForm|crispy }}
+                        <div class="card-footer text-body-secondary">
+                            <input class="btn btn-primary" type="submit" value="Search">
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>

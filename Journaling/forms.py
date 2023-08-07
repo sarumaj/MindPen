@@ -5,6 +5,6 @@ from .models import Journal
 class JournalModelForm(forms.ModelForm):
     class Meta:
         model = Journal
-        fields = ["title", "content", "mood"]
-        widgets = {"content": forms.Textarea(attrs={'rows': 2, 'cols': 60})}
+        fields = ["title", "content"]
+        widgets = {"content": forms.Textarea(attrs={'rows': 4, 'cols': 60})}
 

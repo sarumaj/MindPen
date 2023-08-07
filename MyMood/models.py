@@ -10,3 +10,6 @@ class DataMood(models.Model):
     class Meta:
         ordering = ["id"]
 
+    def __str__(self):
+        return self.mood_score
+

@@ -10,10 +10,8 @@ import plotly.express as px
 def data(request):
 
     qs = DataMood.objects.filter(user=request.user)
-    a = qs.count()
-    # x = [x.mood_date for x in qs]
     fig = px.line(
-        x=range(a),
+        x=[x.mood_date for x in qs],
         y=[int(y.mood_score) for y in qs],
         title="Mood Tracker",
         labels={"x": "Date", "y": "Mood"},
@@ -23,9 +21,11 @@ def data(request):
         title={
             "font_size": 22,
             "xanchor": "center",
-            "x": 0.5
+            "x": 0.5,
+            "font": {"color": "blue"}
         }
     )
+
     chart = fig.to_html()
 
     all_programs = Endeavor.objects.filter(author=request.user)

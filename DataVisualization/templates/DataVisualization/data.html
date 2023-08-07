@@ -61,9 +61,9 @@
           <h3 class="text-center text-primary">Work-in-Progress</h3>
       </div>
       <div class="card-body">
-        <p class="card-text">"Currently, there are no work-in-progress programs to display progress.
-            To see the progress bars, make sure you have set up a program and added tasks to it.
-            Once you have tasks associated with a program, the progress will be visible here.
+        <p class="card-text">"Currently, there are no goals to display in progress.
+            To see the progress bars, make sure you have set up a goal and added tasks to it.
+            Once you have tasks associated with a goal, the goal will be visible here.
             Start tracking your tasks and stay motivated on your journey!"</p>
       </div>
       <div class="card-footer text-body-secondary">
@@ -71,11 +71,7 @@
       </div>
     </div>
 {% endif %}
-<br><br>
-<!--{% if chart %}-->
-<!--    <img src="data:image/png;base64, {{chart|safe}}">-->
-<!--  {% endif %}-->
-{{chart|safe}}
+    {{chart|safe}}
 {% endblock content %}
 
 

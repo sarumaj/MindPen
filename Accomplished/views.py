@@ -35,23 +35,6 @@ def done(request):
     return render(request, "Accomplished/done.html", {"accomplished_goal": accomplished_goal, "form": form})
 
 
-# class UpdateDoneView(UpdateView):
-#     model = AccomplishedGoal
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context["form"] = SummaryModelForm
-#         return context
-#
-#     def post(self, request, *args, **kwargs):
-#         form = SummaryModelForm(request.POST)
-#         if form.is_valid():
-#             form_summary = form.save(commit=False)
-#             form_summary.summary = self.request.summary
-#             form.save()
-#             return redirect("done")
-
-
 class UpdateAccomplishedView(UpdateView):
     model = AccomplishedGoal
     template_name = "Accomplished/accomplishedgoal_detail.html"

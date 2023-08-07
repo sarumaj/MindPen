@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <title>PenMind</title>
 <!--    CSS link-->
@@ -9,11 +10,11 @@
 <!--Navbar    -->
     <nav class="navbar bg-body-tertiary">
         <div class="container-fluid">
-            <div class="navbar-text text-tertiary"><h1>PenMind</h1></div>
-            {% if user.is_authenticated %}
-            <span><a class="btn btn-secondary btn-lg" href="{% url 'logout' %}">{{ user.username.title }} - Log out</a></span>
-            {% endif %}
-        </div>
+            <a class="navbar-brand" href="#">
+              <img src="{% static 'Brain.png' %}" width="30" height="24" class="d-inline-block align-text-top">
+              PenMind
+            </a>
+          </div>
     </nav>
 
 </head>

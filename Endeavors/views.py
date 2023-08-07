@@ -54,8 +54,12 @@ class ListEndeavorView(ListView):
     paginate_by = 3
 
     def get_context_data(self, **kwargs):
+        form1 = EndeavorModelForm()
+        multiple_form = MultipleTaskForms()
         context = super().get_context_data(**kwargs)
         context["goals"] = Endeavor.objects.filter(author=self.request.user)
+        context["form"] = form1
+        context["multiple_form"] = multiple_form
         return context
 
 

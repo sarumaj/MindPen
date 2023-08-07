@@ -1,24 +1,30 @@
+from django.db.models import Q
 from django.shortcuts import redirect
 from django.views.generic import DetailView, DeleteView, ListView
 from django.views.generic.edit import UpdateView
 from .models import Journal
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .forms import JournalModelForm
-from MyMood.models import DataMood
+from .filters import JournalFilter
 
 
 class JournalListView(ListView):
-    paginate_by = 1
     model = Journal
     template_name = "Journaling/journal.html"
+    context_object_name = "posts"
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.filter(author=self.request.user)
+        self.filterset = JournalFilter(self.request.GET, queryset=queryset)
+        return self.filterset.qs
 
     def get_context_data(self, **kwargs):
-        form = JournalModelForm(initial={"content": "Start journaling now! Share your thoughts,"
-                                                    " experiences, and memories right here.",
-                                         "mood": 0})
         context = super().get_context_data(**kwargs)
-        context["posts"] = Journal.objects.filter(author=self.request.user)
+        form = JournalModelForm(initial={"content": "Start journaling now! Share your thoughts,"
+                                                    " experiences, and memories right here."})
         context["form"] = form
+        context["SearchForm"] = self.filterset.form
         return context
 
     def post(self, request, *args, **kwargs):

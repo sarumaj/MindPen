@@ -4,16 +4,16 @@
     <form method="post">
         {% csrf_token %}
         <div class="card text-center">
-          <div class="card-header">
+          <div class="card-header text-primary">
               <h3>Warning Message</h3>
           </div>
           <div class="card-body">
-            <h4 class="card-title">Are you sure you want to delete "{{ object.program_title}}"?</h4>
-            <h5 class="card-text">The related tasks will be removed</h5>
+            <h4 class="card-title">Are you sure you want to delete "{{ object.title|title}}"?</h4>
+            <h4 class="card-text">The related tasks will be removed</h4>
             <input class="btn btn-danger" type="submit" value="Confirm">
           </div>
           <div class="card-footer text-body-secondary">
-            <a class="btn btn-primary btn-lg" href="{% url 'list_endeavor' %}">NO, Cancel</a>
+            <a class="btn btn-primary" href="{% url 'list_endeavor' %}">NO, Cancel</a>
           </div>
         </div>
     </form>
