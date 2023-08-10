@@ -4,13 +4,13 @@
 <link rel="stylesheet" type="text/css" href="{% static 'users/style.css' %}">
 <div class="container text-center">
   <div class="row">
-    <div style="background: #6f94c6" class="col-8" id="data_visualization">
+    <div  class="col-8 section-card" id="data_visualization">
       <a href="{% url 'data' %}" class="btn btn-light btn-sm mt-1"><h4>Data Visualization</h4></a>
       <div class="mt-3" ><img src="{% static 'black.png' %}" height="160" width="250"></div>
     </div>
-    <div style="background: #6f94c6" class="col" id="journaling">
+    <div class="col section-card" id="journaling">
       <a href="{% url 'journal' %}" class="btn btn-light btn-sm mt-1 mb-2"><h4>Journaling</h4></a>
-      <form style="background: #6f94c6" id="form" class="form-control form-control-sm" method="post" >
+      <form id="form " class="form-control form-control-sm section-card" method="post" >
         {% csrf_token %}
         {{ form.as_p }}
           <input class="btn btn-light btn-sm" type="submit">
@@ -19,28 +19,27 @@
   </div>
 
   <div class="row">
-    <div  style="background: #6f94c6" class="col" id="mymood"><a href="{% url 'mood' %}" class="btn btn-light btn-sm mt-1"><h4>MyMood</h4></a>
+    <div class="col section-card" id="mymood"><a href="{% url 'mood' %}" class="btn btn-light btn-sm mt-1"><h4>MyMood</h4></a>
       <div class="emoji">
-        <p class="text-center text-dark mt-3" style="background: white">
+        <p class="text-center text-dark mt-3">
           "Latest Mood: {{mood}} [mood type] on {{mood_date|date}} - Keep tracking your moods to stay mindful and improve emotional well-being! 😊🌈"
         </p>
-
       </div>
     </div>
-    <div style="background: #6f94c6" class="col" id="endeavors"><a href="{% url 'list_endeavor' %}" class="btn btn-light btn-sm mt-1">
+    <div class="col section-card" id="endeavors"><a href="{% url 'list_endeavor' %}" class="btn btn-light btn-sm mt-1">
       <h4>Endeavors</h4></a>
       {% if list_endeavor %}
         {% for program_title in list_endeavor %}
           <div>
-            <a class="btn btn-light  mt-3" href="{% url 'detail_endeavor' program_title.pk %} ">{{ program_title|title}}</a>
+            <a class="btn btn-light mt-3" href="{% url 'detail_endeavor' program_title.pk %} ">{{ program_title|title}}</a>
           </div>
         {% endfor %}
       {% else %}
-        <p style="background: white" class="container mt-3 text-dark">"No goals set up yet.
+        <p class="container mt-3 text-dark">"No goals set up yet.
           Start by creating your first goal to organize your tasks and goals."</p>
       {% endif %}
     </div>
-    <div style="background: #6f94c6" class="col" id="to_do"><a href="{% url 'todos' %}" class="btn btn-light btn-sm mt-1">
+    <div class="col section-card" id="to_do"><a href="{% url 'todos' %}" class="btn btn-light btn-sm mt-1">
       <h4>To-Do-List</h4></a>
       {% if list_task %}
         {% for task_title in list_task %}
@@ -49,11 +48,11 @@
           </div>
         {% endfor %}
       {% else %}
-        <p style="background: white" class="container mt-3 text-dark">"No tasks available yet.
+        <p class="container mt-3 text-dark">"No tasks available yet.
           Add tasks to your goals to track your progress and accomplishments."</p>
       {% endif %}
     </div>
-    <div style="background: #6f94c6" class="col" id="accomplished"><a href="{% url 'done' %}" class="btn btn-light btn-sm mt-1">
+    <div class="col section-card" id="accomplished"><a href="{% url 'done' %}" class="btn btn-light btn-sm mt-1">
       <h4>Accomplishments</h4></a>
       {% if list_accomplished %}
         {% for program_title in list_accomplished %}
@@ -62,8 +61,8 @@
           </div>
         {% endfor %}
       {% else %}
-      <div style="background: white;">
-        <p class="container text-light mt-3">"You haven't accomplished any goals yet.
+      <div>
+        <p class="container mt-3">"You haven't accomplished any goals yet.
           Keep working on your tasks and goals to mark your progress and celebrate your achievements!"</p>
       </div>
       {% endif %}

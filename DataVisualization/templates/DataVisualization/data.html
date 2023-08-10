@@ -3,7 +3,7 @@
 <h1 class="text ml-4 mt-2">Data Visualization</h1>
 {% if progress_data %}
     {% for data in progress_data %}
-        <div class="card text-center mb-5">
+        <div class="card text-center mb-5 shadow bg-light">
           <div class="card-header text-primary">
             <h3> {{ data.program|title }}</h3>
           </div>
@@ -72,6 +72,8 @@
     </div>
 {% endif %}
     {{chart|safe}}
+    {{pie|safe}}
+{{barchart|safe}}
 {% endblock content %}
 
 

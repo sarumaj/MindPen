@@ -6,4 +6,4 @@ class JournalFilter(django_filters.FilterSet):
 
     class Meta:
         model = Journal
-        fields = ["search", "journal_date"]
+        fields = ["search"]
