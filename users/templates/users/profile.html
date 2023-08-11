@@ -10,7 +10,7 @@
     </div>
     <div class="col section-card" id="journaling">
       <a href="{% url 'journal' %}" class="btn btn-light btn-sm mt-1 mb-2"><h4>Journaling</h4></a>
-      <form id="form " class="form-control form-control-sm section-card" method="post" >
+      <form style="border: none" id="form " class="form-control form-control-sm section-card" method="post" >
         {% csrf_token %}
         {{ form.as_p }}
           <input class="btn btn-light btn-sm" type="submit">
