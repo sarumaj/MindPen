@@ -22,7 +22,7 @@ class JournalListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         form = JournalModelForm(initial={"content": "Start journaling now! Share your thoughts,"
-                                                    " experiences, and memories right here."})
+                                                    " experiences, and memories right here.", "title": "Journal Title"})
         context["form"] = form
         context["SearchForm"] = self.filterset.form
         return context
@@ -36,25 +36,6 @@ class JournalListView(ListView):
             return redirect("journal")
 
 
-
-# class JournalCreateView(CreateView):
-#     model = Journal
-#     template_name = "Journaling/journal.html"
-#     fields = ["title", "content"]
-#     success_url = "/journal/"
-#     # paginate_by = 2
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['posts'] = Journal.objects.filter(author=self.request.user)
-#         paginator = Paginator(context['posts'], 2)
-#         page_number = self.request.GET.get('page')
-#         context['page_obj'] = paginator.get_page(page_number)
-#         return context
-#
-#     def form_valid(self, form):
-#         form.instance.author = self.request.user
-#         return super().form_valid(form)
 class JournalUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Journal
     template_name = "Journaling/update.html"

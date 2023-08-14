@@ -78,8 +78,8 @@ def data(request):
             ecstatic += 1
     has_data = any([crying, sad, angry, disappointed, unhappy, neutral, happy, very_happy, joyful, excited, ecstatic])
     if has_data:
-        labels = ['crying', 'sad', 'angry', 'disappointed', 'unhappy', 'neutral', 'happy', 'very_happy', 'joyful', 'excited', 'ecstatic']
-        values = [crying, sad, angry, disappointed, unhappy,neutral, happy, very_happy, joyful, excited, ecstatic]
+        labels = ["crying", "sad", "angry", "disappointed", "unhappy", "neutral", "happy", "very_happy", "joyful", "excited", "ecstatic"]
+        values = [crying, sad, angry, disappointed, unhappy, neutral, happy, very_happy, joyful, excited, ecstatic]
         fig = go.Figure(data=[go.Pie(labels=labels, values=values, hole=.5)])
     else:
         # create an empty pie chart

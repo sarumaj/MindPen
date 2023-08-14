@@ -4,7 +4,7 @@ from django.db import models
 
 class Endeavor(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    title = models.CharField(max_length=100, null=True, unique=True)
+    title = models.CharField(max_length=100, null=True)
     start_date = models.DateField(null=True)
 
     def __str__(self):
