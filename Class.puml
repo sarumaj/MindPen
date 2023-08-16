@@ -1,0 +1,89 @@
+@startuml
+
+class User {
+  - userId: int
+  - username: string
+  - email: string
+  - password: string
+  + register()
+  + login()
+  + entryJournal()
+  + createsGoals()
+  + createsTasks()
+  + choosesMood()
+  + logout()
+}
+
+class Goals {
+  - goalId: int
+  - author: User
+  - title: string
+  - start_date: date
+  + createGoal()
+  + deleteGoal()
+  + listGoals()
+}
+
+class Tasks {
+  - taskId: int
+  + title: string
+  - goal: Goals
+  - starting_time: datetime
+  + createTask()
+  + deleteTask()
+  + listTasks()
+}
+
+class MyMood {
+  - moodId: int
+  - user: User
+  - mood_score: int
+  - mood_date: datetime
+  + recordMood()
+}
+
+class Journaling {
+  - journalId: int
+  - author: User
+  - title: string
+  - content: text
+  - journal_date: datetime
+  + createJournal()
+  + deleteJournal()
+  + searchJournal()
+}
+
+class Accomplishments {
+  - accomplishmentId: int
+  - user: User
+  - program_title: string
+  - start_day: date
+  - end_day: date
+  - summary: text
+  + deleteAccomplishment()
+  + listAccomplishments()
+  + addSummary()
+}
+
+class DataVisualization {
+  - userId: int
+  - average: float
+  - date: string
+  + viewMoodChart()
+  + viewProgressChart()
+  + viewPreviousMonthAverages()
+}
+
+User --> Goals
+User --> Tasks
+User --> MyMood
+User --> Journaling
+User --> Accomplishments
+User --> DataVisualization
+
+Goals *-- Tasks
+Goals --> Accomplishments
+Goals --> DataVisualization
+MyMood --> DataVisualization
+
+@enduml

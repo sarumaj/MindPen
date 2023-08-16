@@ -22,7 +22,8 @@ class JournalListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         form = JournalModelForm(initial={"content": "Start journaling now! Share your thoughts,"
-                                                    " experiences, and memories right here.", "title": "Journal Title"})
+                                                    " experiences, and memories right here.",
+                                         "title": "Journal Title"})
         context["form"] = form
         context["SearchForm"] = self.filterset.form
         return context

@@ -15,18 +15,15 @@ def add_endeavor(request):
         just_prog_form = EndeavorModelForm(request.POST)
         if just_prog_form.is_valid():
             prog_form = just_prog_form.save(commit=False)
+            # check whether that goal title exists
             if Endeavor.objects.filter(author=request.user, title=prog_form.title):
-                note = "Goal Exists!"
-                return render(request, "Endeavors/endeavor_note.html", {"note": note,
-                                                                          "prog_form": prog_form})
+                # display a message
+                return render(request, "Endeavors/endeavor_note.html", {"prog_form": prog_form})
             else:
-                note = "Free"
                 prog_form.author = request.user
                 prog_form.save()
         return render(request, "Endeavors/endeavor_tasks.html", {"just_prog_form": just_prog_form,
-                                                                 "multiple_form": multiple_form,
-                                                                 "note": note})
-
+                                                                 "multiple_form": multiple_form})
     else:
         just_prog_form = EndeavorModelForm(initial={"start_date": current_date})
     return render(request, "Endeavors/endeavor_tasks.html", {"just_prog_form": just_prog_form})
