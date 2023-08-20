@@ -31,7 +31,7 @@ class ProfileTemplateViews(TemplateView):
                                                                " and memories right here.",
                                                     "title": "Journal Title"})
         context["list_endeavor"] = Endeavor.objects.filter(author=self.request.user)[:3]
-        context["list_task"] = Task.objects.filter(goal__author=self.request.user)[:3]
+        context["list_task"] = Task.objects.filter(goal__author=self.request.user)[:2]
         context["list_accomplished"] = AccomplishedGoal.objects.filter(author=self.request.user)[:3]
         # context["mood"] = DataMood.objects.filter(user=self.request.user).last()
         # context["mood_date"] = DataMood.objects.last().mood_date

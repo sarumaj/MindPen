@@ -11,7 +11,11 @@
           </div>
           <div class="card-body">
             <h6 class="card-title">Started on {{item.start_day}} and completed on {{item.end_day|date}}</h6>
-            <p class="card-text">{{item.summary}}</p>
+              {% if item.summary %}
+                <p class="card-text">{{item.summary}}</p>
+              {% else %}
+                <h6 class="card-text mt-3">You Can Always Add What You've Learned, Reflections, Or Thoughts...📝  </h6>
+              {% endif%}
           </div>
           <div class="card-footer text-body-secondary">
             <a class="btn btn-primary" href="{% url 'done_update' item.pk %}">Add a Reflection</a>
