@@ -20,9 +20,9 @@
 
   <div class="row">
     <div class="col section-card" id="mymood"><a href="{% url 'mood' %}" class="btn btn-light btn-sm mt-1"><h4>Mood</h4></a>
-      <div class="emoji">
+      <div>
         <p class="text-center text-dark mt-3">
-          "Latest Mood: {{mood}} [mood type] on {{mood_date|date}} - Keep tracking your moods to stay mindful and improve emotional well-being! 😊🌈"
+          {{user.username|title}}'s Mood Score is: {{mood}} for: {{mood.mood_date}}
         </p>
       </div>
     </div>
