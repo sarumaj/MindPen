@@ -8,6 +8,7 @@ import plotly.express as px
 from datetime import datetime
 import plotly.graph_objects as go
 from .models import PreviousMonth
+from django.core.paginator import Paginator
 
 
 @login_required()
@@ -109,6 +110,8 @@ def data(request):
 
     # Progress bar
     all_programs = Endeavor.objects.filter(author=request.user)
+    paginator = Paginator(all_programs, 1)  # Show 3 contacts per page.
+
     progress_data = []
 
     for program in all_programs:
@@ -159,10 +162,13 @@ def data(request):
     barchart.update_layout(bargap=0.5, bargroupgap=0.5)
     barchart = barchart.to_html()
 
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
     return render(request, "DataVisualization/data.html",
                   {"progress_data": progress_data,
                    "chart": chart,
                    "pie": pie,
-                   "barchart": barchart
+                   "barchart": barchart,
+                   "page_obj": page_obj
                    }
                   )

@@ -12,7 +12,7 @@ class JournalListView(ListView):
     model = Journal
     template_name = "Journaling/journal.html"
     context_object_name = "posts"
-    paginate_by = 2
+    paginate_by = 3
 
     def get_queryset(self):
         queryset = super().get_queryset()

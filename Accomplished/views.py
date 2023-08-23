@@ -6,6 +6,7 @@ from To_Do.models import Task
 from .models import AccomplishedGoal
 from .forms import SummaryModelForm
 from django.views.generic import UpdateView, DeleteView
+from django.core.paginator import Paginator
 
 
 @login_required()
@@ -24,6 +25,9 @@ def done(request):
             # Delete the completed program from the Endeavor model
             program.delete()
     accomplished_goal = AccomplishedGoal.objects.filter(author=request.user)
+    paginator = Paginator(accomplished_goal, 2)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
     if request.method == "POST":
         form = SummaryModelForm(request.POST)
         if form.is_valid():
@@ -32,7 +36,8 @@ def done(request):
     else:
         form = SummaryModelForm()
 
-    return render(request, "Accomplished/done.html", {"accomplished_goal": accomplished_goal, "form": form})
+    return render(request, "Accomplished/done.html", {"accomplished_goal": accomplished_goal, "form": form,
+                                                      "page_obj": page_obj})
 
 
 class UpdateAccomplishedView(UpdateView):

@@ -8,6 +8,7 @@ class TaskListView(ListView):
     model = Task
     template_name = "To_Do/to_do.html"
     ordering = ["-id"]
+    paginate_by = 3
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
