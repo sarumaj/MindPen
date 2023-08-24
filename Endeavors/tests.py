@@ -1,9 +1,52 @@
+from django.contrib.auth.models import User
 from django.test import TestCase
 from django.contrib.auth import get_user_model
 from Endeavors.models import Endeavor
 
 
-class EndeavorModelLabelsTest(TestCase):
+class UrlTests(TestCase):
+    def test_list_endeavor_url_exists_at_correct_location(self):
+        response = self.client.get("/list_endeavor/")
+        self.assertEqual(response.status_code, 302)
+
+    def test_create_endeavor_url_exists_at_correct_location(self):
+        response = self.client.get("/create_endeavor/")
+        self.assertEqual(response.status_code, 200)
+
+    def test_create_task_for_endeavor_url_exists_at_correct_location(self):
+        response = self.client.get("/tasks/")
+        self.assertEqual(response.status_code, 200)
+
+    def test_detail_endeavor_url_exists_at_correct_location(self):
+        slim = User.objects.create(
+            username="testuser",
+            email="test@email.com",
+            password="secret"
+        )
+        goal = Endeavor.objects.create(
+            author=slim,
+            start_date="2023-08-11",
+            title="slim try",
+        )
+        response = self.client.get(f"/detail_endeavor/{goal.id}/detail/")
+        self.assertEqual(response.status_code, 302)
+
+    def test_delete_endeavor_url_exists_at_correct_location(self):
+        slim = User.objects.create(
+            username="testuser",
+            email="test@email.com",
+            password="secret"
+        )
+        goal = Endeavor.objects.create(
+            author=slim,
+            start_date="2023-08-11",
+            title="slim try",
+        )
+        response = self.client.get(f"/detail_endeavor/{goal.id}/detail/")
+        self.assertEqual(response.status_code, 302)
+
+
+class EndeavorModelLabelTests(TestCase):
     @classmethod
     def setUpTestData(cls):
         # Set up non-modified objects used by all test methods
@@ -32,3 +75,7 @@ class EndeavorModelLabelsTest(TestCase):
     def test_string_representation_of_objects(self):
         endeavor = Endeavor.objects.get(id=1)
         self.assertEqual(str(endeavor), endeavor.title)
+
+    def test_count_journal_objects(self):
+        response = Endeavor.objects.all().count()
+        self.assertEquals(response, 1)

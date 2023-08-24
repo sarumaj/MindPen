@@ -3,7 +3,17 @@ from django.contrib.auth import get_user_model
 from MyMood.models import DataMood
 
 
-class MyMoodModelLabelsTest(TestCase):
+class UrlTests(TestCase):
+    def test_mood_url_exists_at_correct_location(self):
+        response = self.client.get("/mood/")
+        self.assertEqual(response.status_code, 302)
+
+    def test_mood_msg_url_exists_at_correct_location(self):
+        response = self.client.get("/mood_msg/")
+        self.assertEqual(response.status_code, 200)
+
+
+class MyMoodModelLabelTests(TestCase):
     @classmethod
     def setUpTestData(cls):
         # Set up non-modified objects used by all test methods

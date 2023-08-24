@@ -1,9 +1,58 @@
 from django.test import TestCase
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
 from Accomplished.models import AccomplishedGoal
+from django.test import SimpleTestCase
 
 
-class AccomplishedGoalModelLabelsTest(TestCase):
+class UrlTests(TestCase):
+    def test_done_url_exists_at_correct_location(self):
+        slim = User.objects.create(
+            username="testuser",
+            email="test@email.com",
+            password="secret"
+        )
+        AccomplishedGoal.objects.create(
+            author=slim,
+            program_title="run",
+            start_day="2023-08-24",
+            end_day="2023-08-25"
+        )
+        response = self.client.get("/done/")
+        self.assertEqual(response.status_code, 302)
+
+    def test_done_update_url_exists_at_correct_location(self):
+        slim = User.objects.create(
+            username="testuser",
+            email="test@email.com",
+            password="secret"
+        )
+        done1 = AccomplishedGoal.objects.create(
+            author=slim,
+            program_title="run",
+            start_day="2023-08-24",
+            end_day="2023-08-25"
+        )
+        response = self.client.get(f"/done_update/{done1.id}/")
+        self.assertEqual(response.status_code, 302)
+
+    def test_done_delete_url_exists_at_correct_location(self):
+        slim = User.objects.create(
+            username="testuser",
+            email="test@email.com",
+            password="secret"
+        )
+        done1 = AccomplishedGoal.objects.create(
+            author=slim,
+            program_title="run",
+            start_day="2023-08-24",
+            end_day="2023-08-25"
+        )
+        response_register = self.client.get(f"/done_delete/{done1.id}/")
+        self.assertEqual(response_register.status_code, 302)
+
+
+class AccomplishedGoalModelLabelTests(TestCase):
     @classmethod
     def setUpTestData(cls):
         # Set up non-modified objects used by all test methods

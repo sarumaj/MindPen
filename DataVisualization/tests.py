@@ -3,7 +3,13 @@ from django.contrib.auth import get_user_model
 from DataVisualization.models import PreviousMonth
 
 
-class PreviousMonthModelLabelsTest(TestCase):
+class UrlTests(TestCase):
+    def test_data_url_exists_at_correct_location(self):
+        response = self.client.get("/data/")
+        self.assertEqual(response.status_code, 302)
+
+
+class PreviousMonthModelLabelTests(TestCase):
     @classmethod
     def setUpTestData(cls):
         # Set up non-modified objects used by all test methods
@@ -28,5 +34,3 @@ class PreviousMonthModelLabelsTest(TestCase):
         previous_month = PreviousMonth.objects.get(id=1)
         max_length = previous_month._meta.get_field("date").max_length
         self.assertEqual(max_length, 10)
-
-

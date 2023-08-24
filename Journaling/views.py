@@ -30,6 +30,7 @@ class JournalListView(ListView):
         return context
 
     def post(self, request, *args, **kwargs):
+        """ create a new journal """
         form = JournalModelForm(request.POST)
         if form.is_valid():
             form_journal = form.save(commit=False)

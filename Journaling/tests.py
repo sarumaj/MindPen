@@ -1,9 +1,61 @@
 from django.test import TestCase
 from django.contrib.auth import get_user_model
-from Journaling.models import Journal
+from .models import Journal
+from django.contrib.auth.models import User
 
 
-class JournalModelLabelsTest(TestCase):
+class UrlTests(TestCase):
+    def test_journal_url_exists_at_correct_location(self):
+        response = self.client.get("/journal/")
+        self.assertEqual(response.status_code, 302)
+
+    def test_journal_detail_url_exists_at_correct_location(self):
+        slim = User.objects.create(
+            username="testuser",
+            email="test@email.com",
+            password="secret"
+        )
+        first = Journal.objects.create(
+            author=slim,
+            journal_date="2023-08-11 04:49:05.716458",
+            title="slim try",
+            content="test",
+        )
+        response = self.client.get(f"/journal/{first.id}")
+        self.assertEqual(response.status_code, 301)
+
+    def test_journal_update_url_exists_at_correct_location(self):
+        slim = User.objects.create(
+            username="testuser",
+            email="test@email.com",
+            password="secret"
+        )
+        first = Journal.objects.create(
+            author=slim,
+            journal_date="2023-08-11 04:49:05.716458",
+            title="slim try",
+            content="test",
+        )
+        response = self.client.get(f"/journal/{first.id}/update/")
+        self.assertEqual(response.status_code, 302)
+
+    def test_journal_delete_url_exists_at_correct_location(self):
+        slim = User.objects.create(
+            username="testuser",
+            email="test@email.com",
+            password="secret"
+        )
+        first = Journal.objects.create(
+            author=slim,
+            journal_date="2023-08-11 04:49:05.716458",
+            title="slim try",
+            content="test",
+        )
+        response = self.client.get(f"/journal/{first.id}/delete/")
+        self.assertEqual(response.status_code, 302)
+
+
+class JournalModelLabelTests(TestCase):
     @classmethod
     def setUpTestData(cls):
         # Set up non-modified objects used by all test methods
@@ -12,8 +64,11 @@ class JournalModelLabelsTest(TestCase):
             password="testing321"
         )
 
-        Journal.objects.create(author=cls.user, title="sleep early",
-                               journal_date="2023-08-16", content="This is a new journal")
+        Journal.objects.create(author=cls.user,
+                               title="sleep early",
+                               journal_date="2023-08-16",
+                               content="This is a new journal"
+                               )
 
     def test_author_label(self):
         journal = Journal.objects.get(id=1)
@@ -33,3 +88,7 @@ class JournalModelLabelsTest(TestCase):
     def test_string_representation_of_objects(self):
         journal = Journal.objects.get(id=1)
         self.assertEqual(str(journal), journal.title)
+
+    def test_count_journal_objects(self):
+        response = Journal.objects.all().count()
+        self.assertEquals(response, 1)
