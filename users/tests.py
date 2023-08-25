@@ -18,16 +18,16 @@ class UrlTests(SimpleTestCase):
         response_logout = self.client.get("/logout/")
         self.assertEqual(response_logout.status_code, 200)
 
-    # def test_template_name_correct(self):
-    #
-    #     """Log-in Route"""
-    #     response_login = self.client.get("/")
-    #     self.assertTemplateUsed(response_login, "users/login.html")
-    #
-    #     """Register Route"""
-    #     response_register = self.client.get("/register/")
-    #     self.assertTemplateUsed(response_register, "users/register.html")
-    #
-    #     """Log-out Route"""
-    #     response_logout = self.client.get("/logout/")
-    #     self.assertTemplateUsed(response_logout, "users/logout.html")
+
+class TemplateTests(SimpleTestCase):
+    def test_Login_template_name_correct(self):
+        response = self.client.get("/")
+        self.assertTemplateUsed(response, "users/login.html")
+
+    def test_Register_template_name_correct(self):
+        response = self.client.get("/register/")
+        self.assertTemplateUsed(response, "users/register.html")
+
+    def test_Logout_template_name_correct(self):
+        response = self.client.get("/logout/")
+        self.assertTemplateUsed(response, "users/logout.html")

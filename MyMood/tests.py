@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.test import TestCase
 from django.contrib.auth import get_user_model
 from MyMood.models import DataMood
@@ -11,6 +12,24 @@ class UrlTests(TestCase):
     def test_mood_msg_url_exists_at_correct_location(self):
         response = self.client.get("/mood_msg/")
         self.assertEqual(response.status_code, 200)
+
+
+class TemplateTests(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(
+            username="testuser",
+            email="test@email.com",
+            password="secret"
+        )
+        self.client.login(username="testuser", password="secret")
+
+    def test_mood_template_name_correct(self):
+        response = self.client.get("/mood/")
+        self.assertTemplateUsed(response, "MyMood/mood.html")
+
+    def test_mood_msg_template_name_correct(self):
+        response = self.client.get("/mood_msg/")
+        self.assertTemplateUsed(response, "MyMood/mood_message.html")
 
 
 class MyMoodModelLabelTests(TestCase):

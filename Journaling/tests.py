@@ -1,4 +1,5 @@
 from django.test import TestCase
+from django.urls import reverse
 from django.contrib.auth import get_user_model
 from .models import Journal
 from django.contrib.auth.models import User
@@ -53,6 +54,50 @@ class UrlTests(TestCase):
         )
         response = self.client.get(f"/journal/{first.id}/delete/")
         self.assertEqual(response.status_code, 302)
+
+
+class TemplateTests(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(
+            username="testuser",
+            email="test@email.com",
+            password="secret"
+        )
+        self.client.login(username="slim", password="secret")
+
+    def test_journal_template_name_correct(self):
+        response = self.client.get(reverse("journal"))
+        self.assertEqual(response.headers["Location"], "/?next=/journal/")
+
+    def test_journal_detail_msg_template_name_correct(self):
+        first = Journal.objects.create(
+                author=self.user,
+                journal_date="2023-08-11 04:49:05.716458",
+                title="slim try",
+                content="test",
+            )
+        response = self.client.get(f"/journal/{first.id}/")
+        self.assertEqual(response.headers["Location"], "/?next=/journal/1/")
+
+    def test_journal_update_msg_template_name_correct(self):
+        first = Journal.objects.create(
+                author=self.user,
+                journal_date="2023-08-11 04:49:05.716458",
+                title="slim try",
+                content="test",
+            )
+        response = self.client.get(f"/journal/{first.id}/update/")
+        self.assertEqual(response.headers["Location"], "/?next=/journal/1/update/")
+
+    def test_journal_delete_msg_template_name_correct(self):
+        first = Journal.objects.create(
+                author=self.user,
+                journal_date="2023-08-11 04:49:05.716458",
+                title="slim try",
+                content="test",
+            )
+        response = self.client.get(f"/journal/{first.id}/delete/")
+        self.assertEqual(response.headers["Location"], "/?next=/journal/1/delete/")
 
 
 class JournalModelLabelTests(TestCase):

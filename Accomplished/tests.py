@@ -2,7 +2,6 @@ from django.test import TestCase
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
 from Accomplished.models import AccomplishedGoal
-from django.test import SimpleTestCase
 
 
 class UrlTests(TestCase):
@@ -50,6 +49,40 @@ class UrlTests(TestCase):
         )
         response_register = self.client.get(f"/done_delete/{done1.id}/")
         self.assertEqual(response_register.status_code, 302)
+
+
+class TemplateTests(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(
+            username="testuser",
+            email="test@email.com",
+            password="secret"
+        )
+        self.client.login(username="slim", password="secret")
+
+    def test_journal_template_name_correct(self):
+        response = self.client.get("/done/")
+        self.assertEqual(response.headers["Location"], "/?next=/done/")
+
+    def test_done_update_template_name_correct(self):
+        done1 = AccomplishedGoal.objects.create(
+            author=self.user,
+            program_title="run",
+            start_day="2023-08-24",
+            end_day="2023-08-25"
+        )
+        response = self.client.get(f"/done_update/{done1.id}/")
+        self.assertEqual(response.headers["Location"], "/?next=/done_update/1/")
+
+    def test_done_delete_template_name_correct(self):
+        done1 = AccomplishedGoal.objects.create(
+            author=self.user,
+            program_title="run",
+            start_day="2023-08-24",
+            end_day="2023-08-25"
+        )
+        response = self.client.get(f"/done_delete/{done1.id}/")
+        self.assertEqual(response.headers["Location"], "/?next=/done_delete/1/")
 
 
 class AccomplishedGoalModelLabelTests(TestCase):

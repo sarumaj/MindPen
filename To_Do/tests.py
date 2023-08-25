@@ -77,7 +77,7 @@ class UrlTests(TestCase):
             start_date="2023-08-11",
             title="slim try",
         )
-        task1 = Task.objects.create(
+        Task.objects.create(
             goal=goal,
             starting_time="2023-08-17 15:32:00",
             title="task1",
@@ -85,6 +85,77 @@ class UrlTests(TestCase):
 
         response = self.client.get(reverse("create_todo", kwargs={"program": goal}))
         self.assertEqual(response.status_code, 200)
+
+
+class TemplateTests(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(
+                username="testuser",
+                email="test@email.com",
+                password="secret"
+            )
+        self.client.login(username="testuser", password="secret")
+
+    def test_todos_template_name_correct(self):
+        response = self.client.get("/todos/")
+        self.assertTemplateUsed(response, "To_Do/to_do.html")
+
+    def test_detail_todo_template_name_correct(self):
+        goal = Endeavor.objects.create(
+            author=self.user,
+            start_date="2023-08-11",
+            title="slim try",
+        )
+        task = Task.objects.create(
+            goal=goal,
+            starting_time="2023-08-17 15:32:00",
+            title="task1",
+        )
+        response = self.client.get(f"/detail_todo/{task.id}/detail/")
+        self.assertTemplateUsed(response, "To_Do/detail_todo.html")
+
+    def test_delete_todo_template_name_correct(self):
+        goal = Endeavor.objects.create(
+            author=self.user,
+            start_date="2023-08-11",
+            title="slim try",
+        )
+        task = Task.objects.create(
+            goal=goal,
+            starting_time="2023-08-17 15:32:00",
+            title="task1",
+        )
+        response = self.client.get(f"/delete_todo/{task.id}/delete/")
+        self.assertTemplateUsed(response, "To_Do/delete_todo.html")
+
+    def test_create_todo_template_name_correct(self):
+        goal = Endeavor.objects.create(
+             author=self.user,
+             start_date="2023-08-11",
+             title="slim try",
+        )
+        Task.objects.create(
+            goal=goal,
+            starting_time="2023-08-17 15:32:00",
+            title="task1",
+        )
+
+        response = self.client.get(reverse("create_todo", kwargs={"program": goal}))
+        self.assertTemplateUsed(response, "To_Do/create_task.html")
+
+    def test_update_todo_template_name_correct(self):
+        goal = Endeavor.objects.create(
+            author=self.user,
+            start_date="2023-08-11",
+            title="slim try",
+        )
+        task = Task.objects.create(
+            goal=goal,
+            starting_time="2023-08-17 15:32:00",
+            title="task1",
+        )
+        response = self.client.get(f"/update_todo/{task.id}/update/")
+        self.assertTemplateUsed(response, "To_Do/update_task.html")
 
 
 class TaskModelLabelTests(TestCase):

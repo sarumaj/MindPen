@@ -9,6 +9,12 @@ class UrlTests(TestCase):
         self.assertEqual(response.status_code, 302)
 
 
+class TemplateTests(TestCase):
+    def test_data_template_name_correct(self):
+        response = self.client.get("/data/")
+        self.assertEqual(response.headers["Location"], "/?next=/data/")
+
+
 class PreviousMonthModelLabelTests(TestCase):
     @classmethod
     def setUpTestData(cls):

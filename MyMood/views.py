@@ -14,8 +14,8 @@ def mood(request):
             my_mood = mood_form.save(commit=False)
             my_mood.user = request.user
             my_mood.save()
-            # if last_mood and last_mood.mood_date == my_mood.mood_date:
-            #     last_mood.delete()
+            if last_mood and last_mood.mood_date == my_mood.mood_date:
+                last_mood.delete()
         return redirect("mood_msg")
     return render(request, "MyMood/mood.html", {"mood_form": mood_form, "time": time})
 

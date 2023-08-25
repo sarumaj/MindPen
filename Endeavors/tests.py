@@ -46,6 +46,47 @@ class UrlTests(TestCase):
         self.assertEqual(response.status_code, 302)
 
 
+class TemplateTests(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(
+            username="testuser",
+            email="test@email.com",
+            password="secret"
+        )
+        self.client.login(username="slim", password="secret")
+
+    def test_list_endeavor_template_name_correct(self):
+        response = self.client.get("/list_endeavor/")
+        self.assertEqual(response.headers["Location"], "/?next=/list_endeavor/")
+
+    def test_detail_endeavor_template_name_correct(self):
+        goal = Endeavor.objects.create(
+                        author=self.user,
+                        start_date="2023-08-11",
+                        title="slim try",
+                    )
+        response = self.client.get(f"/detail_endeavor/{goal.id}/detail")
+        self.assertEqual(response.headers["Location"], "/detail_endeavor/1/detail/")
+
+
+    def test_delete_endeavor_template_name_correct(self):
+        goal = Endeavor.objects.create(
+                        author=self.user,
+                        start_date="2023-08-11",
+                        title="slim try",
+                    )
+        response = self.client.get(f"/delete_endeavor/{goal.id}/delete")
+        self.assertEqual(response.headers["Location"], "/delete_endeavor/1/delete/")
+
+    def test_tasks_related_to_endeavor_template_name_correct(self):
+        response = self.client.get("/tasks/")
+        self.assertTemplateUsed(response, "Endeavors/tasks.html")
+
+    def test_create_endeavor_template_name_correct(self):
+        response = self.client.get("/create_endeavor/")
+        self.assertTemplateUsed(response, "Endeavors/endeavor_tasks.html")
+
+
 class EndeavorModelLabelTests(TestCase):
     @classmethod
     def setUpTestData(cls):
