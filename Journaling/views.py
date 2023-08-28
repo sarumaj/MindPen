@@ -1,4 +1,3 @@
-from django.db.models import Q
 from django.shortcuts import redirect
 from django.views.generic import DetailView, DeleteView, ListView
 from django.views.generic.edit import UpdateView

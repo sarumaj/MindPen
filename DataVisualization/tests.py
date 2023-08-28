@@ -16,15 +16,13 @@ class TemplateTests(TestCase):
 
 
 class PreviousMonthModelLabelTests(TestCase):
-    @classmethod
-    def setUpTestData(cls):
-        # Set up non-modified objects used by all test methods
-        cls.user = get_user_model().objects.create_user(
-            username="testuser", email="test@email.com",
+    def setUp(self):
+        self.user = get_user_model().objects.create_user(
+            username="testuser",
+            email="test@email.com",
             password="testing321"
         )
-
-        PreviousMonth.objects.create(user=cls.user, average=4.2, date="2023-07")
+        PreviousMonth.objects.create(user=self.user, average=4.2, date="2023-07")
 
     def test_user_label(self):
         previous_month = PreviousMonth.objects.get(id=1)

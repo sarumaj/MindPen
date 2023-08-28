@@ -1,5 +1,4 @@
 from django.contrib import messages
-from django.http import request
 from django.shortcuts import render, redirect
 from Endeavors.models import Endeavor
 from To_Do.models import Task
@@ -30,9 +29,9 @@ class ProfileTemplateViews(TemplateView):
         context["form"] = JournalModelForm(initial={"content": "Start journaling now! Share your thoughts, experiences,"
                                                                " and memories right here.",
                                                     "title": "Journal Title"})
-        context["list_endeavor"] = Endeavor.objects.filter(author=self.request.user)[:3]
+        context["list_endeavor"] = Endeavor.objects.filter(author=self.request.user)[:2]
         context["list_task"] = Task.objects.filter(goal__author=self.request.user)[:2]
-        context["list_accomplished"] = AccomplishedGoal.objects.filter(author=self.request.user)[:3]
+        context["list_accomplished"] = AccomplishedGoal.objects.filter(author=self.request.user)[:2]
         context["mood"] = DataMood.objects.filter(user=self.request.user).first()
 
         return context

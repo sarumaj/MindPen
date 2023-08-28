@@ -51,7 +51,11 @@
             {% endif %}
           </div>
           <div class="card-footer">
-            <h4>{{data.remaining_tasks}} task(s) left to complete this goal!</h4>
+              {% if data.remaining_tasks == 0 %}
+              <h4>This goal has no task yet!</h4>
+              {% else %}
+                <h4>{{data.remaining_tasks}} task(s) left to complete this goal!</h4>
+              {% endif %}
           </div>
         </div>
     {% endfor %}

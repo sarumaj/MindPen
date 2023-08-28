@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.test import TestCase
-from django.contrib.auth import get_user_model
+from MyMood.forms import MoodModelForm
 from MyMood.models import DataMood
 
 
@@ -33,15 +33,17 @@ class TemplateTests(TestCase):
 
 
 class MyMoodModelLabelTests(TestCase):
-    @classmethod
-    def setUpTestData(cls):
-        # Set up non-modified objects used by all test methods
-        cls.user = get_user_model().objects.create_user(
-            username="testuser", email="test@email.com",
-            password="testing321"
+    def setUp(self):
+        self.user = User.objects.create_user(
+            username="testuser",
+            email="test@email.com",
+            password="secret"
         )
-
-        DataMood.objects.create(user=cls.user, mood_score=2, mood_date="2023-08-16")
+        DataMood.objects.create(
+            user=self.user,
+            mood_score=2,
+            mood_date="2023-08-16"
+        )
 
     def test_user_label(self):
         data_mood = DataMood.objects.get(id=1)
@@ -61,3 +63,19 @@ class MyMoodModelLabelTests(TestCase):
     def test_string_representation_of_objects(self):
         data_mood = DataMood.objects.get(id=1)
         self.assertEqual(str(data_mood), data_mood.mood_score)
+
+
+class FormTests(TestCase):
+    def test_mood_model_form_valid_data(self):
+        form_data = {
+            "mood_score": 3
+        }
+        form = MoodModelForm(data=form_data)
+        self.assertTrue(form.is_valid())
+
+    def test_mood_model_form_invalid_data(self):
+        form_data = {
+            "mood_score": "invalid"
+        }
+        form = MoodModelForm(data=form_data)
+        self.assertFalse(form.is_valid())

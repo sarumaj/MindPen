@@ -1,18 +1,20 @@
 from django.test import TestCase
-from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
+from Accomplished.forms import SummaryModelForm
 from Accomplished.models import AccomplishedGoal
 
 
 class UrlTests(TestCase):
-    def test_done_url_exists_at_correct_location(self):
-        slim = User.objects.create(
+    def setUp(self):
+        self.slim = User.objects.create(
             username="testuser",
             email="test@email.com",
             password="secret"
         )
+
+    def test_done_url_exists_at_correct_location(self):
         AccomplishedGoal.objects.create(
-            author=slim,
+            author=self.slim,
             program_title="run",
             start_day="2023-08-24",
             end_day="2023-08-25"
@@ -21,13 +23,8 @@ class UrlTests(TestCase):
         self.assertEqual(response.status_code, 302)
 
     def test_done_update_url_exists_at_correct_location(self):
-        slim = User.objects.create(
-            username="testuser",
-            email="test@email.com",
-            password="secret"
-        )
         done1 = AccomplishedGoal.objects.create(
-            author=slim,
+            author=self.slim,
             program_title="run",
             start_day="2023-08-24",
             end_day="2023-08-25"
@@ -36,13 +33,8 @@ class UrlTests(TestCase):
         self.assertEqual(response.status_code, 302)
 
     def test_done_delete_url_exists_at_correct_location(self):
-        slim = User.objects.create(
-            username="testuser",
-            email="test@email.com",
-            password="secret"
-        )
         done1 = AccomplishedGoal.objects.create(
-            author=slim,
+            author=self.slim,
             program_title="run",
             start_day="2023-08-24",
             end_day="2023-08-25"
@@ -86,17 +78,19 @@ class TemplateTests(TestCase):
 
 
 class AccomplishedGoalModelLabelTests(TestCase):
-    @classmethod
-    def setUpTestData(cls):
-        # Set up non-modified objects used by all test methods
-        cls.user = get_user_model().objects.create_user(
-            username="testuser", email="test@email.com",
+    def setUp(self):
+        self.user = User.objects.create_user(
+            username="testuser",
+            email="test@email.com",
             password="testing321"
         )
 
-        AccomplishedGoal.objects.create(author=cls.user, program_title="sleep early",
-                                        start_day="2023-08-16", end_day="2023-08-16",
-                                        summary="That's was a great lesson")
+        AccomplishedGoal.objects.create(
+            author=self.user,
+            program_title="sleep early",
+            start_day="2023-08-16", end_day="2023-08-16",
+            summary="That's was a great lesson"
+        )
 
     def test_author_label(self):
         completed = AccomplishedGoal.objects.get(id=1)
@@ -116,3 +110,12 @@ class AccomplishedGoalModelLabelTests(TestCase):
     def test_string_representation_of_objects(self):
         completed = AccomplishedGoal.objects.get(id=1)
         self.assertEqual(str(completed), completed.program_title)
+
+
+class FormTests(TestCase):
+    def test_summary_model_form_valid_data(self):
+        form_data = {
+            "summary": "Test"
+        }
+        form = SummaryModelForm(data=form_data)
+        self.assertTrue(form.is_valid())

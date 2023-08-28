@@ -1,4 +1,5 @@
-from django.test import SimpleTestCase
+from django.test import TestCase, SimpleTestCase
+from users.form import LoginForm
 
 
 class UrlTests(SimpleTestCase):
@@ -31,3 +32,23 @@ class TemplateTests(SimpleTestCase):
     def test_Logout_template_name_correct(self):
         response = self.client.get("/logout/")
         self.assertTemplateUsed(response, "users/logout.html")
+
+
+class FormTests(TestCase):
+    def test_login_form_valid_data(self):
+        form_data = {
+            "username": "testuser",
+            "password1": "secret12345",
+            "password2": "secret12345"
+        }
+        form = LoginForm(data=form_data)
+        self.assertTrue(form.is_valid())
+
+    def test_login_form_invalid_data(self):
+        form_data = {
+            "username": "",
+            "password1": "short",
+            "password2": "no"
+        }
+        form = LoginForm(data=form_data)
+        self.assertFalse(form.is_valid())
