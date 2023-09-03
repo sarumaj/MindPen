@@ -13,7 +13,7 @@ class TaskListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["programs"] = Endeavor.objects.filter(author=self.request.user)
-        context["tasks"] = Task.objects.filter(goal__author=self.request.user)
+        context["tasks"] = Task.objects.filter(endeavor__author=self.request.user)
         return context
 
 
