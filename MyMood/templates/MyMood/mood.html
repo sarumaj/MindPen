@@ -10,7 +10,9 @@
     <form method="post">
         {% csrf_token %}
         <div>
-            <h5>{{mood_form|crispy}}</h5>
+            {% for field in form_mood %}
+                {{field}}
+            {% endfor %}
         </div>
         <div class="card-footer text-body-secondary">
           <input class="btn btn-primary" type="submit">

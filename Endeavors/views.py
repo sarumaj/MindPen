@@ -80,5 +80,5 @@ class DetailEndeavorView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         program = self.get_object()
-        context["tasks"] = Task.objects.filter(goal=program)
+        context["tasks"] = Task.objects.filter(endeavor=program)
         return context
