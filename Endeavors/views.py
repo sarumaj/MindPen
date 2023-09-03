@@ -42,7 +42,7 @@ def tasks(request):
         if filled_formset.is_valid():
             for form in filled_formset:
                 task = form.save(commit=False)
-                task.goal = program
+                task.endeavor = program
                 task.save()
             return redirect("list_endeavor")
     else:
