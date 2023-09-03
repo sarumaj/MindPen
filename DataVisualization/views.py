@@ -115,9 +115,9 @@ def data(request):
     progress_data = []
 
     for program in all_programs:
-        all_tasks = Task.objects.filter(goal=program)
+        all_tasks = Task.objects.filter(endeavor=program)
         tasks = all_tasks.count()
-        completed = all_tasks.filter(goal=program).filter(completed=True)
+        completed = all_tasks.filter(endeavorr=program).filter(completed=True)
         tasks_completed = completed.count()
         remaining_tasks = tasks - tasks_completed
 
