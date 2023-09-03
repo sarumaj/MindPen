@@ -11,7 +11,7 @@
                 {% if tasks %}
                 <h4 class="card-title">List of Task:</h4>
                     {% for task in tasks %}
-                        {% if program == task.goal %}
+                        {% if program == task.endeavor %}
                             <a class="btn btn-dark btn-lg" href="{% url 'detail_todo' task.pk %}">
                                 <h5 class="card-title">{{ task.title|title }}</h5>
                             </a>
