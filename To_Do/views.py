@@ -37,7 +37,7 @@ class TaskCreateView(CreateView):
 
     def get_initial(self):
         initial = super().get_initial()
-        program_title = self.kwargs.get("program")  # Retrieve the program title from URL parameters
+        program_title = self.kwargs.get("endeavor")  # Retrieve the program title from URL parameters
         program = Endeavor.objects.get(title=program_title)
         initial["endevor"] = program
         return initial
