@@ -132,7 +132,7 @@ def data(request):
     # Barchart data
     previous_data = PreviousMonth.objects.filter(user=request.user)
     dic_previous_data = {
-        "Date": ["H", "j", "h"],
+        "Date": [x.date for x in previous_data],
         "Average": [y.average for y in previous_data]
     }
 
@@ -158,8 +158,7 @@ def data(request):
             "x": 0.5,
             "y":0.9,
             "font": {"color": "blue"},
-        },
-        margin = {"t": 50}
+        }
     )
     barchart.update_layout(bargap=0.5, bargroupgap=0.5)
     barchart = barchart.to_html()
