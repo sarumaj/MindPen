@@ -1,44 +1,61 @@
 #journaling {
     height: 250px;
-    width: 500px;
-    border: 5px solid black;
+    /*width: 500px;*/
+    border: 5px lightgray;
+    margin-left: 20px;
+    margin-bottom: 20px;
+
+
 }
 #data_visualization {
     height: 250px;
-    width: 500px;
-    border: 5px solid black;
+    /*width: 500px;*/
+    border: 5px lightgray;
+    margin-right: 20px;
+
 }
 #mymood {
-    height: 200px;
+    height: 220px;
     width: 500px;
-    border: 5px solid black;
-    margin-top: 10px
+    border: 5px lightgray;
+    margin-top: 10px;
+    margin-right: 40px;
+
 }
 #endeavors {
-    height: 200px;
+    height: 220px;
     width: 500px;
-    border: 5px solid black;
-    margin-top: 10px
+    border: 5px lightgray;
+    margin-top: 10px;
+    margin-right: 40px;
+
 }
 #to_do {
-    height: 200px;
+    height: 220px;
     width: 500px;
-    border: 5px solid black;
-    margin-top: 10px
+    border: 5px lightgray;
+    margin-top: 10px;
+    margin-right: 40px;
+
 }
 #accomplished {
-    height: 200px;
+    height: 220px;
     width: 500px;
-    border: 5px solid black;
+    border: 5px lightgray;
     margin-top: 10px;
 
 }
+#form {
+    border: none;
+    background: #EEEEEE;
 
-#story{
-    padding: 20px;
 }
+.section-card{
+    background: #EEEEEE;
+    border-radius:25px;
 
-#submit-journal{
-    margin-top: 163px;
+
 }
-
+.asteriskField {
+    display: none;
+}

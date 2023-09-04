@@ -140,7 +140,7 @@
             const endIndex = Math.max(targetIndex, lastCheckedIndex);
             const filtered = checkboxes.filter((el, index) => (startIndex <= index) && (index <= endIndex));
             return filtered;
-        }
+        };
 
         Array.from(document.getElementById('result_list').tBodies).forEach(function(el) {
             el.addEventListener('change', function(event) {
@@ -156,7 +156,7 @@
             });
         });
 
-        document.querySelector('#changelist-form button[name=index]').addEventListener('click', function(event) {
+        document.querySelector('#changelist-form button[name=index]').addEventListener('click', function() {
             if (list_editable_changed) {
                 const confirmed = confirm(gettext("You have unsaved changes on individual editable fields. If you run an action, your unsaved changes will be lost."));
                 if (!confirmed) {
