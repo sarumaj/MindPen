@@ -141,7 +141,7 @@ def data(request):
         df_previous,
         x="Date",
         y="Average",
-        # title="Previous Month Averages",
+        title="Previous Month Averages",
         # labels={"x": "Date", "y": "Averages"}
     )
     barchart.update_xaxes(
@@ -150,15 +150,19 @@ def data(request):
         tickformat='%d %B (%a)<br>%Y',
         showline=True,
         showgrid=True,
+        title_text="Date"
     )
-    # barchart.update_layout(
-    #     title={
-    #         "font_size": 22,
-    #         "xanchor": "center",
-    #         "x": 0.5,
-    #         "font": {"color": "blue"}
-    #     }
-    # )
+    barchart.update_yaxes(
+        title_text = "Averages"
+    )
+    barchart.update_layout(
+        title={
+            "font_size": 22,
+            "xanchor": "center",
+            "x": 0.5,
+            "font": {"color": "blue"}
+        }
+    )
     barchart.update_layout(bargap=0.5, bargroupgap=0.5)
     barchart = barchart.to_html()
 
