@@ -139,10 +139,10 @@ def data(request):
     df_previous = pd.DataFrame(dic_previous_data)
     barchart = px.bar(
         df_previous,
-        # x="Date",
-        # y="Average",
+        x="Date",
+        y="Average",
         title="Previous Month Averages",
-        labels={"x": "Date", "y": "Averages"}
+        # labels={"x": "Date", "y": "Averages"}
     )
     barchart.update_xaxes(
         type='category',
