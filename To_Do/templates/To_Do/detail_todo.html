@@ -1,10 +1,11 @@
 {% extends "Journaling/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
+<h1 class="text ml-4 mt-2">Task's Detail</h1>
   <div class="card text-center mt-3">
-  <div class="card-header text-primary">
-    <h3>{{ object.title.title }}</h3>
-  </div>
+    <div class="card-header text-primary">
+      <h3>{{ object.title.title }}</h3>
+    </div>
   <div class="card-body">
     <h5 class="card-title">Starts on: {{ object.starting_time }}</h5>
     {% if object.completed == False  %}
