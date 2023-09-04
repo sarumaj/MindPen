@@ -149,7 +149,8 @@ def data(request):
         tickmode='auto',
         tickformat='%d %B (%a)<br>%Y',
         showline=True,
-        showgrid=True
+        showgrid=True,
+        tickangle = 45
     )
     barchart.update_layout(
         title={
