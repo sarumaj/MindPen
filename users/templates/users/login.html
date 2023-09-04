@@ -1,4 +1,5 @@
 {% extends "users/base.html" %}
+{% load static %}
 {% load crispy_forms_tags %}
 {% block content %}
 <!--Showing one-time-alert message-->
@@ -25,8 +26,7 @@
         </div>
     </div>
 <!--Adding a photo-->
-    <div class="col-9">
-        {% load static %}
+    <div class="col-10">
         <img src="{% static 'logIn.png' %}" height="481" width="913">
     </div>
 </div>
