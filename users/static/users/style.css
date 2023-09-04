@@ -1,7 +1,7 @@
 #journaling {
     height: 250px;
-    width: 300px;
-    border: 5px grey;
+    /*width: 500px;*/
+    border: 5px lightgray;
     margin-left: 20px;
     margin-bottom: 20px;
 
@@ -9,7 +9,7 @@
 }
 #data_visualization {
     height: 250px;
-    width: 500px;
+    /*width: 500px;*/
     border: 5px lightgray;
     margin-right: 20px;
 
@@ -25,7 +25,7 @@
 #endeavors {
     height: 220px;
     width: 500px;
-    border: 5px grey;
+    border: 5px lightgray;
     margin-top: 10px;
     margin-right: 40px;
 
