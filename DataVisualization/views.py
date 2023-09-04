@@ -132,7 +132,7 @@ def data(request):
     # Barchart data
     previous_data = PreviousMonth.objects.filter(user=request.user)
     dic_previous_data = {
-        "Date": [x.date for x in previous_data],
+        "Date": ["H", "j", "h"],
         "Average": [y.average for y in previous_data]
     }
 
