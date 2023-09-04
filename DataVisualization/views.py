@@ -142,7 +142,7 @@ def data(request):
         x="Date",
         y="Average",
         # title="Previous Month Averages",
-        labels={"x": "Date", "y": "Averages"}
+        # labels={"x": "Date", "y": "Averages"}
     )
     barchart.update_xaxes(
         type='category',
