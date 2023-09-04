@@ -157,8 +157,9 @@ def data(request):
             "yanchor": "top",
             "x": 0.5,
             "y":0.9,
-            "font": {"color": "blue"}
-        }
+            "font": {"color": "blue"},
+        },
+        margin = {"t": 50}
     )
     barchart.update_layout(bargap=0.5, bargroupgap=0.5)
     barchart = barchart.to_html()
