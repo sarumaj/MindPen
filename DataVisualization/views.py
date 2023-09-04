@@ -155,6 +155,7 @@ def data(request):
             "font_size": 22,
             "xanchor": "center",
             "x": 0.5,
+            "y": 0.95,
             "font": {"color": "blue"}
         }
     )
