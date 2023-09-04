@@ -1,7 +1,7 @@
 #journaling {
     height: 250px;
     /*width: 500px;*/
-    border: 5px lightgray;
+    border: 5px black;
     margin-left: 20px;
     margin-bottom: 20px;
 
@@ -10,14 +10,14 @@
 #data_visualization {
     height: 250px;
     /*width: 500px;*/
-    border: 5px lightgray;
+    border: 5px black;
     margin-right: 20px;
 
 }
 #mymood {
     height: 220px;
     width: 500px;
-    border: 5px lightgray;
+    border: 5px black;
     margin-top: 10px;
     margin-right: 40px;
 
@@ -25,7 +25,7 @@
 #endeavors {
     height: 220px;
     width: 500px;
-    border: 5px lightgray;
+    border: 5px black;
     margin-top: 10px;
     margin-right: 40px;
 
@@ -33,7 +33,7 @@
 #to_do {
     height: 220px;
     width: 500px;
-    border: 5px lightgray;
+    border: 5px black;
     margin-top: 10px;
     margin-right: 40px;
 
@@ -41,7 +41,7 @@
 #accomplished {
     height: 220px;
     width: 500px;
-    border: 5px lightgray;
+    border: 5px black;
     margin-top: 10px;
 
 }
@@ -51,7 +51,7 @@
 
 }
 .section-card{
-    background: #EEEEEE;
+    background: grey;
     border-radius:25px;
 
 
