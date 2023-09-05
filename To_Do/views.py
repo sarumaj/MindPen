@@ -5,11 +5,10 @@ from .forms import TaskModelForm2
 
 
 class TaskListView(ListView):
-    paginate_by = 3
     model = Task
+    paginate_by = 3
     template_name = "To_Do/to_do.html"
     ordering = ["-id"]
-
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

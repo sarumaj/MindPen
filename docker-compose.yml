@@ -5,9 +5,9 @@ services:
     volumes:
       - ./data/db:/var/lib/postgresql/data
     environment:
-      - POSTGRES_DB = penmind
-      - POSTGRES_USER = penmind_user
-      - POSTGRES_PASSWORD = KhYA334URDtPrU0oLYzW8QbxQWXXZVdv
+      - POSTGRES_DB=penmind
+      - POSTGRES_USER=penmind_user
+      - POSTGRES_PASSWORD=KhYA334URDtPrU0oLYzW8QbxQWXXZVdv
   web:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
@@ -17,3 +17,6 @@ services:
       - "8000:8000"
     depends_on:
       - db
+
+volumes:
+  static-volume:  # Define a named volume for static files

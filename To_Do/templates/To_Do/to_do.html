@@ -2,66 +2,61 @@
 {% block content %}
 <h1 class="text ml-4 mt-2 text-dark">Tasks</h1>
 {% if programs %}
-    {% for program in programs %}
-        <div class="card text-center mb-5 shadow bg-light">
-            <div class="card-header text-primary">
-                <h3 class="text-center">Goal: {{ program|title }}</h3>
-            </div>
-            <div class="card-body">
-                {% if tasks %}
-                <h4 class="card-title">List of Task:</h4>
-                    {% for task in tasks %}
-                        {% if program == task.endeavor %}
-                            <a class="btn btn-dark btn-lg" href="{% url 'detail_todo' task.pk %}">
-                                <h5 class="card-title">{{ task.title|title }}</h5>
-                            </a>
-                        {% endif %}
-                    {% endfor %}
-                {% else %}
-                    <h4 class="card-title">No Task Yet!</h4>
-                {% endif %}
-            </div>
-            <div class="card-footer">
-                <a href="{% url 'create_todo' program=program %}" class="btn btn-primary btn-lg">Add a Task</a>
-            </div>
-        </div>
-    {% endfor %}
-
-    {% if is_paginated %}
-      {% if page_obj.has_previous %}
-        <a class="btn btn-outline-primary mb-4" href="?page=1">First</a>
-        <a class="btn btn-outline-primary mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
-      {% endif %}
-
-      {% for num in page_obj.paginator.page_range %}
-        {% if page_obj.number == num %}
-          <a class="btn btn-primary mb-4" href="?page={{ num }}">{{ num }}</a>
-        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-          <a class="btn btn-outline-primary mb-4" href="?page={{ num }}">{{ num }}</a>
+{% for program in programs %}
+<div class="card text-center mb-5 shadow bg-light">
+    <div class="card-header text-primary">
+        <h3 class="text-center">Goal: {{ program|title }}</h3>
+    </div>
+    <div class="card-body">
+        <h4 class="card-title">List of Task:</h4>
+        {% for task in tasks %}
+        {% if program == task.endeavor %}
+        <a class="btn btn-dark btn-lg" href="{% url 'detail_todo' task.pk %}">
+            <h5 class="card-title">{{ task.title|title }}</h5>
+        </a>
+        {% else %}
+        Empty
         {% endif %}
-      {% endfor %}
+        {% endfor %}
+    </div>
+    <div class="card-footer">
+        <a href="{% url 'create_todo' program=program %}" class="btn btn-primary btn-lg">Add a Task</a>
+    </div>
+</div>
+{% endfor %}
 
-      {% if page_obj.has_next %}
-        <a class="btn btn-outline-primary mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
-        <a class="btn btn-outline-primary mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
-      {% endif %}
-
+<div class="pagination mt-4">
+<span class="step-links">
+    {% if page_obj.has_previous %}
+        <a href="?page=1">&laquo; first</a>
+        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
     {% endif %}
 
+    <span class="current">
+        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+    </span>
+
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">next</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+    {% endif %}
+</span>
+</div>
 {% else %}
-    <div class="card text-center">
-        <div class="card-header text-primary">
-            <h3>List of Task Is Empty</h3>
-        </div>
-        <div class="card-body">
-           <p>In order to create a new task, you need to set up a goal first.</p>
-           <p>A goal helps you organize your tasks and keep track of your progress towards your goals.</p>
-           <p>Don't worry, it's easy to set up! Just click the button "Create Goal" and add a new Goal title and start date.</p>
-           <p>Once you have a goal set up, you can create tasks and start making progress!</p>
-        </div>
-        <div class="card-footer text-body-secondary">
-            <a href="{% url 'create_endeavor' %}" class="btn btn-primary mt-2">Create Goal</a>
-        </div>
+<div class="card text-center">
+    <div class="card-header text-primary">
+        <h3>List of Task Is Empty</h3>
     </div>
+    <div class="card-body">
+        <p>In order to create a new task, you need to set up a goal first.</p>
+        <p>A goal helps you organize your tasks and keep track of your progress towards your goals.</p>
+        <p>Don't worry, it's easy to set up! Just click the button "Create Goal" and add a new Goal title and start
+            date.</p>
+        <p>Once you have a goal set up, you can create tasks and start making progress!</p>
+    </div>
+    <div class="card-footer text-body-secondary">
+        <a href="{% url 'create_endeavor' %}" class="btn btn-primary mt-2">Create Goal</a>
+    </div>
+</div>
 {% endif %}
 {% endblock content %}
