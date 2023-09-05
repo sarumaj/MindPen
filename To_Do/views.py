@@ -10,6 +10,10 @@ class TaskListView(ListView):
     template_name = "To_Do/to_do.html"
     ordering = ["-id"]
 
+    def get_queryset(self):
+        # Apply ordering to the queryset here
+        return Task.objects.filter(endeavor__author=self.request.user).order_by("-id")
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["programs"] = Endeavor.objects.filter(author=self.request.user)
