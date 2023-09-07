@@ -13,10 +13,10 @@ services:
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/code
+      - static_root:/code/static
     ports:
       - "8000:8000"
     depends_on:
       - db
-
 volumes:
-  static-volume:  # Define a named volume for static files
+  static_root:

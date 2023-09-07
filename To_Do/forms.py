@@ -15,7 +15,6 @@ class TaskModelForm1(forms.ModelForm):
 class TaskModelForm2(forms.ModelForm):
     class Meta:
         model = Task
-        # fields = ["title", "description", "starting_time", "completed", "goal"]
         fields = ["title", "description", "starting_time", "completed", "endeavor"]
         widgets = {
             "description": forms.Textarea(attrs={"rows": 1}),
