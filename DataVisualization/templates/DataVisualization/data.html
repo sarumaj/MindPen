@@ -1,102 +1,99 @@
 {% extends "Journaling/base.html" %}
 {% block content %}
-<h1 class="text ml-4 mt-2">Data Visualization</h1>
+<h1 class="text ml-4 mt-2">Progress Tracker</h1>
 {% if progress_data %}
-    {% for data in progress_data %}
-        <div class="card text-center mb-5 shadow bg-light">
-          <div class="card-header text-primary">
-            <h3> {{ data.program|title }}</h3>
-          </div>
-          <div class="card-body">
-            {% if data.progress_percentage >= 0 and data.progress_percentage < 20 %}
-                <div class="progress">
-                  <div class="progress-bar progress-bar-striped bg-danger" role="progressbar"
-                       aria-valuenow="{{ data.progress_percentage }}" aria-valuemin="0" aria-valuemax="100"
-                       style="width: {{ data.progress_percentage }}%;">
-                    {{ data.progress_percentage }}%
-                  </div>
-                </div>
-            {% elif data.progress_percentage >= 20 and data.progress_percentage < 40 %}
-                <div class="progress">
-                  <div class="progress-bar progress-bar-striped bg-warning" role="progressbar"
-                       aria-valuenow="{{ data.progress_percentage }}" aria-valuemin="0" aria-valuemax="100"
-                       style="width: {{ data.progress_percentage }}%;">
-                    {{ data.progress_percentage }}%
-                  </div>
-                </div>
-            {% elif data.progress_percentage >= 40 and data.progress_percentage < 60 %}
-                <div class="progress">
-                  <div class="progress-bar progress-bar-striped bg-info" role="progressbar"
-                       aria-valuenow="{{ data.progress_percentage }}" aria-valuemin="0" aria-valuemax="100"
-                       style="width: {{ data.progress_percentage }}%;">
-                    {{ data.progress_percentage }}%
-                  </div>
-                </div>
-            {% elif data.progress_percentage >= 60 and data.progress_percentage < 80 %}
-                <div class="progress">
-                  <div class="progress-bar progress-bar-striped" role="progressbar"
-                       aria-valuenow="{{ data.progress_percentage }}" aria-valuemin="0" aria-valuemax="100"
-                       style="width: {{ data.progress_percentage }}%;">
-                    {{ data.progress_percentage }}%
-                  </div>
-                </div>
-            {% elif data.progress_percentage >= 80 and data.progress_percentage <= 100 %}
-                <div class="progress">
-                  <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
-                       aria-valuenow="{{ data.progress_percentage }}" aria-valuemin="0" aria-valuemax="100"
-                       style="width: {{ data.progress_percentage }}%;">
-                      {{ data.progress_percentage }}%
-                  </div>
-                </div>
-            {% endif %}
-          </div>
-          <div class="card-footer">
-              {% if data.remaining_tasks == 0 %}
-              <h4>This goal has no task yet!</h4>
-              {% else %}
-                <h4>{{data.remaining_tasks}} task(s) left to complete this goal!</h4>
-              {% endif %}
-          </div>
-        </div>
-    {% endfor %}
-
-    <div class="pagination mt-4">
-        <span class="step-links">
-            {% if page_obj.has_previous %}
-                <a href="?page=1">&laquo; first</a>
-                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-            {% endif %}
-
-            <span class="current">
-                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-            </span>
-
-            {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}">next</a>
-                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-            {% endif %}
-        </span>
+{% for data in page_obj  %}
+<div class="card text-center mb-5 shadow bg-light">
+    <div class="card-header text-primary">
+        <h3> {{ data.program|title }}</h3>
     </div>
+    <div class="card-body">
+        {% if data.progress_percentage >= 0 and data.progress_percentage < 20 %}
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped bg-danger" role="progressbar"
+                 aria-valuenow="{{ data.progress_percentage }}" aria-valuemin="0" aria-valuemax="100"
+                 style="width: {{ data.progress_percentage }}%;">
+                {{ data.progress_percentage }}%
+            </div>
+        </div>
+        {% elif data.progress_percentage >= 20 and data.progress_percentage < 40 %}
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped bg-warning" role="progressbar"
+                 aria-valuenow="{{ data.progress_percentage }}" aria-valuemin="0" aria-valuemax="100"
+                 style="width: {{ data.progress_percentage }}%;">
+                {{ data.progress_percentage }}%
+            </div>
+        </div>
+        {% elif data.progress_percentage >= 40 and data.progress_percentage < 60 %}
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped bg-info" role="progressbar"
+                 aria-valuenow="{{ data.progress_percentage }}" aria-valuemin="0" aria-valuemax="100"
+                 style="width: {{ data.progress_percentage }}%;">
+                {{ data.progress_percentage }}%
+            </div>
+        </div>
+        {% elif data.progress_percentage >= 60 and data.progress_percentage < 80 %}
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped" role="progressbar"
+                 aria-valuenow="{{ data.progress_percentage }}" aria-valuemin="0" aria-valuemax="100"
+                 style="width: {{ data.progress_percentage }}%;">
+                {{ data.progress_percentage }}%
+            </div>
+        </div>
+        {% elif data.progress_percentage >= 80 and data.progress_percentage <= 100 %}
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
+                 aria-valuenow="{{ data.progress_percentage }}" aria-valuemin="0" aria-valuemax="100"
+                 style="width: {{ data.progress_percentage }}%;">
+                {{ data.progress_percentage }}%
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    <div class="card-footer">
+        {% if data.remaining_tasks == 0 %}
+        <h4>This goal has no task yet!</h4>
+        {% else %}
+        <h4>{{data.remaining_tasks}} task(s) left to complete this goal!</h4>
+        {% endif %}
+    </div>
+</div>
+{% endfor %}
+
+<div class="pagination mt-4">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
 
 {% else %}
-    <div class="card text-center">
-      <div class="card-header">
-          <h3 class="text-center text-primary">Work-in-Progress</h3>
-      </div>
-      <div class="card-body">
+<div class="card text-center">
+    <div class="card-header">
+        <h3 class="text-center text-primary">Work-in-Progress</h3>
+    </div>
+    <div class="card-body">
         <p class="card-text">"Currently, there are no goals to display in progress.
             To see the progress bars, make sure you have set up a goal and added tasks to it.
             Once you have tasks associated with a goal, the goal will be visible here.
             Start tracking your tasks and stay motivated on your journey!"</p>
-      </div>
-      <div class="card-footer text-body-secondary">
-        <a href="{% url 'create_endeavor' %}" class="btn btn-primary">Add Program</a>
-      </div>
     </div>
+    <div class="card-footer text-body-secondary">
+        <a href="{% url 'create_endeavor' %}" class="btn btn-primary">Add Program</a>
+    </div>
+</div>
 {% endif %}
-    {{chart|safe}}
-    {{pie|safe}}
-{{barchart|safe}}
 {% endblock content %}
 
 

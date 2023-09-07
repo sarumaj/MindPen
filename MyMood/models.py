@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 class DataMood(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    mood_score = models.CharField(max_length=2)
+    mood_score = models.IntegerField()
     mood_date = models.DateField(auto_now_add=True)
 
     class Meta:

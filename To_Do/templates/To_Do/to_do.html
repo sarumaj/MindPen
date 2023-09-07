@@ -5,42 +5,41 @@
 {% for program in programs %}
 <div class="card text-center mb-5 shadow bg-light">
     <div class="card-header text-primary">
-        <h3 class="text-center">Goal: {{ program|title }}</h3>
+        <h3 class="text-center">Goal: {{ program.goal|title }}</h3>
     </div>
     <div class="card-body">
         <h4 class="card-title">List of Task:</h4>
-        {% for task in tasks %}
-        {% if program == task.endeavor %}
+        {% if program.tasks %}
+        {% for task in program.tasks %}
         <a class="btn btn-dark btn-lg" href="{% url 'detail_todo' task.pk %}">
             <h5 class="card-title">{{ task.title|title }}</h5>
         </a>
-        {% else %}
-        Empty
-        {% endif %}
         {% endfor %}
+        {% else %}
+        <h4>Is Empty for Now!</h4>
+        {% endif %}
     </div>
     <div class="card-footer">
-        <a href="{% url 'create_todo' program=program %}" class="btn btn-primary btn-lg">Add a Task</a>
+        <a href="{% url 'create_todo' program=program.goal %}" class="btn btn-primary btn-lg">Add a Task</a>
     </div>
 </div>
 {% endfor %}
-
 <div class="pagination mt-4">
-<span class="step-links">
-    {% if page_obj.has_previous %}
-        <a href="?page=1">&laquo; first</a>
-        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-    {% endif %}
+      <span class="step-links">
+        {% if programs.has_previous %}
+          <a href="?page=1">&laquo; first</a>
+          <a href="?page={{ programs.previous_page_number }}">previous</a>
+        {% endif %}
 
-    <span class="current">
-        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-    </span>
+        <span class="current">
+          Page {{ programs.number }} of {{ programs.paginator.num_pages }}.
+        </span>
 
-    {% if page_obj.has_next %}
-        <a href="?page={{ page_obj.next_page_number }}">next</a>
-        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-    {% endif %}
-</span>
+        {% if programs.has_next %}
+          <a href="?page={{ programs.next_page_number }}">next</a>
+          <a href="?page={{ programs.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+      </span>
 </div>
 {% else %}
 <div class="card text-center">

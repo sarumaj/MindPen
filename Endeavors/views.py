@@ -31,7 +31,7 @@ def add_endeavor(request):
 
 def tasks(request):
     number_of_tasks = 1
-    program = Endeavor.objects.first()
+    program = Endeavor.objects.last()
     filled_multiple_tasks_form = MultipleTaskForms(request.GET)
     if filled_multiple_tasks_form.is_valid():
         number_of_tasks = filled_multiple_tasks_form.cleaned_data["number_of_tasks"]
@@ -55,13 +55,14 @@ class ListEndeavorView(ListView):
     template_name = "Endeavors/list_endeavor.html"
     context_object_name = "goals"
     ordering = ["-pk"]
-    paginate_by = 3
+
+    def get_queryset(self):
+        return Endeavor.objects.filter(author=self.request.user)
 
     def get_context_data(self, **kwargs):
         form1 = EndeavorModelForm()
         multiple_form = MultipleTaskForms()
         context = super().get_context_data(**kwargs)
-        context["goals"] = Endeavor.objects.filter(author=self.request.user)
         context["form"] = form1
         context["multiple_form"] = multiple_form
         return context

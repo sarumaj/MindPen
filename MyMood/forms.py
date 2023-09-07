@@ -16,7 +16,7 @@ class MoodModelForm(forms.ModelForm):
         (4, "Excited😁"),
         (5, "Ecstatic🌟"),
     ]
-    mood_score = forms.CharField(label=None, widget=forms.RadioSelect(choices=MOOD_TYPES))
+    mood_score = forms.ChoiceField(choices=MOOD_TYPES)
 
     class Meta:
         model = DataMood
