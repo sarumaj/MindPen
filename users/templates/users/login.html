@@ -16,7 +16,7 @@
             {% endif %}
             <form method="POST">
                 {% csrf_token %}
-                {{ form }}
+                {{ form|crispy }}
                 <button class="btn btn-secondary btn-lg mt-3" type="submit"
                         style="width: 103px">Log-in
                 </button>
