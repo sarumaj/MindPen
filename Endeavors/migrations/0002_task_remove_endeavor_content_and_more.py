@@ -25,6 +25,7 @@ class Migration(migrations.Migration):
         migrations.RemoveField(
             model_name='endeavor',
             name='endeavor_date',
+            field=models.DateTimeField(null=False),
         ),
         migrations.AddField(
             model_name='endeavor',

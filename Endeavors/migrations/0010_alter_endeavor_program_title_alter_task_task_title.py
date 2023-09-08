@@ -13,11 +13,11 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='endeavor',
             name='program_title',
-            field=models.CharField(max_length=100, null=True, unique=True),
+            field=models.CharField(max_length=100),
         ),
         migrations.AlterField(
             model_name='task',
             name='task_title',
-            field=models.CharField(max_length=200, null=True, unique=True),
+            field=models.CharField(max_length=200),
         ),
     ]

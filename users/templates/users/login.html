@@ -2,22 +2,21 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% block content %}
-<!--Showing one-time-alert message-->
-{% if messages %}
-{% for message in messages %}
-<div class="alert alert-{{ message.tags }}">
-    {{ message }}
-</div>
-{% endfor %}
-{% endif %}
-
 <div class="row">
     <!--Login-form-->
     <div class="col">
         <div class="container mt-5">
+            <!--Showing one-time-alert message-->
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% endif %}
             <form method="POST">
                 {% csrf_token %}
-                {{ form|crispy }}
+                {{ form }}
                 <button class="btn btn-secondary btn-lg mt-3" type="submit"
                         style="width: 103px">Log-in
                 </button>
@@ -27,7 +26,7 @@
         </div>
     </div>
     <div class="col-9">
-        <img src="{% static 'logIn.png' %}" height="481" width="913">
+        <img src="{% static 'users/login.png' %}" height="481" width="913">
     </div>
 </div>
 {% endblock content %}

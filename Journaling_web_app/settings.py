@@ -25,7 +25,7 @@ SECRET_KEY = "a5958fb3723b2e77787ed08bec37d9c0"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = os.environ.get("DEBUG" "False") == "True"
-DEBUG = False
+DEBUG = True
 ALLOWED_HOSTS = ["*"]
 
 
@@ -143,7 +143,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_root/')
 # add compression and caching support
 STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
