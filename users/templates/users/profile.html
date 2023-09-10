@@ -5,14 +5,14 @@
 <link rel="stylesheet" type="text/css" href="{% static 'users/style.css' %}">
 <div class="container text-center">
   <div class="row">
-    <div  class="col-xl-4 col-lg-4 col-md-4 col-sm-4 section-card" id="data_visualization">
+    <div  class="col section-card" id="data_visualization">
       <a href="{% url 'data' %}" class="btn btn-light btn-sm mt-1"><h4>Progress Tracker</h4></a>
       <div class="mt-3" >
         <iframe src="https://giphy.com/embed/hUFWFbRXvF310MKe1f" width="250" height="160"
                 class="giphy-embed" allowFullScreen></iframe>
       </div>
     </div>
-    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 section-card" id="journaling">
+    <div class="col-8 section-card" id="journaling">
       <a href="{% url 'journal' %}" class="btn btn-light btn-sm mt-1 mb-2"><h4>Journaling</h4></a>
       <form style="border: none" id="form" class="form-control form-control-sm section-card" method="post" >
         {% csrf_token %}
@@ -23,7 +23,7 @@
   </div>
 
   <div class="row">
-    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 section-card" id="mymood">
+    <div class="col section-card" id="mymood">
       <a href="{% url 'mood' %}" class="btn btn-light btn-sm mt-1"><h4>Mood Tracker</h4></a>
       <div>
         <p class="text-center text-dark mt-3">
@@ -35,7 +35,7 @@
         </p>
       </div>
     </div>
-    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 section-card" id="endeavors"><a href="{% url 'list_endeavor' %}" class="btn btn-light btn-sm mt-1">
+    <div class="col section-card" id="endeavors"><a href="{% url 'list_endeavor' %}" class="btn btn-light btn-sm mt-1">
       <h4>Goals</h4></a>
       {% if list_endeavor %}
         {% for program_title in list_endeavor %}
@@ -48,7 +48,7 @@
           Start by creating your first goal to organize your tasks and goals."</p>
       {% endif %}
     </div>
-    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 section-card" id="to_do"><a href="{% url 'todos' %}" class="btn btn-light btn-sm mt-1">
+    <div class="col section-card" id="to_do"><a href="{% url 'todos' %}" class="btn btn-light btn-sm mt-1">
       <h4>Tasks</h4></a>
       {% if list_task %}
         {% for task_title in list_task %}
@@ -61,7 +61,7 @@
           Add tasks to your goals to track your progress and accomplishments."</p>
       {% endif %}
     </div>
-    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 section-card" id="accomplished"><a href="{% url 'done' %}" class="btn btn-light btn-sm mt-1">
+    <div class="col section-card" id="accomplished"><a href="{% url 'done' %}" class="btn btn-light btn-sm mt-1">
       <h4>Accomplishments</h4></a>
       {% if list_accomplished %}
         {% for program_title in list_accomplished %}

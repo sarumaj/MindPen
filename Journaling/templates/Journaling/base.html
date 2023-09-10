@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <title>PenMind</title>
-<!-- CSS link -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
-      crossorigin="anonymous">
+    <!-- CSS link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+          crossorigin="anonymous">
 </head>
 
-<body style="background-color:lightgrey;">
+<body>
 <!-- Navbar -->
 <nav class="navbar bg-body-tertiary">
     <div class="container-fluid">
@@ -23,7 +24,7 @@
 <!-- Sidebar -->
 <div class="row">
     <div class="col-2">
-        <div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary h-100" style="width: 110%;">
+        <div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary h-100">
             <span class="fs-4">Navigation</span>
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
@@ -39,8 +40,8 @@
         </div>
     </div>
 
-<!-- Content -->
-    <div style="background: white"class="col">
+    <!-- Content -->
+    <div style="background: white" class="col">
         {% block content %}
         {% endblock %}
     </div>
@@ -50,5 +51,10 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         crossorigin="anonymous"></script>
+
+
+<footer class="py-3 bg-body-tertiary">
+    <p class="text-center text-body-secondary mt-3">© 2023 PenMind</p>
+</footer>
 </body>
 </html>
