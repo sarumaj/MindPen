@@ -7,9 +7,10 @@ class DataMood(models.Model):
     mood_score = models.IntegerField()
     mood_date = models.DateField(auto_now_add=True)
 
+
     class Meta:
         ordering = ["-id"]
 
     def __str__(self):
-        return self.mood_score
+        return str(self.mood_score)
 

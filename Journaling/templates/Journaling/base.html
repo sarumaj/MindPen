@@ -14,7 +14,9 @@
 <nav class="navbar bg-body-tertiary">
     <div class="container-fluid">
         <span class="navbar-text text-tertiary"><h3>PenMind</h3></span>
-        <span><a class="btn btn-secondary btn-lg" href="{% url 'logout' %}">{{ user.username.title }} - Log out</a></span>
+        <span>
+            <a class="btn btn-secondary btn-lg" href="{% url 'logout' %}">{{ user.username.title }} - Log out</a>
+        </span>
     </div>
 </nav>
 
@@ -30,7 +32,6 @@
                 <li><a href="{% url 'todos' %}" class="nav-link link-body-emphasis">Tasks</a></li>
                 <li><a href="{% url 'mood' %}" class="nav-link link-body-emphasis">Mood Tracker</a></li>
                 <li><a href="{% url 'journal' %}" class="nav-link link-body-emphasis">Journaling</a></li>
-
                 <li><a href="{% url 'data' %}" class="nav-link link-body-emphasis">Progress Tracker</a></li>
                 <li><a href="{% url 'done' %}" class="nav-link link-body-emphasis">Accomplishments</a></li>
             </ul>

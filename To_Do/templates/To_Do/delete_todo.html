@@ -1,10 +1,10 @@
 {% extends "Journaling/base.html" %}
-
 {% block content %}
+<h1 class="text ml-4 mt-2">Delete a Task</h1>
     <form method="post">
         {% csrf_token %}
         <div class="card text-center">
-          <div class="card-header text-primary">
+          <div class="card-header text-danger">
               <h3>Warning Message</h3>
           </div>
           <div class="card-body">
