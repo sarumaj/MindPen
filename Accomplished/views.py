@@ -16,14 +16,14 @@ def done(request):
         all_tasks = Task.objects.filter(endeavor=program).count()
         all_completed_tasks = Task.objects.filter(endeavor=program).filter(completed=True).count()
         if (all_tasks != 0) and (all_tasks == all_completed_tasks):
-            # Save a copy of the completed program in AccomplishedGoal model
+            # save a copy of the completed program in AccomplishedGoal model
             accomplished_program = AccomplishedGoal.objects.create(
                 author=program.author,
                 program_title=program.title,
                 start_day=program.start_date,
                 )
             accomplished_program.save()
-            # Delete the completed program from the Endeavor model
+            # delete the completed program from the Endeavor model
             program.delete()
     accomplished_goal = AccomplishedGoal.objects.filter(author=request.user)
     paginator = Paginator(accomplished_goal, 2)
@@ -54,6 +54,7 @@ class DeleteAccomplishedView(UserPassesTestMixin, DeleteView):
     success_url = "/done/"
 
     def test_func(self):
+        # check if the currently logged-in user is the same as the author of the accomplished goal
         accomplished = self.get_object()
         if self.request.user == accomplished.author:
             return True

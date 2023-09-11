@@ -17,17 +17,21 @@ def data(request):
         tasks_completed = completed.count()
         remaining_tasks = tasks - tasks_completed
 
+        # calculate percentages
         if tasks == 0:
             progress_percentage = 0
         else:
             progress_percentage = int((tasks_completed / tasks) * 100)
 
-        progress_data.append({"program": program, "progress_percentage": progress_percentage,
-                              "remaining_tasks": remaining_tasks})
+        progress_data.append({
+            "program": program,
+            "progress_percentage": progress_percentage,
+            "remaining_tasks": remaining_tasks})
 
     paginator = Paginator(progress_data, 3)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
 
-    return render(request, "DataVisualization/data.html",{"progress_data": progress_data,
-                                                          "page_obj": page_obj})
+    return render(request, "DataVisualization/data.html", {
+        "progress_data": progress_data,
+        "page_obj": page_obj})

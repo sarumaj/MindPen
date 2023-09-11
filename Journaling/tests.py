@@ -110,7 +110,7 @@ class JournalModelLabelTests(TestCase):
 class FormTests(TestCase):
     def test_journal_model_form_valid_data(self):
         form_data = {
-            "title": "Test Journal",
+            "title": "I could sort the To_Do's",
             "content": "Test"
         }
         form = JournalModelForm(data=form_data)

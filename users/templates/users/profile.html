@@ -12,7 +12,7 @@
                 class="giphy-embed" allowFullScreen></iframe>
       </div>
     </div>
-    <div class="col-lg-8 section-card" id="journaling">
+    <div class="col-8 section-card" id="journaling">
       <a href="{% url 'journal' %}" class="btn btn-light btn-sm mt-1 mb-2"><h4>Journaling</h4></a>
       <form style="border: none" id="form" class="form-control form-control-sm section-card" method="post" >
         {% csrf_token %}
@@ -27,12 +27,20 @@
       <a href="{% url 'mood' %}" class="btn btn-light btn-sm mt-1"><h4>Mood Tracker</h4></a>
       <div>
         <p class="text-center text-dark mt-3">
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% else %}
           <form method="post">
             {% csrf_token %}
             {{ mood_form|crispy }}
             <input class="btn btn-light btn-sm" type="submit">
           </form>
         </p>
+        {% endif %}
       </div>
     </div>
     <div class="col section-card" id="endeavors"><a href="{% url 'list_endeavor' %}" class="btn btn-light btn-sm mt-1">

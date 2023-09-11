@@ -67,12 +67,10 @@ class TemplateTests(TestCase):
 
     def test_detail_endeavor_template_name_correct(self):
         response = self.client.get(f"/detail_endeavor/{self.goal.id}/detail")
-        # self.assertTemplateUsed(response, "Endeavors/detail_endeavor.html")
         self.assertEqual(response.headers["Location"], "/detail_endeavor/1/detail/")
 
     def test_delete_endeavor_template_name_correct(self):
         response = self.client.get(f"/delete_endeavor/{self.goal.id}/delete")
-        # self.assertTemplateUsed(response, "Endeavors/delete_endeavor.html")
         self.assertEqual(response.headers["Location"], "/delete_endeavor/1/delete/")
 
     def test_tasks_related_to_endeavor_template_name_correct(self):

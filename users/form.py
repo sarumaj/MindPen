@@ -6,6 +6,7 @@ class LoginForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super(LoginForm, self).__init__(*args, **kwargs)
 
+        # Remove help_text for the specified fields.
         for field in ["username", "password1", "password2"]:
             self.fields[field].help_text = None
 

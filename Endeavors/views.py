@@ -32,15 +32,19 @@ def add_endeavor(request):
 def tasks(request):
     number_of_tasks = 1
     program = Endeavor.objects.last()
+    # create a form for entering the number of tasks to add
     filled_multiple_tasks_form = MultipleTaskForms(request.GET)
     if filled_multiple_tasks_form.is_valid():
         number_of_tasks = filled_multiple_tasks_form.cleaned_data["number_of_tasks"]
+    # create a formset for TaskModelForm1 with the specified number of tasks
     TaskFormSet = formset_factory(TaskModelForm1, extra=number_of_tasks)
     formset = TaskFormSet()
     if request.method == "POST":
         filled_formset = TaskFormSet(request.POST)
         if filled_formset.is_valid():
+            # iterate through the forms in the formset
             for form in filled_formset:
+                # save each form's task, associating it with the program
                 task = form.save(commit=False)
                 task.endeavor = program
                 task.save()
@@ -60,9 +64,11 @@ class ListEndeavorView(ListView):
         return Endeavor.objects.filter(author=self.request.user)
 
     def get_context_data(self, **kwargs):
+        # create an instance of EndeavorModelForm and MultipleTaskForms
         form1 = EndeavorModelForm()
         multiple_form = MultipleTaskForms()
         context = super().get_context_data(**kwargs)
+        # add the forms to the context data
         context["form"] = form1
         context["multiple_form"] = multiple_form
         return context

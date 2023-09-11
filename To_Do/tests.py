@@ -15,7 +15,7 @@ class UrlTests(TestCase):
         )
         self.client.login(username="testuser", password="secret")
 
-        self.goal = Endeavor.objects.create(
+        self.endeavor = Endeavor.objects.create(
             author=self.user,
             start_date="2023-08-11",
             title="slim try"
@@ -23,7 +23,7 @@ class UrlTests(TestCase):
 
     def test_todos_url_exists_at_correct_location(self):
         Task.objects.create(
-            goal=self.goal,
+            endeavor=self.endeavor,
             starting_time="2023-08-17 15:32:00",
             title="task1"
         )
@@ -32,7 +32,7 @@ class UrlTests(TestCase):
 
     def test_detail_todo_url_exists_at_correct_location(self):
         task1 = Task.objects.create(
-            goal=self.goal,
+            endeavor=self.endeavor,
             starting_time="2023-08-17 15:32:00",
             title="task1"
         )
@@ -41,7 +41,7 @@ class UrlTests(TestCase):
 
     def test_delete_todo_url_exists_at_correct_location(self):
         task1 = Task.objects.create(
-            goal=self.goal,
+            endeavor=self.endeavor,
             starting_time="2023-08-17 15:32:00",
             title="task1"
         )
@@ -50,7 +50,7 @@ class UrlTests(TestCase):
 
     def test_update_todo_url_exists_at_correct_location(self):
         task1 = Task.objects.create(
-            goal=self.goal,
+            endeavor=self.endeavor,
             starting_time="2023-08-17 15:32:00",
             title="task1"
         )
@@ -59,12 +59,12 @@ class UrlTests(TestCase):
 
     def test_create_todo_url_exists_at_correct_location(self):
         Task.objects.create(
-            goal=self.goal,
+            endeavor=self.endeavor,
             starting_time="2023-08-17 15:32:00",
             title="task1"
         )
 
-        response = self.client.get(reverse("create_todo", kwargs={"program": self.goal}))
+        response = self.client.get(reverse("create_todo", kwargs={"program": self.endeavor}))
         self.assertEqual(response.status_code, 200)
 
 
@@ -77,13 +77,13 @@ class TemplateTests(TestCase):
         )
         self.client.login(username="testuser", password="secret")
 
-        self.goal = Endeavor.objects.create(
+        self.endeavor = Endeavor.objects.create(
             author=self.user,
             start_date="2023-08-11",
             title="slim try",
         )
         self.task = Task.objects.create(
-            goal=self.goal,
+            endeavor=self.endeavor,
             starting_time="2023-08-17 15:32:00",
             title="task1",
         )
@@ -101,7 +101,7 @@ class TemplateTests(TestCase):
         self.assertTemplateUsed(response, "To_Do/delete_todo.html")
 
     def test_create_todo_template_name_correct(self):
-        response = self.client.get(reverse("create_todo", kwargs={"program": self.goal}))
+        response = self.client.get(reverse("create_todo", kwargs={"program": self.endeavor}))
         self.assertTemplateUsed(response, "To_Do/create_task.html")
 
     def test_update_todo_template_name_correct(self):
@@ -117,24 +117,24 @@ class TaskModelLabelTests(TestCase):
             email="test@email.com",
             password="secret"
         )
-        self.goal = Endeavor.objects.create(
+        self.endeavor = Endeavor.objects.create(
             author=self.user,
             title="sleep early",
             start_date="2023-08-24"
         )
 
         Task.objects.create(
-            goal=self.goal,
+            endeavor=self.endeavor,
             title="task 1",
             description="Empty",
             starting_time="2023-08-24 15:32:00",
             completed=False
         )
 
-    def test_goal_label(self):
+    def test_endeavor_label(self):
         task = Task.objects.get(id=1)
-        field_label = task._meta.get_field("goal").verbose_name
-        self.assertEqual(field_label, "goal")
+        field_label = task._meta.get_field("endeavor").verbose_name
+        self.assertEqual(field_label, "endeavor")
 
     def test_starting_time_label(self):
         task = Task.objects.get(id=1)
@@ -144,7 +144,7 @@ class TaskModelLabelTests(TestCase):
     def test_title_length(self):
         task = Task.objects.get(id=1)
         max_length = task._meta.get_field("title").max_length
-        self.assertEqual(max_length, 200)
+        self.assertEqual(max_length, 50)
 
     def test_string_representation_of_objects(self):
         task = Task.objects.get(id=1)
@@ -186,7 +186,7 @@ class FormTests(TestCase):
 
     def test_task_model_form2_valid_data(self):
         form_data = {
-            "goal": self.endeavor.id,
+            "endeavor": self.endeavor.id,
             "title": "Test Task",
             "starting_time": "2023-08-17 15:32:00",
             "completed": False,
@@ -196,7 +196,7 @@ class FormTests(TestCase):
 
     def test_task_model_form2_invalid_data(self):
         form_data = {
-            "goal": self.endeavor.id,
+            "endeavor": self.endeavor.id,
             "title": "",
             "starting_time": "invalid_datetime",
             "completed": "invalid_completed",

@@ -94,9 +94,11 @@ def mood(request):
         previous_month = 12
     else:
         previous_month = month - 1
-    # fetch the data oof the previous month
+    # fetch the data of the previous month
     previous_qs = DataMood.objects.filter(user=request.user, mood_date__year=year, mood_date__month=previous_month)
-    # previous exist calculate their average, set new previous instance, and delete that previous queryset.
+    # previous exist calculate their average,
+    # set new previous instance,
+    # and delete that previous queryset
     if previous_qs:
         for y in previous_qs:
             total += int(y.mood_score)
@@ -109,27 +111,7 @@ def mood(request):
         previous.save()
         previous_qs.delete()
 
-    # Progress bar
-    all_programs = Endeavor.objects.filter(author=request.user)
-
-    progress_data = []
-
-    for program in all_programs:
-        all_tasks = Task.objects.filter(endeavor=program)
-        tasks = all_tasks.count()
-        completed = all_tasks.filter(endeavor=program).filter(completed=True)
-        tasks_completed = completed.count()
-        remaining_tasks = tasks - tasks_completed
-
-        if tasks == 0:
-            progress_percentage = 0
-        else:
-            progress_percentage = int((tasks_completed / tasks) * 100)
-
-        progress_data.append({"program": program, "progress_percentage": progress_percentage,
-                              "remaining_tasks": remaining_tasks})
-
-    # Barchart data
+    # barchart data
     previous_data = PreviousMonth.objects.filter(user=request.user)
     dic_previous_data = {
         "Date": [x.date for x in previous_data],
@@ -162,4 +144,5 @@ def mood(request):
     )
     barchart.update_layout(bargap=0.5, bargroupgap=0.5)
     barchart = barchart.to_html()
+
     return render(request, "MyMood/mood.html", {"chart": chart, "pie": pie, "barchart": barchart})

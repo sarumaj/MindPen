@@ -12,11 +12,15 @@ from django.utils import timezone
 
 
 def register(request):
+    """
+        - Handles user registration and form submission
+    """
+
     if request.method == "POST":
         form = LoginForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, f"{form.cleaned_data['username']}'s account is created successfully !")
+            messages.success(request, f"{form.cleaned_data['username']}'s account is created successfully!")
             return redirect("login")
     else:
         form = LoginForm()
@@ -24,14 +28,19 @@ def register(request):
 
 
 class ProfileTemplateViews(TemplateView):
+    """
+        - Django view for the user profile page
+    """
     template_name = "users/profile.html"
 
     def get_context_data(self, **kwargs):
+        # initialize a form for journal entries with initial data
         context = super().get_context_data(**kwargs)
-        context["form"] = JournalModelForm(initial={"content": "Start journaling now! Share your thoughts,"
-                                                               " experiences,"
-                                                               " and memories right here.",
-                                                    "title": "Journal Title"})
+        context["form"] = JournalModelForm(initial={
+            "content": "Start journaling now! Share your thoughts,"
+                       " experiences,"
+                       " and memories right here.",
+            "title": "Journal Title"})
         context["mood_form"] = MoodModelForm(initial={"mood_score": "0"})
         context["list_endeavor"] = Endeavor.objects.filter(author=self.request.user)[:3]
         context["list_task"] = Task.objects.filter(endeavor__author=self.request.user)[:3]
@@ -39,6 +48,7 @@ class ProfileTemplateViews(TemplateView):
         return context
 
     def post(self, request, *args, **kwargs):
+        # create a journal entry and associate it with the current user
         journal_form = JournalModelForm(request.POST)
         if journal_form.is_valid():
             journal = journal_form.save(commit=False)
@@ -47,12 +57,15 @@ class ProfileTemplateViews(TemplateView):
             return redirect("/profile/")
         last_mood = DataMood.objects.first()
 
+        # create a mood score and associate it with the current user
         time = timezone.now()
         mood_form = MoodModelForm(request.POST)
         if mood_form.is_valid():
             my_mood = mood_form.save(commit=False)
             my_mood.user = request.user
             my_mood.save()
+            messages.success(request, "Mood recorded🎉 Keep tracking your emotions🚀")
+            # capture the last mood score
             if last_mood and last_mood.mood_date == my_mood.mood_date:
                 last_mood.delete()
             return redirect("/profile/")

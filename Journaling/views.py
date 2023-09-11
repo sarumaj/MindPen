@@ -15,15 +15,20 @@ class JournalListView(ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
+        # journals of the current user
         queryset = queryset.filter(author=self.request.user)
+        # create a filterset using JournalFilter and apply it to the queryset
         self.filterset = JournalFilter(self.request.GET, queryset=queryset)
         return self.filterset.qs
 
     def get_context_data(self, **kwargs):
+        # create an instance of JournalModelForm with initial data
         context = super().get_context_data(**kwargs)
-        form = JournalModelForm(initial={"content": "Start journaling now! Share your thoughts,"
-                                                    " experiences, and memories right here.",
-                                         "title": "Journal Title"})
+        form = JournalModelForm(initial={
+            "content": "Start journaling now! Share your thoughts,"
+                       " experiences, and memories right here.",
+            "title": "Journal Title"})
+        # add the form and search form (filterset form) to the context data
         context["form"] = form
         context["SearchForm"] = self.filterset.form
         return context
@@ -32,6 +37,7 @@ class JournalListView(ListView):
         """ create a new journal """
         form = JournalModelForm(request.POST)
         if form.is_valid():
+            # save the journal with the current user as the author
             form_journal = form.save(commit=False)
             form_journal.author = self.request.user
             form_journal.save()
@@ -49,6 +55,7 @@ class JournalUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return super().form_valid(form)
 
     def test_func(self):
+        # check if the currently logged-in user is the same as the author of the journal
         journal = self.get_object()
         if self.request.user == journal.author:
             return True
@@ -67,6 +74,7 @@ class JournalDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     success_url = "/journal/"
 
     def test_func(self):
+        # check if the currently logged-in user is the same as the author of the journal
         journal = self.get_object()
         if self.request.user == journal.author:
             return True
