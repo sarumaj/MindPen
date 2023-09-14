@@ -7,7 +7,6 @@ class DataMood(models.Model):
     mood_score = models.IntegerField()
     mood_date = models.DateField(auto_now_add=True)
 
-
     class Meta:
         ordering = ["-id"]
 

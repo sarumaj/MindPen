@@ -3,7 +3,7 @@ services:
   db:
     image: postgres
     volumes:
-      - ./data/db:/var/lib/postgresql/data
+      - ./my_database_data:/var/lib/postgresql/data
     environment:
       - POSTGRES_DB=penmind
       - POSTGRES_USER=penmind_user

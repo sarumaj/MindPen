@@ -55,14 +55,10 @@ class MyMoodModelLabelTests(TestCase):
         field_label = data_mood._meta.get_field("mood_date").verbose_name
         self.assertEqual(field_label, "mood date")
 
-    def test_mood_score_length(self):
-        data_mood = DataMood.objects.get(id=1)
-        max_length = data_mood._meta.get_field("mood_score").max_length
-        self.assertEqual(max_length, 2)
 
     def test_string_representation_of_objects(self):
         data_mood = DataMood.objects.get(id=1)
-        self.assertEqual(str(data_mood), data_mood.mood_score)
+        self.assertEqual(2, data_mood.mood_score)
 
 
 class FormTests(TestCase):

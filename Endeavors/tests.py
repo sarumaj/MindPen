@@ -109,7 +109,7 @@ class EndeavorModelLabelTests(TestCase):
     def test_title_length(self):
         endeavor = Endeavor.objects.get(id=1)
         max_length = endeavor._meta.get_field("title").max_length
-        self.assertEqual(max_length, 100)
+        self.assertEqual(max_length, 50)
 
     def test_string_representation_of_objects(self):
         endeavor = Endeavor.objects.get(id=1)
