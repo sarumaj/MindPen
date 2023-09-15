@@ -4,7 +4,7 @@ from Endeavors.models import Endeavor
 from To_Do.models import Task
 from MyMood.forms import MoodModelForm
 from MyMood.models import DataMood
-from Journaling.forms import JournalModelForm
+from Journaling.forms import JournalModelForm_2
 from .form import LoginForm
 from django.views.generic.base import TemplateView
 from Accomplished.views import AccomplishedGoal
@@ -36,7 +36,7 @@ class ProfileTemplateViews(TemplateView):
     def get_context_data(self, **kwargs):
         # initialize a form for journal entries with initial data
         context = super().get_context_data(**kwargs)
-        context["form"] = JournalModelForm(initial={
+        context["form"] = JournalModelForm_2(initial={
             "content": "Start journaling now! Share your thoughts,"
                        " experiences,"
                        " and memories right here.",
@@ -49,7 +49,7 @@ class ProfileTemplateViews(TemplateView):
 
     def post(self, request, *args, **kwargs):
         # create a journal entry and associate it with the current user
-        journal_form = JournalModelForm(request.POST)
+        journal_form = JournalModelForm_2(request.POST)
         if journal_form.is_valid():
             journal = journal_form.save(commit=False)
             journal.author = self.request.user

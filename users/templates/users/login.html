@@ -4,7 +4,7 @@
 {% block content %}
 <div class="row">
     <!--Login-form-->
-    <div class="col">
+    <div class="col-xl-4 col-lg-4 col-sm-4">
         <div class="container mt-5">
             <!--Showing one-time-alert message-->
             {% if messages %}
@@ -25,8 +25,8 @@
             <a class="btn btn-secondary btn-lg mt-3" href="{% url 'register' %}">Register</a>
         </div>
     </div>
-    <div class="col-9">
-        <img src="{% static 'users/login.png' %}" height="486" width="913">
+    <div class="col-xl-8 col-lg-8 col-sm-8">
+        <img src="{% static 'users/login.png' %}" height="500" width="913">
     </div>
 </div>
 {% endblock content %}
