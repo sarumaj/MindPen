@@ -14,6 +14,9 @@ services:
     volumes:
       - .:/code
 #      - static_root:/code/static_root
+    environment:
+      - SECRECT_KEY=a5958fb3723b2e77787ed08bec37d9c0
+      - DEBUG=False
     ports:
       - "8000:8000"
     depends_on:

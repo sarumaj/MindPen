@@ -21,4 +21,3 @@ class JournalModelForm_2(forms.ModelForm):
             "title": forms.TextInput(attrs={"size": "30"}),
             "content": forms.Textarea(attrs={'rows': 4, 'cols': 70})
         }
-
