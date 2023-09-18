@@ -14,7 +14,7 @@ SECRET_KEY = "a5958fb3723b2e77787ed08bec37d9c0"
 DEBUG = True
 
 # ALLOWED_HOSTS = ["*"]
-ALLOWED_HOSTS = [".render.com", "localhost", "127.0.0.1"]
+ALLOWED_HOSTS = ["penmind.onrender.com", "localhost", "127.0.0.1"]
 
 # Application definition
 
