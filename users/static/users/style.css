@@ -9,14 +9,6 @@
 
 }
 
-#data_visualization {
-    margin-top: 10px;
-    height: 270px;
-    border: 5px lightgray;
-    margin-right: 5px;
-    margin-bottom: 5px;
-
-}
 
 #mymood {
     height: 220px;
@@ -27,32 +19,6 @@
 
 }
 
-#endeavors {
-    height: 220px;
-    width: 271px;
-    border: 5px lightgray;
-    margin-right: 5px;
-    margin-top: 5px;
-
-}
-
-#to_do {
-    height: 220px;
-    width: 271px;
-    border: 5px lightgray;
-    margin-top: 5px;
-    margin-left: 5px;
-
-}
-
-#accomplished {
-    height: 220px;
-    width: 271px;
-    border: 5px lightgray;
-    margin-top: 5px;
-    margin-left: 10px;
-
-}
 
 #form {
     border: none;

@@ -11,7 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "a5958fb3723b2e77787ed08bec37d9c0"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # ALLOWED_HOSTS = ["*"]
 ALLOWED_HOSTS = ["penmind.onrender.com", "localhost", "127.0.0.1"]
@@ -27,12 +27,8 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     # added
-    "Accomplished",
-    "DataVisualization",
-    "Endeavors",
     "Journaling",
     "MyMood",
-    "To_Do",
     "users",
     "crispy_forms",
     "crispy_bootstrap5",
@@ -72,14 +68,20 @@ WSGI_APPLICATION = 'Journaling_web_app.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': "penmind",
+#         'USER': "penmind_user",
+#         'PASSWORD': "KhYA334URDtPrU0oLYzW8QbxQWXXZVdv",
+#         'HOST': "dpg-cjmm357jbvhs73d061e0-a.oregon-postgres.render.com",
+#         'PORT': "5432",
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': "penmind",
-        'USER': "penmind_user",
-        'PASSWORD': "KhYA334URDtPrU0oLYzW8QbxQWXXZVdv",
-        'HOST': "dpg-cjmm357jbvhs73d061e0-a.oregon-postgres.render.com",
-        'PORT': "5432",
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 

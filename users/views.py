@@ -1,13 +1,10 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
-from Endeavors.models import Endeavor
-from To_Do.models import Task
 from MyMood.forms import MoodModelForm
 from MyMood.models import DataMood
 from Journaling.forms import JournalModelForm_2
 from .form import LoginForm
 from django.views.generic.base import TemplateView
-from Accomplished.views import AccomplishedGoal
 from django.utils import timezone
 
 
@@ -42,9 +39,9 @@ class ProfileTemplateViews(TemplateView):
                        " and memories right here.",
             "title": "Journal Title"})
         context["mood_form"] = MoodModelForm(initial={"mood_score": "0"})
-        context["list_endeavor"] = Endeavor.objects.filter(author=self.request.user)[:3]
-        context["list_task"] = Task.objects.filter(endeavor__author=self.request.user)[:3]
-        context["list_accomplished"] = AccomplishedGoal.objects.filter(author=self.request.user)[:3]
+        # context["list_endeavor"] = Endeavor.objects.filter(author=self.request.user)[:3]
+        # context["list_task"] = Task.objects.filter(endeavor__author=self.request.user)[:3]
+        # context["list_accomplished"] = AccomplishedGoal.objects.filter(author=self.request.user)[:3]
         return context
 
     def post(self, request, *args, **kwargs):

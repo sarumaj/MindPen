@@ -5,9 +5,6 @@ import pandas as pd
 import plotly.express as px
 from datetime import datetime
 import plotly.graph_objects as go
-from DataVisualization.models import PreviousMonth
-from Endeavors.models import Endeavor
-from To_Do.models import Task
 
 
 def mood_message(request):
@@ -112,37 +109,37 @@ def mood(request):
         previous_qs.delete()
 
     # barchart data
-    previous_data = PreviousMonth.objects.filter(user=request.user)
-    dic_previous_data = {
-        "Date": [x.date for x in previous_data],
-        "Average": [y.average for y in previous_data]
-    }
+    # previous_data = PreviousMonth.objects.filter(user=request.user)
+    # dic_previous_data = {
+    #     "Date": [x.date for x in previous_data],
+    #     "Average": [y.average for y in previous_data]
+    # }
 
-    df_previous = pd.DataFrame(dic_previous_data)
-    barchart = px.bar(
-        df_previous,
-        y="Average",
-        x="Date",
-    )
-    barchart.update_xaxes(
-        type='category',
-        tickmode='auto',
-        tickformat='%d %B (%a)<br>%Y',
-        showline=True,
-        showgrid=True
-    )
-    barchart.update_layout(
-        title={
-            "text": "Previous Month Averages",
-            "font_size": 22,
-            "xanchor": "center",
-            "yanchor": "top",
-            "x": 0.5,
-            "y":0.9,
-            "font": {"color": "blue"},
-        }
-    )
-    barchart.update_layout(bargap=0.5, bargroupgap=0.5)
-    barchart = barchart.to_html()
+    # df_previous = pd.DataFrame(dic_previous_data)
+    # barchart = px.bar(
+    #     df_previous,
+    #     y="Average",
+    #     x="Date",
+    # )
+    # barchart.update_xaxes(
+    #     type='category',
+    #     tickmode='auto',
+    #     tickformat='%d %B (%a)<br>%Y',
+    #     showline=True,
+    #     showgrid=True
+    # )
+    # barchart.update_layout(
+    #     title={
+    #         "text": "Previous Month Averages",
+    #         "font_size": 22,
+    #         "xanchor": "center",
+    #         "yanchor": "top",
+    #         "x": 0.5,
+    #         "y":0.9,
+    #         "font": {"color": "blue"},
+    #     }
+    # )
+    # barchart.update_layout(bargap=0.5, bargroupgap=0.5)
+    # barchart = barchart.to_html()
 
-    return render(request, "MyMood/mood.html", {"chart": chart, "pie": pie, "barchart": barchart})
+    return render(request, "MyMood/mood.html", {"chart": chart})
