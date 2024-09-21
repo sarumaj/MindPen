@@ -1,7 +1,7 @@
 from django.shortcuts import redirect
 from django.views.generic import DetailView, DeleteView, ListView
 from django.views.generic.edit import UpdateView
-from .models import Journal
+from .models import Journal, DataMood
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .forms import JournalModelForm
 from .filters import JournalFilter
@@ -11,7 +11,7 @@ class JournalListView(ListView):
     model = Journal
     template_name = "Journaling/journal.html"
     context_object_name = "posts"
-    paginate_by = 3
+    paginate_by = 5
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -79,3 +79,13 @@ class JournalDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == journal.author:
             return True
         return False
+
+    def delete(self, request, *args, **kwargs):
+        # Journal entry to be deleted
+        journal = self.get_object()
+
+        # Delete the related mood_score before deleting the journal entry
+        DataMood.objects.filter(user=journal.author, mood_date=journal.journal_date).delete()
+
+        # Delete the journal entry
+        return super().delete(request, *args, **kwargs)

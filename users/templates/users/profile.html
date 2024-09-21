@@ -15,26 +15,26 @@
       </form>
     </div>
 
-    <div class="col section-card " id="mymood">
-      <a href="{% url 'mood' %}" class="btn btn-light btn-sm mt-1"><h4>Mood Tracker</h4></a>
-      <div>
-        <p class="text-center text-dark mt-3">
-        {% if messages %}
-            {% for message in messages %}
-            <div class="alert alert-{{ message.tags }}">
-                {{ message }}
-            </div>
-            {% endfor %}
-            {% else %}
-          <form method="post">
-            {% csrf_token %}
-            {{ mood_form|crispy }}
-            <input class="btn btn-light btn-sm" type="submit">
-          </form>
-        </p>
-        {% endif %}
-      </div>
-    </div>
+<!--    <div class="col section-card " id="mymood">-->
+<!--      <a href="{% url 'mood' %}" class="btn btn-light btn-sm mt-1"><h4>Mood Tracker</h4></a>-->
+<!--      <div>-->
+<!--        <p class="text-center text-dark mt-3">-->
+<!--        {% if messages %}-->
+<!--            {% for message in messages %}-->
+<!--            <div class="alert alert-{{ message.tags }}">-->
+<!--                {{ message }}-->
+<!--            </div>-->
+<!--            {% endfor %}-->
+<!--            {% else %}-->
+<!--          <form method="post">-->
+<!--            {% csrf_token %}-->
+<!--            {{ mood_form|crispy }}-->
+<!--            <input class="btn btn-light btn-sm" type="submit">-->
+<!--          </form>-->
+<!--        </p>-->
+<!--        {% endif %}-->
+<!--      </div>-->
+<!--    </div>-->
   </div>
 </div>
 {% endblock content %}

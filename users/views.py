@@ -55,15 +55,15 @@ class ProfileTemplateViews(TemplateView):
         last_mood = DataMood.objects.first()
 
         # create a mood score and associate it with the current user
-        time = timezone.now()
-        mood_form = MoodModelForm(request.POST)
-        if mood_form.is_valid():
-            my_mood = mood_form.save(commit=False)
-            my_mood.user = request.user
-            my_mood.save()
-            messages.success(request, "Mood recorded🎉 Keep tracking your emotions🚀")
-            # capture the last mood score
-            if last_mood and last_mood.mood_date == my_mood.mood_date:
-                last_mood.delete()
-            return redirect("/profile/")
-        return render(request, self.template_name, {"form": journal_form, "mood_form": mood_form})
+        # time = timezone.now()
+        # mood_form = MoodModelForm(request.POST)
+        # if mood_form.is_valid():
+        #     my_mood = mood_form.save(commit=False)
+        #     my_mood.user = request.user
+        #     my_mood.save()
+        #     messages.success(request, "Mood recorded🎉 Keep tracking your emotions🚀")
+        #     # capture the last mood score
+        #     if last_mood and last_mood.mood_date == my_mood.mood_date:
+        #         last_mood.delete()
+        #     return redirect("/profile/")
+        return render(request, self.template_name, {"form": journal_form})
