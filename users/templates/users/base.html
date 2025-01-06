@@ -16,8 +16,10 @@
         <span class="navbar-text text-tertiary"><h3>MindPen</h3></span>
         {% if user.is_authenticated %}
         <span>
+<!--            <a class="btn btn-secondary btn-lg" href="{% url 'logout' %}"-->
+<!--               href="{% url 'logout' %}">{{ user.username.title }} - Sign out</a>-->
             <a class="btn btn-secondary btn-lg" href="{% url 'logout' %}"
-               href="{% url 'logout' %}">{{ user.username.title }} - Log out</a>
+               href="{% url 'logout' %}">Sign out</a>
 
         </span>
         {% endif %}

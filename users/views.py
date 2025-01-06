@@ -6,6 +6,11 @@ from Journaling.forms import JournalModelForm_2
 from .form import LoginForm
 from django.views.generic.base import TemplateView
 from django.utils import timezone
+from MyMood.views import mood
+from datetime import datetime
+from MyMood.views import mood
+import speech_recognition
+import pyttsx3
 
 
 def register(request):
@@ -38,7 +43,9 @@ class ProfileTemplateViews(TemplateView):
                        " experiences,"
                        " and memories right here.",
             "title": "Journal Title"})
-        context["mood_form"] = MoodModelForm(initial={"mood_score": "0"})
+        # Add the mood data
+        context["mood"] = mood(self.request)
+        # context["mood_form"] = MoodModelForm(initial={"mood_score": "0"})
         # context["list_endeavor"] = Endeavor.objects.filter(author=self.request.user)[:3]
         # context["list_task"] = Task.objects.filter(endeavor__author=self.request.user)[:3]
         # context["list_accomplished"] = AccomplishedGoal.objects.filter(author=self.request.user)[:3]
@@ -66,4 +73,6 @@ class ProfileTemplateViews(TemplateView):
         #     if last_mood and last_mood.mood_date == my_mood.mood_date:
         #         last_mood.delete()
         #     return redirect("/profile/")
+
         return render(request, self.template_name, {"form": journal_form})
+

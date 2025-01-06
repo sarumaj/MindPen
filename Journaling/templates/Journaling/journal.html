@@ -10,7 +10,7 @@
             {% for post in posts %}
                 <div class="card text-center mt-3 shadow bg-light">
                     <div class="card-header text-primary">
-                        <h4>Posted on: {{ post.journal_date|date }}</h4>
+                        <h4>{{ post.journal_date|date }}</h4>
                     </div>
                     <div class="card-body">
                         <h4>{{ post.title|title }}</h4>

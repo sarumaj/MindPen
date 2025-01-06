@@ -48,7 +48,7 @@ def mood(request):
                 inferred_mood = 0
 
             mood_entry = DataMood(
-                # Link to the currently logged-in user
+                # Link to the currently signed in user
                 user=request.user,
                 # Save the inferred mood (positive/negative)
                 mood_score=inferred_mood,
@@ -82,4 +82,7 @@ def mood(request):
                                      )])
     pie = fig.to_html()
 
-    return render(request, "MyMood/mood.html", {"pie": pie})
+    # return render(request, "MyMood/mood.html", {"pie": pie})
+    return pie
+
+
