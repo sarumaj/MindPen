@@ -2,38 +2,98 @@
 {% load crispy_forms_tags %}
 {% load static %}
 {% block content %}
-<link rel="stylesheet" type="text/css" href="{% static 'users/style.css' %}">
-<div class="container text-center">
-
-  <div class="row">
-    <div class="col-lg-6 col-md-6 col-sm-6 section-card" id="journaling">
-      <a href="{% url 'journal' %}" class="btn btn-light btn-sm mt-1 mb-2"><h4>Journaling</h4></a>
-      <form id="form" class="form-control form-control-sm section-card" method="post" >
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input class="btn btn-light btn-sm" type="submit">
-      </form>
+<!--<link rel="stylesheet" type="text/css" href="{% static 'users/style.css' %}">-->
+<form id="form" class="form-control form-control-sm" method="post">
+    {% csrf_token %}
+    <div class="card text-center mt-4 mb-4  shadow bg-light">
+        <div class="card-header text-primary">
+            <h3>Voice Journaling</h3>
+        </div>
+        <div class="card-body">
+            <p id="transcript" class="card-text text-dark"></p>
+            {{ form|crispy }}
+            <input class="btn btn-secondary btn-lg" type="submit">
+        </div>
+        <div class="card-footer text-body-secondary">
+            <div class="button-group mb-3">
+                <button id="startRecording" class="btn btn-success btn-lg">Start Recording</button>
+                <button id="stopRecording" class="btn btn-danger btn-lg" disabled>Stop Recording</button>
+            </div>
+        </div>
     </div>
-    {{ mood|safe }}
+</form>
+<div class="flex-container mt-5" >{{ mood|safe }}</div>
+<div class="flex-container mt-5"><a href="{% url 'journal' %}" class="btn btn-dark btn-sm mt-1 mb-2"><h4>All Journals</h4></a></div>
 
-<!--    <div class="col section-card " id="mymood">-->
-<!--      <a href="{% url 'mood' %}" class="btn btn-light btn-sm mt-1"><h4>Mood Tracker</h4></a>-->
-<!--      <div>-->
-<!--        <p class="text-center text-dark mt-3">-->
-<!--        {% if messages %}-->
-<!--            {% for message in messages %}-->
-<!--            <div class="alert alert-{{ message.tags }}">-->
-<!--                {{ message }}-->
-<!--            </div>-->
-<!--            {% endfor %}-->
-<!--            {% else %}-->
-<!--          <form method="post">-->
-<!--            {% csrf_token %}-->
-<!--            {{ mood_form|crispy }}-->
-<!--            <input class="btn btn-light btn-sm" type="submit">-->
-<!--          </form>-->
-<!--        </p>-->
-<!--        {% endif %}-->
-<!--      </div>-->
-<!--    </div>-->
+
+
+<script>
+    let mediaRecorder;
+    let socket;
+
+// Function to start transcription
+function startTranscription() {
+    navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
+        if (!MediaRecorder.isTypeSupported("audio/webm")) {
+            return alert("Browser not supported");
+        }
+
+        mediaRecorder = new MediaRecorder(stream, {
+            mimeType: "audio/webm",
+        });
+
+        socket = new WebSocket("ws://localhost:8000/register/profile/ws/listen/");
+
+        socket.onopen = () => {
+            mediaRecorder.addEventListener("dataavailable", (event) => {
+                if (event.data.size > 0 && socket.readyState === 1) {
+                    socket.send(event.data);
+                }
+            });
+            mediaRecorder.start(250); // Send audio chunks every 250ms
+        };
+
+        socket.onmessage = (message) => {
+            const received = message.data;
+            if (received) {
+                // Update the content field with the transcribed text
+                const contentField = document.querySelector("#id_content");
+                if (contentField) {
+                    contentField.value += " " + received.trim();
+                } else {
+                    console.error("Content field not found.");
+                }
+            }
+        };
+
+        socket.onerror = (error) => {
+            console.error("WebSocket Error:", error);
+        };
+    });
+
+    // Enable Stop button and disable Start button
+    document.getElementById("startRecording").disabled = true;
+    document.getElementById("stopRecording").disabled = false;
+}
+
+// Function to stop transcription
+function stopTranscription() {
+    if (mediaRecorder && mediaRecorder.state !== "inactive") {
+        mediaRecorder.stop();
+    }
+
+    if (socket && socket.readyState === 1) {
+        socket.close();
+    }
+
+    // Enable Start button and disable Stop button
+    document.getElementById("startRecording").disabled = false;
+    document.getElementById("stopRecording").disabled = true;
+}
+
+// Add event listeners to buttons
+document.getElementById("startRecording").addEventListener("click", startTranscription);
+document.getElementById("stopRecording").addEventListener("click", stopTranscription);
+
+</script>
 {% endblock content %}

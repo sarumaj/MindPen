@@ -8,9 +8,7 @@ from django.views.generic.base import TemplateView
 from django.utils import timezone
 from MyMood.views import mood
 from datetime import datetime
-from MyMood.views import mood
-import speech_recognition
-import pyttsx3
+
 
 
 def register(request):
@@ -36,13 +34,10 @@ class ProfileTemplateViews(TemplateView):
     template_name = "users/profile.html"
 
     def get_context_data(self, **kwargs):
+
         # initialize a form for journal entries with initial data
         context = super().get_context_data(**kwargs)
-        context["form"] = JournalModelForm_2(initial={
-            "content": "Start journaling now! Share your thoughts,"
-                       " experiences,"
-                       " and memories right here.",
-            "title": "Journal Title"})
+        context["form"] = JournalModelForm_2()
         # Add the mood data
         context["mood"] = mood(self.request)
         # context["mood_form"] = MoodModelForm(initial={"mood_score": "0"})
