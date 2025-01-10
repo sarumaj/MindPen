@@ -1,5 +1,10 @@
 import os.path
 from pathlib import Path
+from dotenv import load_dotenv
+import os
+
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -9,6 +14,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "a5958fb3723b2e77787ed08bec37d9c0"
+
+# Deepgram secret key
+DEEPGRAM_API_KEY = os.getenv("DEEPGRAM_API_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -27,6 +35,7 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     # added
+    "channels",
     "Journaling",
     "MyMood",
     "users",
@@ -64,7 +73,9 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'Journaling_web_app.wsgi.application'
+WSGI_APPLICATION = "Journaling_web_app.wsgi.application"
+ASGI_APPLICATION = "Journaling_web_app.asgi.application"
+
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -127,7 +138,8 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = "profile"
 LOGIN_URL = "login"
+
+
+
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
-
-

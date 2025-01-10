@@ -6,3 +6,4 @@ urlpatterns = [
         path('', views.register, name="register"),
         path('profile/', ProfileTemplateViews.as_view(), name="profile"),
 ]
+

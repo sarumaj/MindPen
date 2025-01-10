@@ -1,38 +1,38 @@
-#journaling {
-    margin-top: 10px;
-    height: 270px;
-    /*width: 730px;*/
-    border: 5px lightgray;
-    margin-left: 5px;
-    margin-bottom: 5px;
+/*#journaling {*/
+/*    margin-top: 10px;*/
+/*    height: 270px;*/
+/*    !*width: 730px;*!*/
+/*    border: 5px lightgray;*/
+/*    margin-left: 5px;*/
+/*    margin-bottom: 5px;*/
 
 
-}
+/*}*/
 
 
-#mymood {
-    height: 220px;
-    width: 271px;
-    border: 5px lightgray;
-    margin-top: 5px;
-    margin-right: 10px
+/*#mymood {*/
+/*    height: 220px;*/
+/*    width: 271px;*/
+/*    border: 5px lightgray;*/
+/*    margin-top: 5px;*/
+/*    margin-right: 10px*/
 
-}
-
-
-#form {
-    border: none;
-    background: #EEEEEE;
-
-}
-
-.section-card {
-    background: #EEEEEE;
-    border-radius: 25px;
+/*}*/
 
 
-}
+/*#form {*/
+/*    border: none;*/
+/*    background: #EEEEEE;*/
 
-.asteriskField {
-    display: none;
-}
+/*}*/
+
+/*.section-card {*/
+/*    background: #EEEEEE;*/
+/*    border-radius: 25px;*/
+
+
+/*}*/
+
+/*.asteriskField {*/
+/*    display: none;*/
+/*}*/
