@@ -11,18 +11,20 @@
 </head>
 
 <!--Navbar    -->
-<!--<nav class="container-fluid navbar bg-body-tertiary">-->
-<!--    <div class="container">-->
-<!--        <span class="navbar-text text-tertiary"><h3>MindPen</h3></span>-->
-<!--        {% if user.is_authenticated %}-->
-<!--        <span>-->
-<!--            <a class="btn btn-secondary btn-sm" href="{% url 'logout' %}">Sign out</a>-->
+<nav class="container-fluid navbar bg-body-tertiary">
+    <div class="container">
+        <span class="navbar-text text-tertiary"><h3>MindPen</h3></span>
+        {% if user.is_authenticated %}
+        <span>
+<!--            <a class="btn btn-secondary btn-lg" href="{% url 'logout' %}"-->
+<!--               href="{% url 'logout' %}">{{ user.username.title }} - Sign out</a>-->
+            <a class="btn btn-secondary btn-lg" href="{% url 'logout' %}"
+               href="{% url 'logout' %}">Sign out</a>
 
-<!--        </span>-->
-<!--        {% endif %}-->
-<!--    </div>-->
-<!--</nav>-->
-
+        </span>
+        {% endif %}
+    </div>
+</nav>
 
 <body>
 <div class="container">
