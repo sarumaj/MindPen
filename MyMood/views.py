@@ -82,7 +82,7 @@ def mood(request):
                                      )])
     pie = fig.to_html()
 
-    # return render(request, "MyMood/mood.html", {"pie": pie})
-    return pie
+    return render(request, "MyMood/mood.html", {"pie": pie})
+    # return pie
 
 

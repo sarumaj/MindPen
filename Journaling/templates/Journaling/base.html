@@ -12,15 +12,12 @@
 
 <body>
 <!-- Navbar -->
-<nav class="navbar bg-body-tertiary">
-    <div class="container-fluid">
-        <span class="navbar-text text-tertiary"><h3>MindPen</h3></span>
-        <span>
-<!--            <a class="btn btn-secondary btn-lg" href="{% url 'logout' %}">{{ user.username.title }} - Log out</a>-->
-            <a class="btn btn-secondary btn-lg" href="{% url 'logout' %}">Sign out</a>
-        </span>
-    </div>
-</nav>
+<h1 class="text-lg lg:text-xl xl:text-2xl w-full
+ overflow-hidden text-ellipsis
+ whitespace-nowrap mt-5 mb-5" style="margin-left: 10px">
+    <span class="pl-3 lg:pl-0 sm:pl-0">Hi,</span>&nbsp;
+    <span class="font-semibold">{{ user.username.title }}</span>
+</h1>
 
 <!-- Sidebar -->
 <div class="row">

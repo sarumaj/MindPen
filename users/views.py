@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from MyMood.forms import MoodModelForm
 from MyMood.models import DataMood
-from Journaling.forms import JournalModelForm_2
+from Journaling.forms import JournalModelForm_2, JournalModelForm
 from .form import LoginForm
 from django.views.generic.base import TemplateView
 from django.utils import timezone
@@ -37,9 +37,10 @@ class ProfileTemplateViews(TemplateView):
 
         # initialize a form for journal entries with initial data
         context = super().get_context_data(**kwargs)
-        context["form"] = JournalModelForm_2()
+        context["form_2"] = JournalModelForm_2()
+        context["form"] = JournalModelForm()
         # Add the mood data
-        context["mood"] = mood(self.request)
+        # context["mood"] = mood(self.request)
         # context["mood_form"] = MoodModelForm(initial={"mood_score": "0"})
         # context["list_endeavor"] = Endeavor.objects.filter(author=self.request.user)[:3]
         # context["list_task"] = Task.objects.filter(endeavor__author=self.request.user)[:3]

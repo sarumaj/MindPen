@@ -1,6 +1,46 @@
-{% extends "Journaling/base.html" %}
+{% extends "users/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
 {% block content %}
-{{chart|safe}}
-{{pie|safe}}
-{{barchart|safe}}
+<h1 class="text-lg lg:text-xl xl:text-2xl w-full
+ overflow-hidden text-ellipsis
+ whitespace-nowrap mt-5 mb-5" style="margin-left: 10px">
+    <span class="pl-3 lg:pl-0 sm:pl-0">Current,</span>&nbsp;
+    <span class="font-semibold">Mood</span>
+</h1>
+  <div class="row">
+    <div class="col-8">
+        <div class="card text-center mb-5 mt-1 shadow bg-light">
+            <div class="card-body">
+                {{pie|safe}}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-4">
+        <div class="card" style="height: 15rem;">
+            <img src="{% static 'users/mood_history.png' %}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h3 class="card-title">The Quote:</h3>
+                <p class="card-text">
+                    Some quick example text to build on the card title and make up the bulk of
+                    the card's content.
+                </p>
+                <ul class="list-group list-group-flush">
+                    <a class="btn btn-dark btn-sm mt-1 mb-2" href="{% url 'journal' %}">All Journals</a>
+                    <a class="btn btn-dark btn-sm mt-1 mb-2" href="{% url 'mood' %}">Mood History</a>
+                    <a class="btn btn-dark btn-sm mt-1 mb-2" href="{% url 'profile' %}">Dashboard</a>
+                    <a class="btn btn-dark btn-sm mt-1 mb-2" href="{% url 'logout' %}">Sign out</a>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h1 class="text-lg lg:text-xl xl:text-2xl w-full
+ overflow-hidden text-ellipsis
+ whitespace-nowrap mb-5" style="margin-left: 10px">
+    <span class="pl-3 lg:pl-0 sm:pl-0">Mood,</span>&nbsp;
+    <span class="font-semibold">History</span>
+</h1>
 {% endblock content %}
