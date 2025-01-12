@@ -36,3 +36,15 @@
 /*.asteriskField {*/
 /*    display: none;*/
 /*}*/
+
+
+.c-item {
+    height: 200px;
+    margin-bottom: 50px;
+
+}
+.c-img {
+    height: 100%;
+    object-fit: cover;
+
+}

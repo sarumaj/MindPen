@@ -1,12 +1,45 @@
+
 {% extends "users/base.html" %}
 {% load crispy_forms_tags %}
 {% load static %}
 {% block content %}
-<!--<link rel="stylesheet" type="text/css" href="{% static 'users/style.css' %}">-->
+<link rel="stylesheet" type="text/css" href="{% static 'users/style.css' %}">
+<h1 class="text-lg lg:text-xl xl:text-2xl w-full overflow-hidden text-ellipsis whitespace-nowrap mt-5 mb-5">
+    <span class="pl-3 lg:pl-0 sm:pl-0">Hi,</span>&nbsp;
+    <span class="font-semibold">{{ user.username.title }}</span>
+</h1>
+
+
+<div id="hero_carousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active c-item">
+      <img src="https://img.freepik.com/free-photo/galaxy-nature-aesthetic-background-starry-sky-mountain-remixed-media_53876-126761.jpg?ga=GA1.1.1135514170.1736493801&semt=ais_hybrid"
+           class="d-block w-100 c-img" alt="hello">
+    </div>
+    <div class="carousel-item active c-item">
+      <img src="https://img.freepik.com/free-photo/fuji-mountain-kawaguchiko-lake-morning-autumn-seasons-fuji-mountain-yamanachi-japan_335224-102.jpg?ga=GA1.1.1135514170.1736493801&semt=ais_hybrid"
+           class="d-block w-100 c-img" alt="...">
+    </div>
+    <div class="carousel-item active c-item">
+      <img src="https://img.freepik.com/free-photo/vestrahorn-mountains-stokksnes-iceland_335224-667.jpg?ga=GA1.1.1135514170.1736493801&semt=ais_hybrid"
+           class="d-block w-100 c-img" alt="...">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+
 <form id="form" class="form-control form-control-sm" method="post">
     {% csrf_token %}
     <div class="card text-center mt-4 mb-4  shadow bg-light">
-        <div class="card-header text-primary">
+        <div class="card-header text-dark">
             <h3>Voice Journaling</h3>
         </div>
         <div class="card-body">
@@ -22,6 +55,25 @@
         </div>
     </div>
 </form>
+
+<div class="col mt-5">
+        <div class="col text-center">
+            <form method="post">
+                {% csrf_token %}
+                <div class="card text-center mt-3 shadow bg-light">
+                    <div class="card-header text-dark">
+                        <h3>Text Journaling </h3>
+                    </div>
+                    <div class="card-body">
+                        {{ form|crispy }}
+                    </div>
+                    <div class="card-footer text-body-secondary">
+                        <input class="btn btn-secondary btn-lg" type="submit">
+                    </div>
+                </div>
+            </form>
+            <div class="card text-center mt-3 shadow bg-light">
+                <div class="card-header text-primary">
 <div class="flex-container mt-5" >{{ mood|safe }}</div>
 <div class="flex-container mt-5"><a href="{% url 'journal' %}" class="btn btn-dark btn-sm mt-1 mb-2"><h4>All Journals</h4></a></div>
 
