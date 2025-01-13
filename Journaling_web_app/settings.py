@@ -3,7 +3,6 @@ from pathlib import Path
 from dotenv import load_dotenv
 import os
 
-
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -76,7 +75,6 @@ TEMPLATES = [
 WSGI_APPLICATION = "Journaling_web_app.wsgi.application"
 ASGI_APPLICATION = "Journaling_web_app.asgi.application"
 
-
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 # DATABASES = {
@@ -139,7 +137,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = "profile"
 LOGIN_URL = "login"
 
-
+AUTH_USER_MODEL = "users.CustomUser"
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
