@@ -70,7 +70,7 @@
                     <h4>Diary Search </h4>
                 </div>
                 <div class="card-body">
-                    <form method="get" action="{% url 'journal' %}">
+                    <form method="GET" action="{% url 'journal' %}">
                         {{ SearchForm|crispy }}
                         <div class="card-footer text-body-secondary">
                             <input class="btn btn-success" type="submit" value="Search">
