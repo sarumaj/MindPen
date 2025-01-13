@@ -29,8 +29,11 @@
                 <ul class="list-group list-group-flush">
                     <a class="btn btn-dark btn-sm mt-1 mb-2" href="{% url 'profile' %}">Dashboard</a>
                     <a class="btn btn-dark btn-sm mt-1 mb-2" href="{% url 'journal' %}">All Journals</a>
-                    <a class="btn btn-dark btn-sm mt-1 mb-2" href="{% url 'mood' %}">Mood History</a>
-                    <a class="btn btn-dark btn-sm mt-1 mb-2" href="{% url 'logout' %}">Sign out</a>
+                    <a class="btn btn-dark btn-sm mt-1 mb-2" href="{% url 'mood' %}">Mood Tracker</a>
+                    <form method="post" action="{% url 'logout' %}">
+                      {% csrf_token %}
+                      <button class="btn btn-dark btn-sm mt-1 mb-2" style="width: 316px" type="submit">Sign out</button>
+                    </form>
                 </ul>
             </div>
         </div>
@@ -43,4 +46,16 @@
     <span class="pl-3 lg:pl-0 sm:pl-0">Mood,</span>&nbsp;
     <span class="font-semibold">History</span>
 </h1>
+
+<div class="row">
+    <div class="col-8">
+        <div class="card text-center mb-5 mt-1 shadow bg-light">
+            <div class="card-body">
+                {{barchart|safe}}
+            </div>
+        </div>
+    </div>
+<div/>
+
+
 {% endblock content %}

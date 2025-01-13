@@ -1,6 +1,6 @@
 from django.utils import timezone
 from django.shortcuts import render
-from .models import DataMood
+from .models import DataMood, PreviousMonth
 import pandas as pd
 import plotly.express as px
 from datetime import datetime
@@ -82,7 +82,64 @@ def mood(request):
                                      )])
     pie = fig.to_html()
 
-    return render(request, "MyMood/mood.html", {"pie": pie})
-    # return pie
+    # set the variables according to the month
+    if month == 1:
+        year = year - 1
+        previous_month = 12
+    else:
+        previous_month = month - 1
+
+    # fetch the data of the previous month
+    previous_qs = DataMood.objects.filter(user=request.user, mood_date__year=year, mood_date__month=previous_month)
+    # previous exist calculate their average,
+    # set new previous instance,
+    # and delete that previous queryset
+    if previous_qs:
+        for y in previous_qs:
+            total += int(y.mood_score)
+            count += 1
+        average = round(total / count, 2)
+        previous = PreviousMonth()
+        previous.user = request.user
+        previous.average = average
+        previous.date = f"{year}-{previous_month:02d}"
+        previous.save()
+        previous_qs.delete()
+
+    # barchart data
+    previous_data = PreviousMonth.objects.filter(user=request.user)
+    dic_previous_data = {
+        "Date": [x.date for x in previous_data],
+        "Average": [y.average for y in previous_data]
+    }
+
+    df_previous = pd.DataFrame(dic_previous_data)
+    barchart = px.bar(
+        df_previous,
+        y="Average",
+        x="Date",
+    )
+    barchart.update_xaxes(
+        type='category',
+        tickmode='auto',
+        tickformat='%d %B (%a)<br>%Y',
+        showline=True,
+        showgrid=True
+    )
+    barchart.update_layout(
+        title={
+            # "text": "Previous Month Averages",
+            # "font_size": 22,
+            # "xanchor": "center",
+            "yanchor": "top",
+            "x": 0.5,
+            "y": 0.9,
+            "font": {"color": "blue"},
+        }
+    )
+    barchart.update_layout(bargap=0.5, bargroupgap=0.5)
+    barchart = barchart.to_html()
+
+    return render(request, "MyMood/mood.html", {"pie": pie, "barchart": barchart})
 
 
