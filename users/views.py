@@ -72,3 +72,5 @@ class ProfileTemplateViews(TemplateView):
 
         return render(request, self.template_name, {"form": journal_form})
 
+
+

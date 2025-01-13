@@ -12,8 +12,6 @@
 
 <div class="row">
     <div class="col mt-8">
-<!--        <h3 class="text-center">{{ user.username.title }}'s Diary</h3>-->
-
         {% if posts %}
             {% for post in posts %}
                 <div class="card mt-2 mb-5 text-center shadow bg-light">
@@ -45,15 +43,14 @@
                 </span>
 
                 {% if page_obj.has_next %}
-                    <a href="?page={{ page_obj.next_page_number }}">next</a>
-                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                    <h3><a href="?page={{ page_obj.next_page_number }}">next</a></h3>
+                    <h3><a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a></h3>
                 {% endif %}
             </span>
         </div>
         {% else %}
             <div style="background: white" class="container mt-5">
-                <p>"No journal entries found."</p>
-                <p>Begin writing your thoughts and experiences to create your personal diary.</p>
+                <p>"Nothing to display."</p>
             </div>
         {% endif %}
         <div class="text-center mt-3"></div>
@@ -70,7 +67,7 @@
             </form>
             <div class="card text-center mt-3 shadow bg-light">
                 <div class="card-header text-secondary">
-                    <h4>Search a Journal</h4>
+                    <h4>Diary Search </h4>
                 </div>
                 <div class="card-body">
                     <form method="get" action="{% url 'journal' %}">
@@ -84,21 +81,13 @@
         </div>
     </div>
             <ul class="list-group list-group-flush mt-5">
-<!--                <li class="list-group-item"></li>-->
-<!--                <li class="list-group-item">A second item</li>-->
-<!--                <li class="list-group-item">A third item</li>-->
-<!--                <li class="list-group-item">A third item</li>-->
+                <a class="btn btn-dark btn-sm mt-1 mb-2" href="{% url 'profile' %}">Dashboard</a>
                 <a class="btn btn-dark btn-sm mt-1 mb-2" href="{% url 'journal' %}" >All Journals</a>
                 <a class="btn btn-dark btn-sm mt-1 mb-2" href="{% url 'mood' %}">Mood History</a>
-                <a class="btn btn-dark btn-sm mt-1 mb-2" href="{% url 'profile' %}">Dashboard</a>
                 <a class="btn btn-dark btn-sm mt-1 mb-2" href="{% url 'logout' %}">Sign out</a>
             </ul>
           </div>
       </div>
     </div>
-
-
-
-
 </div>
 {% endblock content %}
