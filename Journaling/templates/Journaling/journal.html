@@ -96,9 +96,9 @@
                 <a class="btn btn-dark btn-sm mt-1 mb-2" href="{% url 'profile' %}">Dashboard</a>
                 <a class="btn btn-dark btn-sm mt-1 mb-2" href="{% url 'journal' %}" >All Journals</a>
                 <a class="btn btn-dark btn-sm mt-1 mb-2" href="{% url 'mood' %}">Mood Tracker</a>
-                <form method="post" action="{% url 'logout' %}">
+                <form method="post" action="{% url 'logout' %}" class="d-grid gap-2">
                   {% csrf_token %}
-                  <button class="btn btn-dark btn-sm mt-1 mb-2" style="width: 316px" type="submit">Sign out</button>
+                  <button class="btn btn-dark btn-sm mt-1 mb-2" type="submit">Sign out</button>
                 </form>
             </ul>
           </div>
