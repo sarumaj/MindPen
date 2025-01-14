@@ -2,14 +2,14 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% block content %}
-
+<!--Greetings-->
 <h1 class="text-lg lg:text-xl xl:text-2xl w-full
  overflow-hidden text-ellipsis
  whitespace-nowrap mt-5 mb-5" style="margin-left: 10px">
     <span class="pl-3 lg:pl-0 sm:pl-0">Journal</span>&nbsp;
     <span class="font-semibold">History</span>
 </h1>
-
+<!--Journals-->
 <div class="row">
     <div class="col mt-8">
         {% if posts %}
@@ -31,6 +31,7 @@
                     </div>
                 </div>
             {% endfor %}
+<!--        pagination-->
         <div class="pagination mt-4">
             <span class="step-links">
                 {% if page_obj.has_previous %}
@@ -49,9 +50,20 @@
             </span>
         </div>
         {% else %}
-            <div style="background: white" class="container mt-5">
-                <p>"Nothing to display."</p>
-            </div>
+<!--        no journal yet-->
+            <div class="card text-center shadow bg-light">
+                    <div class="card-header text-center text-secondary">
+                        <h4>Empty For Now</h4>
+                    </div>
+
+                    <div class="card-body">
+                        <h4>Start Journaling 👍</h4>
+                    </div>
+
+                    <div class="card-footer text-body-secondary">
+                        <a class="btn btn-success btn-sm mt-1 mb-2" href="{% url 'profile' %}">Start Here</a>
+                    </div>
+                </div>
         {% endif %}
         <div class="text-center mt-3"></div>
     </div>
