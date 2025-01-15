@@ -8,20 +8,31 @@ from django.views.generic.base import TemplateView
 from django.utils import timezone
 from MyMood.views import mood
 from datetime import datetime
+from SMS.views import send_verification_code
 
 
 
 def register(request):
     """
-        - Handles user registration and form submission
+            - Handles user registration including SMS verification
     """
 
     if request.method == "POST":
         form = LoginForm(request.POST)
         if form.is_valid():
-            form.save()
-            messages.success(request, f"{form.cleaned_data['username']}'s account is created successfully!")
-            return redirect("login")
+            user = form.save(commit=False)
+            phone_number = form.cleaned_data["phone_number"]
+
+            # send the verification code
+            send_verification_code(phone_number)
+
+            # session to save user details temporarily
+            request.session["phone_number"] = phone_number
+            request.session["user_info"] = form.cleaned_data
+
+            # render a verification page
+            return render(request, "users/verification.html")
+
     else:
         form = LoginForm()
     return render(request, "users/register.html", {"form": form})

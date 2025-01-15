@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     # added
+    "SMS",
     "channels",
     "Journaling",
     "MyMood",

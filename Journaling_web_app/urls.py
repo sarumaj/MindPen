@@ -19,6 +19,7 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
     path('profile/', login_required(ProfileTemplateViews.as_view()), name='profile'),
     path('register/', include('users.urls')),
+    path('sms/', include('SMS.urls')),
 
     # Journaling Routes
     path('journal/<int:pk>/', login_required(JournalDetailView.as_view()), name='journal_detail'),
