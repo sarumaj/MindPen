@@ -9,6 +9,7 @@ from django.utils import timezone
 from MyMood.views import mood
 from datetime import datetime
 from SMS.views import send_verification_code
+from Quote.views import get_quote
 
 
 
@@ -50,6 +51,7 @@ class ProfileTemplateViews(TemplateView):
         context = super().get_context_data(**kwargs)
         context["form_2"] = JournalModelForm_2()
         context["form"] = JournalModelForm()
+        context["quote"] = get_quote()
         # Add the mood data
         # context["mood"] = mood(self.request)
         # context["mood_form"] = MoodModelForm(initial={"mood_score": "0"})

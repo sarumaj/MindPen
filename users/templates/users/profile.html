@@ -41,11 +41,11 @@
       <div class="card" style="height: 15rem;">
           <img src="https://img.freepik.com/free-photo/galaxy-nature-aesthetic-background-starry-sky-mountain-remixed-media_53876-126761.jpg?ga=GA1.1.1135514170.1736493801&semt=ais_hybrid" class="card-img-top" alt="...">
           <div class="card-body">
-            <h3 class="card-title text-center mt-3 mb-3">The Quote</h3>
-            <p class="card-text text-justify" style="text-align: justify">Some quick example text to build on the card title and make up the bulk of
-                Some quick example text to build on the card title and make up the bulk of the card's content.
-                Some quick example text to build on the card title and make up the bulk of the card's content.
-                the card's content.</p>
+            <h3 class="card-title text-center mt-3 mb-3">Quote of the Day✨</h3>
+            <p class="card-text text-justify" style="text-align: justify">
+                {{ quote.quote }}
+                <p class="text-muted text-center">{{ quote.author }}</p>
+            </p>
             <ul class="list-group list-group-flush">
                 <a class="btn btn-dark btn-sm mt-1 mb-2" href="{% url 'profile' %}">Dashboard</a>
                 <a class="btn btn-dark btn-sm mt-1 mb-2" href="{% url 'journal' %}" >All Journals</a>
