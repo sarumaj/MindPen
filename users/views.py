@@ -10,7 +10,7 @@ from MyMood.views import mood
 from datetime import datetime
 from SMS.views import send_verification_code
 from Quote.views import get_quote
-
+from SA_Deepgram.consumers import analyze_last_journal_sentiment
 
 
 def register(request):
@@ -52,6 +52,7 @@ class ProfileTemplateViews(TemplateView):
         context["form_2"] = JournalModelForm_2()
         context["form"] = JournalModelForm()
         context["quote"] = get_quote()
+        context["SA"] = analyze_last_journal_sentiment(self.request)
         # Add the mood data
         # context["mood"] = mood(self.request)
         # context["mood_form"] = MoodModelForm(initial={"mood_score": "0"})
@@ -84,6 +85,5 @@ class ProfileTemplateViews(TemplateView):
         #     return redirect("/profile/")
 
         return render(request, self.template_name, {"form": journal_form})
-
 
 

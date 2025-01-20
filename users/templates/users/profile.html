@@ -1,4 +1,3 @@
-
 {% extends "users/base.html" %}
 {% load crispy_forms_tags %}
 {% load static %}
@@ -13,6 +12,7 @@
     <span class="font-semibold">{{ user.username.title }}</span>
 </h1>
 
+
 <div class="container text-center">
   <div class="row">
     <div class="col-8">
@@ -23,7 +23,7 @@
                 <h3>Voice Journaling</h3>
             </div>
             <div class="card-body">
-                <p id="transcript" class="card-text text-dark"></p>
+<!--                <p id="transcript" class="card-text text-dark"></p>-->
                 {{ form_2|crispy }}
                 <input class="btn btn-secondary btn-lg" type="submit">
             </div>
@@ -42,10 +42,9 @@
           <img src="https://img.freepik.com/free-photo/galaxy-nature-aesthetic-background-starry-sky-mountain-remixed-media_53876-126761.jpg?ga=GA1.1.1135514170.1736493801&semt=ais_hybrid" class="card-img-top" alt="...">
           <div class="card-body">
             <h3 class="card-title text-center mt-3 mb-3">Quote of the Day✨</h3>
-            <p class="card-text text-justify" style="text-align: justify">
+            <p class="card-text text-justify" style="text-align: justify"> </p>
                 {{ quote.quote }}
                 <p class="text-muted text-center">{{ quote.author }}</p>
-            </p>
             <ul class="list-group list-group-flush">
                 <a class="btn btn-dark btn-sm mt-1 mb-2" href="{% url 'profile' %}">Dashboard</a>
                 <a class="btn btn-dark btn-sm mt-1 mb-2" href="{% url 'journal' %}" >All Journals</a>
@@ -69,7 +68,7 @@
                 {% csrf_token %}
           <div class="card text-center mb-5 mt-3 shadow bg-light">
               <div class="card-header text-secondary">
-                  <h3>Text Journaling </h3>
+                  <h3>Text Journaling {{SA.sentiment}}</h3>
               </div>
               <div class="card-body">
                   {{ form|crispy }}
@@ -84,48 +83,39 @@
 </div>
 
 
-<!--<div class="flex-container mt-5" >{{ mood|safe }}</div>-->
-
-
-
-
 <script>
     let mediaRecorder;
     let socket;
 
-// Function to start transcription
+
 function startTranscription() {
+    // get the Mic data from the browser
     navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
-        if (!MediaRecorder.isTypeSupported("audio/webm")) {
-            return alert("Browser not supported");
-        }
+        mediaRecorder = new MediaRecorder(stream, {mimeType: "audio/webm"});
 
-        mediaRecorder = new MediaRecorder(stream, {
-            mimeType: "audio/webm",
-        });
-
+        // Websocket connection between server and browser
         socket = new WebSocket("ws://localhost:8000/register/profile/ws/listen/");
 
+        // make the microphone data available and send it to Deepgram
         socket.onopen = () => {
             mediaRecorder.addEventListener("dataavailable", (event) => {
-                if (event.data.size > 0 && socket.readyState === 1) {
-                    socket.send(event.data);
-                }
+                socket.send(event.data);
             });
-            mediaRecorder.start(250); // Send audio chunks every 250ms
+            // chunks between 20ms and 250ms
+            mediaRecorder.start(200);
         };
 
+
+        // data coming from  Deepgram
         socket.onmessage = (message) => {
             const received = message.data;
-            if (received) {
-                // Update the content field with the transcribed text
-                const contentField = document.querySelector("#id_content");
-                if (contentField) {
-                    contentField.value += " " + received.trim();
-                } else {
-                    console.error("Content field not found.");
-                }
+
+            // the transcription goes under the content field in the form
+            const contentField = document.querySelector("#id_content");
+            if (contentField) {
+                contentField.value += " " + received.trim();
             }
+
         };
 
         socket.onerror = (error) => {
@@ -133,12 +123,12 @@ function startTranscription() {
         };
     });
 
-    // Enable Stop button and disable Start button
+    // enable stop button and disable start button
     document.getElementById("startRecording").disabled = true;
     document.getElementById("stopRecording").disabled = false;
 }
 
-// Function to stop transcription
+// stop transcription
 function stopTranscription() {
     if (mediaRecorder && mediaRecorder.state !== "inactive") {
         mediaRecorder.stop();
@@ -148,12 +138,12 @@ function stopTranscription() {
         socket.close();
     }
 
-    // Enable Start button and disable Stop button
+    // enable start button and disable stop button
     document.getElementById("startRecording").disabled = false;
     document.getElementById("stopRecording").disabled = true;
 }
 
-// Add event listeners to buttons
+// event listeners to buttons
 document.getElementById("startRecording").addEventListener("click", startTranscription);
 document.getElementById("stopRecording").addEventListener("click", stopTranscription);
 
