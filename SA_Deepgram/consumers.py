@@ -3,52 +3,54 @@ from Journaling.models import Journal
 import asyncio
 from deepgram import DeepgramClient
 from dotenv import load_dotenv
-from django.http import JsonResponse
 import os
 
 load_dotenv()
 
 
 def get_last_journal_for_user(request):
+    """
+    fetches the most recent, unprocessed journal entry for the current user
+    """
     user = get_user(request)
     if user.is_authenticated:
-        # Return the most recent journal entry
-        return Journal.objects.filter(author=user).order_by('-journal_date').first()
+        journal = Journal.objects.filter(author=user, processed=False).order_by('-journal_date').first()
+        if not journal:
+            return None
+        return journal
     return None
 
 
 async def analyze_sentiment_with_deepgram(journal_content):
     """
-    Sends the journal content to Deepgram for sentiment analysis.
+    sends the text to Deepgram for sentiment analysis
     """
-    # Initialize the Deepgram client
+    # initialize the Deepgram client
     deepgram = DeepgramClient(os.getenv("DEEPGRAM_API_KEY"))
 
-    print(journal_content)
-    # Prepare payload and options
+    # prepare payload and options
     payload = {"buffer": journal_content}
     options = {"sentiment": True, "language": "en"}
 
-    # Perform analysis
+    # performs sentiment analysis
     response = deepgram.read.analyze.v("1").analyze_text(payload, options)
 
     return response.to_dict()
 
 
 def analyze_last_journal_sentiment(request):
-    """
-    Fetches the last journal entry for the current user and analyzes its sentiment.
-    """
-    # Fetch the last journal for the user
+
+    # fetch the last unprocessed journal for the user
     journal = get_last_journal_for_user(request)
 
     if not journal:
-        return JsonResponse({"error": "No journal found for the current user."})
+        return None
 
-    # Get the journal content
-    journal_content = journal.content
+    # perform sentiment analysis
+    result = asyncio.run(analyze_sentiment_with_deepgram(journal.content))
 
-    # Perform sentiment analysis
-    result = asyncio.run(analyze_sentiment_with_deepgram(journal_content))
+    # add processed flag and save the journal
+    journal.processed = True
+    journal.save()
 
     return result["results"]["sentiments"]["average"]
