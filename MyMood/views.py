@@ -102,4 +102,4 @@ def mood(request):
     barchart.update_layout(bargap=0.5, bargroupgap=0.5)
     barchart = barchart.to_html()
 
-    return render(request, "MyMood/mood.html", {"pie": pie, "barchart": barchart})
+    return render(request, "MyMood/mood.html", {"pie": pie, "barchart": barchart, "sentiment_label":sentiment_label})
