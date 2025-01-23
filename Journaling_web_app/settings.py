@@ -142,3 +142,4 @@ AUTH_USER_MODEL = "users.CustomUser"
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+SESSION_ENGINE = "django.contrib.sessions.backends.db"

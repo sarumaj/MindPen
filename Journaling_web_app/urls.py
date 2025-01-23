@@ -4,7 +4,7 @@ from django.urls import path, include
 
 
 from Journaling.views import JournalListView, JournalDetailView, JournalUpdateView, JournalDeleteView
-from MyMood.views import mood,  mood_message
+from MyMood.views import process_sentiment,  mood_message
 from users.views import ProfileTemplateViews
 from django.contrib.auth.decorators import login_required
 
@@ -29,6 +29,6 @@ urlpatterns = [
 
 
     # MyMood
-    path('mood/', login_required(mood), name='mood'),
+    path('mood/', login_required(process_sentiment), name='mood'),
     path('mood_msg/', mood_message, name='mood_msg'),
 ]

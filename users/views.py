@@ -6,7 +6,6 @@ from Journaling.forms import JournalModelForm_2, JournalModelForm
 from .form import LoginForm
 from django.views.generic.base import TemplateView
 from django.utils import timezone
-from MyMood.views import mood
 from datetime import datetime
 from SMS.views import send_verification_code
 from Quote.views import get_quote
