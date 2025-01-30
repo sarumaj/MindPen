@@ -6,9 +6,9 @@ from Journaling.forms import JournalModelForm_2, JournalModelForm
 from .form import LoginForm
 from django.views.generic.base import TemplateView
 from django.utils import timezone
-from datetime import datetime
 from SMS.views import send_verification_code
 from Quote.views import get_quote
+from Habit_Tracker.views import journaling_frequency
 
 
 
@@ -51,6 +51,15 @@ class ProfileTemplateViews(TemplateView):
         context["form_2"] = JournalModelForm_2()
         context["form"] = JournalModelForm()
         context["quote"] = get_quote()
+        context["journaling_percentage"] = journaling_frequency(self.request.user)
+        # user's last visit
+        last_login = self.request.user.last_login
+        if last_login:
+            time_diff = timezone.now() - last_login
+            # number of days
+            days_diff = time_diff.days
+        context["days_diff"]= days_diff
+
         # context["SA"] = analyze_last_journal_sentiment(self.request)
         # Add the mood data
         # context["mood"] = mood(self.request)

@@ -71,27 +71,103 @@
     <div class="col-4">
       <div class="card" style="height: 15rem;">
           <img src="{% static 'users/journal_history.png' %}" class="card-img-top" alt="...">
-          <div class="card-body">
-            <div class="col mt-5">
-        <div class="col text-center">
-            <form method="post">
-                {% csrf_token %}
-            </form>
-            <div class="card text-center mt-3 shadow bg-light">
-                <div class="card-header text-secondary">
-                    <h4>Diary Search </h4>
-                </div>
-                <div class="card-body">
-                    <form method="GET" action="{% url 'journal' %}">
-                        {{ SearchForm|crispy }}
-                        <div class="card-footer text-body-secondary">
-                            <input class="btn btn-success" type="submit" value="Search">
+
+
+<!--          habit tracker-->
+          <div class="card text-center mt-4">
+              <div class="card-header text-secondary">
+                    <h4>Journaling Habit</h4>
+              </div>
+              <div class="card-body">
+                <div>
+                        {% if journaling_percentage < 20 %}
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar"
+                             aria-valuenow="{{ journaling_percentage }}" aria-valuemin="0" aria-valuemax="100"
+                             style="width: {{ journaling_percentage }}%;">
+                            {{ journaling_percentage }}%
                         </div>
+                    </div>
+
+                    {% elif journaling_percentage >= 20 and journaling_percentage < 40 %}
+
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar"
+                             aria-valuenow="{{ journaling_percentage }}" aria-valuemin="0" aria-valuemax="100"
+                             style="width: {{ journaling_percentage }}%;">
+                            {{ journaling_percentage }}%
+                        </div>
+                    </div>
+
+                    {% elif journaling_percentage >= 40 and journaling_percentage < 60 %}
+
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar"
+                             aria-valuenow="{{ journaling_percentage }}" aria-valuemin="0" aria-valuemax="100"
+                             style="width: {{ journaling_percentage }}%;">
+                            {{ journaling_percentage }}%
+                        </div>
+                    </div>
+
+                    {% elif journaling_percentage >= 60 and journaling_percentage < 80 %}
+
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                             aria-valuenow="{{ journaling_percentage }}" aria-valuemin="0" aria-valuemax="100"
+                             style="width: {{ journaling_percentage }}%;">
+                            {{ journaling_percentage }}%
+                        </div>
+                    </div>
+
+                    {% elif journaling_percentage >= 80 and journaling_percentage <= 100 %}
+
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar"
+                             aria-valuenow="{{ journaling_percentage }}" aria-valuemin="0" aria-valuemax="100"
+                             style="width: {{ journaling_percentage }}%;">
+                            {{ journaling_percentage }}%
+                        </div>
+                    </div>
+
+                    {% endif %}
+                </div>
+              </div>
+              <div class="card-footer text-body-secondary">
+                  {% if days_diff == 0 %}
+                    Last seen today 🚀
+                  {% elif days_diff == 1 %}
+                    Last seen yesterday 🦾
+                  {% elif days_diff > 1 %}
+                    Last seen {{ days_diff }} days ago 🛸
+                  {% else %}
+                    This is your first visit! 🌱
+                  {% endif %}
+              </div>
+          </div>
+
+<!--          search journal-->
+          <div class="card-body">
+            <div class="col mt-1">
+                <div class="col text-center">
+                    <form method="post">
+                        {% csrf_token %}
                     </form>
+                    <div class="card text-center mt-3 shadow bg-light">
+                        <div class="card-header text-secondary">
+                            <h4>Diary Search </h4>
+                        </div>
+                        <div class="card-body">
+                            <form method="GET" action="{% url 'journal' %}">
+                                {{ SearchForm|crispy }}
+                                <div class="card-footer text-body-secondary">
+                                    <input class="btn btn-success" type="submit" value="Search">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
+            <!--    the links          -->
             <ul class="list-group list-group-flush mt-5">
                 <a class="btn btn-dark btn-sm mt-1 mb-2" href="{% url 'profile' %}">Dashboard</a>
                 <a class="btn btn-dark btn-sm mt-1 mb-2" href="{% url 'journal' %}" >All Journals</a>

@@ -9,6 +9,9 @@ from Journaling.models import Journal
 from transformers import pipeline
 import joblib
 from SA_Deepgram.consumers import analyze_last_journal_sentiment, get_last_journal_for_user
+from users.views import ProfileTemplateViews
+from Habit_Tracker.views import journaling_frequency
+
 
 
 def mood_message(request):
@@ -52,6 +55,7 @@ def process_sentiment(request):
     now = datetime.now()
     year = now.year
     month = now.month
+    month_str = now.strftime("%B")
     total = count = 0
 
     # Query previous mood counts for the current user
@@ -135,4 +139,19 @@ def process_sentiment(request):
     barchart.update_layout(bargap=0.5, bargroupgap=0.5)
     barchart = barchart.to_html()
 
-    return render(request, "MyMood/mood.html", {"pie": pie, "barchart": barchart})
+    # journaling_frequency
+    user = request.user
+    journaling_percentage = journaling_frequency(user)
+    # last visit
+    last_login = user.last_login
+    if last_login:
+        time_diff = timezone.now() - last_login
+        # number of days
+        days_diff = time_diff.days
+
+    return render(request, "MyMood/mood.html", {
+        "pie": pie, "barchart": barchart,
+        "journaling_percentage": journaling_percentage,
+        "month_str": month_str,
+        "days_diff": days_diff
+    })

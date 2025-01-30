@@ -5,6 +5,9 @@ from .models import Journal, DataMood
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .forms import JournalModelForm
 from .filters import JournalFilter
+from Habit_Tracker.views import journaling_frequency
+from django.utils import timezone
+
 
 
 class JournalListView(ListView):
@@ -28,6 +31,15 @@ class JournalListView(ListView):
         # add the form and search form (filterset form) to the context data
         context["form"] = form
         context["SearchForm"] = self.filterset.form
+        # journaling frequency
+        context["journaling_percentage"] = journaling_frequency(self.request.user)
+        # user's last visit
+        last_login = self.request.user.last_login
+        if last_login:
+            time_diff = timezone.now() - last_login
+            # number of days
+            days_diff = time_diff.days
+        context["days_diff"] = days_diff
         return context
 
     def post(self, request, *args, **kwargs):
