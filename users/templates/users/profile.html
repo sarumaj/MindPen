@@ -4,7 +4,7 @@
 {% block content %}
 <link rel="stylesheet" type="text/css" href="{% static 'users/style.css' %}">
 
-
+<!--greets-->
 <h1 class="text-lg lg:text-xl xl:text-2xl w-full
  overflow-hidden text-ellipsis
  whitespace-nowrap mt-5 mb-5" style="margin-left: 10px">
@@ -12,7 +12,7 @@
     <span class="font-semibold">{{ user.username.title }}</span>
 </h1>
 
-
+<!--Voice Journaling-->
 <div class="container text-center">
   <div class="row">
     <div class="col-8">
@@ -23,7 +23,6 @@
                 <h3>Voice Journaling</h3>
             </div>
             <div class="card-body">
-<!--                <p id="transcript" class="card-text text-dark"></p>-->
                 {{ form_2|crispy }}
                 <input class="btn btn-secondary btn-lg" type="submit">
             </div>
@@ -37,10 +36,13 @@
       </form>
     </div>
 
+<!--sidebar-->
     <div class="col-4">
       <div class="card" style="height: 14rem;">
           <img src="https://img.freepik.com/free-photo/galaxy-nature-aesthetic-background-starry-sky-mountain-remixed-media_53876-126761.jpg?ga=GA1.1.1135514170.1736493801&semt=ais_hybrid"
                class="card-img-top" alt="...">
+
+<!--          track user's habit-->
           <div class="card text-center mt-4">
               <div class="card-header text-secondary">
                     <h4>Journaling Habit</h4>
@@ -100,6 +102,7 @@
 
                 </div>
               </div>
+<!--              tack signin to the app-->
               <div class="card-footer text-body-secondary">
                 {% if days_diff == 0 %}
                     Last seen today 🚀
@@ -112,6 +115,8 @@
                 {% endif %}
               </div>
           </div>
+
+<!--          Quote of the Day-->
           <div class="card-body">
             <h3 class="card-title text-center mt-3 mb-3">Quote of the Day✨</h3>
             <p class="card-text text-justify" style="text-align: justify"> </p>
@@ -132,7 +137,7 @@
   </div>
 </div>
 
-
+<!--Text Journaling-->
 <div class="container text-center">
   <div class="row">
     <div class="col-8">

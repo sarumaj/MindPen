@@ -5,13 +5,10 @@ import pandas as pd
 import plotly.express as px
 from datetime import datetime
 import plotly.graph_objects as go
-from Journaling.models import Journal
-from transformers import pipeline
 import joblib
 from SA_Deepgram.consumers import analyze_last_journal_sentiment, get_last_journal_for_user
-from users.views import ProfileTemplateViews
 from Habit_Tracker.views import journaling_frequency
-
+from Quote.views import get_quote
 
 
 def mood_message(request):
@@ -24,7 +21,6 @@ loaded_pipe = joblib.load("Machine_Learning\svm_pipeline.joblib")
 
 
 def either_Deepgram_or_SVM(request):
-
     dic_sentiment = None
 
     try:
@@ -49,8 +45,8 @@ def either_Deepgram_or_SVM(request):
 
     return dic_sentiment
 
-def process_sentiment(request):
 
+def process_sentiment(request):
     # current year and month
     now = datetime.now()
     year = now.year
@@ -132,12 +128,20 @@ def process_sentiment(request):
     previous_data = PreviousMonth.objects.filter(user=request.user)
     dic_previous_data = {
         "Date": [x.date for x in previous_data],
-        "Average": [y.average for y in previous_data],
+        "Average Mood Score": [y.average for y in previous_data],
     }
     df_previous = pd.DataFrame(dic_previous_data)
-    barchart = px.bar(df_previous, y="Average", x="Date")
-    barchart.update_layout(bargap=0.5, bargroupgap=0.5)
+    barchart = px.bar(df_previous, y="Average Mood Score", x="Date", text_auto=True)
+    barchart.update_layout(
+        bargap=0.5, bargroupgap=0.5,
+        yaxis=dict(
+            range=[-1, 1]), xaxis=dict(
+            tickformat="%b %Y"
+        ), )
     barchart = barchart.to_html()
+
+    # today's quote
+    quote = get_quote()
 
     # journaling_frequency
     user = request.user
@@ -153,5 +157,6 @@ def process_sentiment(request):
         "pie": pie, "barchart": barchart,
         "journaling_percentage": journaling_percentage,
         "month_str": month_str,
-        "days_diff": days_diff
+        "days_diff": days_diff,
+        "quote": quote
     })

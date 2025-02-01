@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # added
     "Habit_Tracker",
-    "SMS",
+    # "SMS",
     "channels",
     "Journaling",
     "MyMood",
