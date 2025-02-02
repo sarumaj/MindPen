@@ -5,7 +5,7 @@ from django.urls import path, include
 
 from Journaling.views import JournalListView, JournalDetailView, JournalUpdateView, JournalDeleteView
 from MyMood.views import process_sentiment,  mood_message
-from users.views import ProfileTemplateViews
+from users.views import ProfileTemplateViews, CustomLogoutView
 from django.contrib.auth.decorators import login_required
 
 
@@ -16,7 +16,8 @@ urlpatterns = [
 
     # user's routes
     path('', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
+    # path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
+    path('logout/', CustomLogoutView.as_view(), name='logout'),
     path('profile/', login_required(ProfileTemplateViews.as_view()), name='profile'),
     path('register/', include('users.urls')),
     # path('sms/', include('SMS.urls')),
