@@ -7,7 +7,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1bbd9cbd-8b22-40fb-bd2e-dcf1df65c529" name="Changes" comment="" />
+    <list default="true" id="1bbd9cbd-8b22-40fb-bd2e-dcf1df65c529" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Journaling/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/Journaling/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyMood/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/MyMood/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/tests.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -45,7 +51,7 @@
     <setting file="file://$PROJECT_DIR$/Journaling/forms.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/Journaling/models.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/Journaling/templates/Journaling/journal.html" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Journaling/tests.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/Journaling/tests.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Journaling/views.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Journaling_web_app/settings.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Journaling_web_app/urls.py" root0="SKIP_INSPECTION" />
@@ -279,7 +285,7 @@
       <workItem from="1737617140351" duration="26557000" />
       <workItem from="1738201249791" duration="68949000" />
       <workItem from="1738462268988" duration="13606000" />
-      <workItem from="1738565859962" duration="16139000" />
+      <workItem from="1738565859962" duration="20978000" />
     </task>
     <servers />
   </component>

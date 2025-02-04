@@ -1,8 +1,7 @@
-from django.test import TestCase, SimpleTestCase
+from django.test import TestCase
 from users.form import LoginForm
 
-
-class UrlTests(SimpleTestCase):
+class UrlTests(TestCase):
     def test_login_url_exists_at_correct_location(self):
         response_login = self.client.get("/")
         self.assertEqual(response_login.status_code, 200)
@@ -16,11 +15,10 @@ class UrlTests(SimpleTestCase):
         self.assertEqual(response_register.status_code, 200)
 
     def test_logout_url_exists_at_correct_location(self):
-        response_logout = self.client.get("/logout/")
+        response_logout = self.client.post("/logout/")
         self.assertEqual(response_logout.status_code, 200)
 
-
-class TemplateTests(SimpleTestCase):
+class TemplateTests(TestCase):
     def test_Login_template_name_correct(self):
         response = self.client.get("/")
         self.assertTemplateUsed(response, "users/login.html")
@@ -30,9 +28,8 @@ class TemplateTests(SimpleTestCase):
         self.assertTemplateUsed(response, "users/register.html")
 
     def test_Logout_template_name_correct(self):
-        response = self.client.get("/logout/")
+        response = self.client.post("/logout/", follow=True)
         self.assertTemplateUsed(response, "users/logout.html")
-
 
 class FormTests(TestCase):
     def test_login_form_valid_data(self):
@@ -47,8 +44,7 @@ class FormTests(TestCase):
     def test_login_form_invalid_data(self):
         form_data = {
             "username": "",
-            "password1": "short",
-            "password2": "no"
+            "password": "short"
         }
         form = LoginForm(data=form_data)
         self.assertFalse(form.is_valid())
