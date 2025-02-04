@@ -42,7 +42,6 @@ def analyze_last_journal_sentiment(request):
 
     # fetch the last unprocessed journal for the user
     journal = get_last_journal_for_user(request)
-
     if not journal:
         return None
 

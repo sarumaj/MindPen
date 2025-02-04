@@ -67,6 +67,7 @@ def process_sentiment(request):
 
         # set the inferred mood accordingly
         sentiment_label = dic_sentiment["sentiment"]
+        print(f"Predicted sentiment: {sentiment_label}")
         if sentiment_label == "positive":
             inferred_mood = 1
             previous_positive_count += 1
@@ -146,17 +147,24 @@ def process_sentiment(request):
     # journaling_frequency
     user = request.user
     journaling_percentage = journaling_frequency(user)
-    # last visit
-    last_login = user.last_login
-    if last_login:
-        time_diff = timezone.now() - last_login
-        # number of days
-        days_diff = time_diff.days
+
+    # User's last visit
+    last_login = request.user.last_login
+    last_logout = request.user.last_logout
+
+    if last_logout is not None:
+        time_away = last_login - last_logout
+        days_diff = time_away.days
+        new_user = None
+    else:
+        days_diff = None
+        new_user = "This is your first visit 🌱"
 
     return render(request, "MyMood/mood.html", {
         "pie": pie, "barchart": barchart,
         "journaling_percentage": journaling_percentage,
         "month_str": month_str,
         "days_diff": days_diff,
+        "new_user": new_user,
         "quote": quote
     })

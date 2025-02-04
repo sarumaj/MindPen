@@ -52,7 +52,6 @@ class ProfileTemplateViews(TemplateView):
         context["quote"] = get_quote()
         context["journaling_percentage"] = journaling_frequency(self.request.user)
 
-
         # User's last visit
         last_login = self.request.user.last_login
         last_logout = self.request.user.last_logout

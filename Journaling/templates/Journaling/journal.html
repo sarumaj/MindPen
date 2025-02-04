@@ -133,14 +133,14 @@
                 </div>
               </div>
               <div class="card-footer text-body-secondary">
-                  {% if days_diff == 0 %}
+                  {% if new_user %}
+                    {{ new_user }}
+                  {% elif days_diff == 0 %}
                     Last seen today 🚀
                   {% elif days_diff == 1 %}
                     Last seen yesterday 🦾
                   {% elif days_diff > 1 %}
                     Last seen {{ days_diff }} days ago 🛸
-                  {% else %}
-                    This is your first visit! 🌱
                   {% endif %}
               </div>
           </div>

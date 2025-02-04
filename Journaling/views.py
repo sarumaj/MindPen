@@ -33,13 +33,19 @@ class JournalListView(ListView):
         context["SearchForm"] = self.filterset.form
         # journaling frequency
         context["journaling_percentage"] = journaling_frequency(self.request.user)
-        # user's last visit
+        # User's last visit
         last_login = self.request.user.last_login
-        if last_login:
-            time_diff = timezone.now() - last_login
-            # number of days
-            days_diff = time_diff.days
-        context["days_diff"] = days_diff
+        last_logout = self.request.user.last_logout
+
+        if last_logout is not None:
+            time_away = last_login - last_logout
+            days_diff = time_away.days
+            context["days_diff"] = days_diff
+            context["new_user"] = None  # No message for returning users
+        else:
+            context["days_diff"] = None  # No days difference available
+            context["new_user"] = "This is your first visit 🌱"
+
         return context
 
     def post(self, request, *args, **kwargs):

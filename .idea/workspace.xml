@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="ANALYZE_INJECTED_CODE" value="false" />
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1bbd9cbd-8b22-40fb-bd2e-dcf1df65c529" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Journaling_web_app.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Class.puml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Class_Diagram.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Journaling/templates/Journaling/journal.html" beforeDir="false" afterPath="$PROJECT_DIR$/Journaling/templates/Journaling/journal.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Journaling/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Journaling/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyMood/templates/MyMood/mood.html" beforeDir="false" afterPath="$PROJECT_DIR$/MyMood/templates/MyMood/mood.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyMood/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/MyMood/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SA_Deepgram/consumers.py" beforeDir="false" afterPath="$PROJECT_DIR$/SA_Deepgram/consumers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/views.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="UML Component" />
+        <option value="UML Class" />
+        <option value="HTML File" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Slim-Mejdoub/PenMind.git&quot;,
+    &quot;accountId&quot;: &quot;2201d69a-b85f-47ae-9d57-bbe2e7d9f8c7&quot;
+  }
+}</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/.env" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/.gitignore" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/Dockerfile" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/Habit_Tracker/views.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/Journaling/filters.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/Journaling/forms.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/Journaling/models.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/Journaling/templates/Journaling/journal.html" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Journaling/tests.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/Journaling/views.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Journaling_web_app/settings.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Journaling_web_app/urls.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/Machine_Learning/Deepgram_Text_Intelligence.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/Machine_Learning/Logistic_Regression.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/Machine_Learning/SVM.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/Machine_Learning/flair_buitin_model.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/MyMood/forms.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MyMood/models.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MyMood/templates/MyMood/mood.html" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/MyMood/tests.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/MyMood/views.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Quote/views.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SA_Deepgram/consumers.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SMS/views.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/docker-compose.yml" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/manage.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/requirements.txt" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/users/apps.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/users/consumers.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/users/form.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/users/models.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/users/static/users/style.css" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/users/templates/users/login.html" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/users/templates/users/profile.html" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/users/tests.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/users/urls.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/users/views.py" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+    <option name="showPreview" value="true" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2RbFipqcWqbcMcIxUaV9nn8cCMs" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;DefaultPlantUmlFileTemplate&quot;: &quot;UML Class&quot;,
+    &quot;Python.0010_alter_endeavor_program_title_alter_task_task_title.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ASR.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Deepgram_Text_Intelligence.executor&quot;: &quot;Run&quot;,
+    &quot;Python.SVM.executor&quot;: &quot;Run&quot;,
+    &quot;Python.consumers.executor&quot;: &quot;Run&quot;,
+    &quot;Python.flair_buitin_model.executor&quot;: &quot;Run&quot;,
+    &quot;Python.gradio_logic.executor&quot;: &quot;Run&quot;,
+    &quot;Python.live.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test_sms.executor&quot;: &quot;Run&quot;,
+    &quot;Python.toadd.executor&quot;: &quot;Run&quot;,
+    &quot;Python.views.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/slimm/Journaling_web_app/Machine_Learning&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;aDefault&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\PyCharm 2023.1.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\slimm\Journaling_web_app\Machine_Learning" />
+      <recent name="C:\Users\slimm\Journaling_web_app\users\static\users" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\slimm\Journaling_web_app\users" />
+      <recent name="C:\Users\slimm\Journaling_web_app\static_root\users" />
+      <recent name="C:\Users\slimm\Journaling_web_app\static_root" />
+      <recent name="C:\Users\slimm\Journaling_web_app\users\static\users" />
+      <recent name="C:\Users\slimm\Journaling_web_app\static\users" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="0010_alter_endeavor_program_title_alter_task_task_title" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="Journaling_web_app" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Endeavors/migrations" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Endeavors/migrations/0010_alter_endeavor_program_title_alter_task_task_title.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-PY-241.15989.155" />
+        <option value="bundled-python-sdk-babbdf50b680-7c6932dee5e4-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-241.15989.155" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1bbd9cbd-8b22-40fb-bd2e-dcf1df65c529" name="Changes" comment="" />
+      <created>1687511004364</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1687511004364</updated>
+      <workItem from="1689225547674" duration="25221000" />
+      <workItem from="1689595742686" duration="15374000" />
+      <workItem from="1689846377726" duration="83939000" />
+      <workItem from="1690242321231" duration="10645000" />
+      <workItem from="1690260665805" duration="10271000" />
+      <workItem from="1690277124693" duration="61967000" />
+      <workItem from="1690499806541" duration="988000" />
+      <workItem from="1690928920542" duration="37640000" />
+      <workItem from="1690972546062" duration="29882000" />
+      <workItem from="1691106408561" duration="34066000" />
+      <workItem from="1691203934700" duration="49764000" />
+      <workItem from="1691448163602" duration="20766000" />
+      <workItem from="1691551378483" duration="49100000" />
+      <workItem from="1691712220882" duration="16911000" />
+      <workItem from="1691799392009" duration="3352000" />
+      <workItem from="1691804053042" duration="59691000" />
+      <workItem from="1692231172093" duration="5141000" />
+      <workItem from="1692575093421" duration="13617000" />
+      <workItem from="1692601900180" duration="74715000" />
+      <workItem from="1693180496008" duration="43427000" />
+      <workItem from="1693301053790" duration="15599000" />
+      <workItem from="1693470866796" duration="8175000" />
+      <workItem from="1693534182685" duration="18426000" />
+      <workItem from="1693713990841" duration="33832000" />
+      <workItem from="1693871123908" duration="21291000" />
+      <workItem from="1693900331478" duration="3877000" />
+      <workItem from="1693965930374" duration="22599000" />
+      <workItem from="1694044729225" duration="31338000" />
+      <workItem from="1694136265722" duration="17373000" />
+      <workItem from="1694310413267" duration="52848000" />
+      <workItem from="1694561994285" duration="6644000" />
+      <workItem from="1694570345739" duration="1180000" />
+      <workItem from="1694571835984" duration="6746000" />
+      <workItem from="1694582397459" duration="2452000" />
+      <workItem from="1694586482614" duration="4583000" />
+      <workItem from="1694648800431" duration="3438000" />
+      <workItem from="1694652351986" duration="29362000" />
+      <workItem from="1694734227096" duration="16282000" />
+      <workItem from="1694754621503" duration="791000" />
+      <workItem from="1694755505099" duration="15524000" />
+      <workItem from="1694994491410" duration="22993000" />
+      <workItem from="1695199380013" duration="179000" />
+      <workItem from="1697256629348" duration="1285000" />
+      <workItem from="1697258241556" duration="4043000" />
+      <workItem from="1697364659999" duration="991000" />
+      <workItem from="1697423214966" duration="422000" />
+      <workItem from="1697498891681" duration="592000" />
+      <workItem from="1698627993970" duration="2672000" />
+      <workItem from="1698715868243" duration="3055000" />
+      <workItem from="1698830098469" duration="591000" />
+      <workItem from="1698884674885" duration="2198000" />
+      <workItem from="1698970584354" duration="1323000" />
+      <workItem from="1699315876529" duration="335000" />
+      <workItem from="1700200252722" duration="1660000" />
+      <workItem from="1700280763364" duration="73000" />
+      <workItem from="1700281692948" duration="179000" />
+      <workItem from="1700298740049" duration="101000" />
+      <workItem from="1701986237655" duration="895000" />
+      <workItem from="1702518137192" duration="891000" />
+      <workItem from="1703297909658" duration="49000" />
+      <workItem from="1706929620523" duration="302000" />
+      <workItem from="1707176069530" duration="983000" />
+      <workItem from="1707177281765" duration="4200000" />
+      <workItem from="1709694811218" duration="595000" />
+      <workItem from="1709785025914" duration="2396000" />
+      <workItem from="1714724672380" duration="301000" />
+      <workItem from="1714725145547" duration="290000" />
+      <workItem from="1714725601688" duration="847000" />
+      <workItem from="1715072748042" duration="212000" />
+      <workItem from="1715668621318" duration="1571000" />
+      <workItem from="1715745948904" duration="3327000" />
+      <workItem from="1717749155231" duration="2290000" />
+      <workItem from="1718880562996" duration="7000" />
+      <workItem from="1718881627455" duration="745000" />
+      <workItem from="1720166308323" duration="148000" />
+      <workItem from="1720764973504" duration="150000" />
+      <workItem from="1725264276347" duration="2028000" />
+      <workItem from="1725334013846" duration="22942000" />
+      <workItem from="1725492535562" duration="10673000" />
+      <workItem from="1725599858835" duration="1820000" />
+      <workItem from="1725858539463" duration="1889000" />
+      <workItem from="1726643346060" duration="40403000" />
+      <workItem from="1732084197044" duration="2932000" />
+      <workItem from="1735540676201" duration="11385000" />
+      <workItem from="1735614737309" duration="9465000" />
+      <workItem from="1735976922298" duration="26338000" />
+      <workItem from="1736213753524" duration="10149000" />
+      <workItem from="1736227922922" duration="11525000" />
+      <workItem from="1736297277422" duration="563000" />
+      <workItem from="1736298613992" duration="592000" />
+      <workItem from="1736299540644" duration="735000" />
+      <workItem from="1736303181477" duration="1784000" />
+      <workItem from="1736309463254" duration="44000" />
+      <workItem from="1736381432750" duration="33952000" />
+      <workItem from="1736469003732" duration="22794000" />
+      <workItem from="1736671621479" duration="60952000" />
+      <workItem from="1736916461884" duration="10518000" />
+      <workItem from="1736987133784" duration="26060000" />
+      <workItem from="1737098260381" duration="26357000" />
+      <workItem from="1737341255151" duration="65693000" />
+      <workItem from="1737617140351" duration="26557000" />
+      <workItem from="1738201249791" duration="68949000" />
+      <workItem from="1738462268988" duration="13606000" />
+      <workItem from="1738565859962" duration="15685000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName=".env" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+        <option value="Space.CommitStatus" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="1c0309b1-ca99-4577-8ff9-c69b3ce6b5d4" value="TOOL_WINDOW" />
+      </map>
+    </option>
+    <option name="TAB_STATES">
+      <map>
+        <entry key="1c0309b1-ca99-4577-8ff9-c69b3ce6b5d4">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="structure">
+                    <value>
+                      <list>
+                        <option value="dir:C:/Users/slimm/Journaling_web_app/Journaling_web_app" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+            </State>
+          </value>
+        </entry>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Journaling_web_app$gradio_logic.coverage" NAME="gradio_logic Coverage Results" MODIFIED="1736221609708" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/gradio_interface" />
+    <SUITE FILE_PATH="coverage/Journaling_web_app$ASR.coverage" NAME="ASR Coverage Results" MODIFIED="1736248605139" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/SR" />
+    <SUITE FILE_PATH="coverage/Journaling_web_app$live.coverage" NAME="live Coverage Results" MODIFIED="1737100180776" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Journaling_web_app$flair_buitin_model.coverage" NAME="flair_buitin_model Coverage Results" MODIFIED="1737443631307" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Machine_Learning" />
+    <SUITE FILE_PATH="coverage/Journaling_web_app$toadd.coverage" NAME="toadd Coverage Results" MODIFIED="1736993361555" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Journaling_web_app$consumers.coverage" NAME="consumers Coverage Results" MODIFIED="1737350708508" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/SA_Deepgram" />
+    <SUITE FILE_PATH="coverage/Journaling_web_app$test_sms.coverage" NAME="test_sms Coverage Results" MODIFIED="1738399216998" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Journaling_web_app$views.coverage" NAME="views Coverage Results" MODIFIED="1738377454021" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/SMS" />
+    <SUITE FILE_PATH="coverage/Journaling_web_app$Deepgram_Text_Intelligence.coverage" NAME="Deepgram_Text_Intelligence Coverage Results" MODIFIED="1737445192283" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Machine_Learning" />
+    <SUITE FILE_PATH="coverage/Journaling_web_app$SVM.coverage" NAME="SVM Coverage Results" MODIFIED="1737523590489" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Machine_Learning" />
+  </component>
+</project>
