@@ -7,26 +7,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1bbd9cbd-8b22-40fb-bd2e-dcf1df65c529" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Journaling_web_app.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Class.puml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Class_Diagram.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Journaling/templates/Journaling/journal.html" beforeDir="false" afterPath="$PROJECT_DIR$/Journaling/templates/Journaling/journal.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Journaling/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Journaling/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyMood/templates/MyMood/mood.html" beforeDir="false" afterPath="$PROJECT_DIR$/MyMood/templates/MyMood/mood.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MyMood/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/MyMood/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SA_Deepgram/consumers.py" beforeDir="false" afterPath="$PROJECT_DIR$/SA_Deepgram/consumers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/views.py" afterDir="false" />
-    </list>
+    <list default="true" id="1bbd9cbd-8b22-40fb-bd2e-dcf1df65c529" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -59,7 +40,6 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/.env" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/.gitignore" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/Dockerfile" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/Habit_Tracker/views.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/Journaling/filters.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/Journaling/forms.py" root0="SKIP_INSPECTION" />
@@ -79,11 +59,10 @@
     <setting file="file://$PROJECT_DIR$/MyMood/tests.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/MyMood/views.py" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Quote/views.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SA_Deepgram/consumers.py" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SA_Deepgram/consumers.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/SMS/views.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/docker-compose.yml" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/manage.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/requirements.txt" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/requirements.txt" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/users/apps.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/users/consumers.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/users/form.py" root0="SKIP_INSPECTION" />
@@ -300,7 +279,7 @@
       <workItem from="1737617140351" duration="26557000" />
       <workItem from="1738201249791" duration="68949000" />
       <workItem from="1738462268988" duration="13606000" />
-      <workItem from="1738565859962" duration="15685000" />
+      <workItem from="1738565859962" duration="16139000" />
     </task>
     <servers />
   </component>
