@@ -23,7 +23,7 @@
 
 ✅ **WebSockets support** for real-time interaction.  
 
-This project builds upon the ideas of **PinMind**, with an emphasis on automating journaling and mood tracking through AI & NLP integration.  
+This project builds upon the ideas of **PenMind**, with an emphasis on automating journaling and mood tracking through AI & NLP integration.  
 
 ---
 
