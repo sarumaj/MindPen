@@ -10,11 +10,13 @@
 #     df.columns = df.columns.str.replace("Answer.t1.", "")
 #     df.columns = df.columns.str.replace(".raw", "")
 #     emotions_list = ["Answer", "afraid", "angry", "anxious", "ashamed", "awkward",
-#                      "bored", "calm", "confused", "disgusted", "excited", "frustrated",
-#                      "happy", "jealous", "nostalgic", "proud", "sad", "satisfied", "surprised"]
+#                      "bored", "calm", "confused", "disgusted", "excited",
+#                      "frustrated",
+#                      "happy", "jealous", "nostalgic", "proud", "sad", "satisfied",
+#                      "surprised"]
 #
-#     topics_list = ["Answer", "exercise", "family", "food", "friends", "god", "health", "love",
-#                    "recreation", "school", "sleep", "work"]
+#     topics_list = ["Answer", "exercise", "family", "food", "friends", "god",
+#                    "health", "love", "recreation", "school", "sleep", "work"]
 #
 #     df1 = df[emotions_list]
 #     df2 = df[topics_list]
@@ -52,7 +54,11 @@
 #     new_df = combined.drop(positive_sample.index)
 #
 #     # Generate a CSV file of the processed data
-#     new_df.to_csv("Sentiment Analysis With Two Class Labels.csv", encoding="utf-8", index=False)
+#     new_df.to_csv(
+#       "Sentiment Analysis With Two Class Labels.csv",
+#       encoding="utf-8",
+#       index=False
+#     )
 #
 #
 # if __name__ == "__main__":

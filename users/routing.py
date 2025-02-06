@@ -1,6 +1,6 @@
 from django.urls import path
-from .consumers import TranscriptConsumer
+from .consumers import selectTranscriptConsumer
 
 websocket_urlpatterns = [
-    path('register/profile/ws/listen/', TranscriptConsumer.as_asgi()),
+    path("register/profile/ws/listen/", selectTranscriptConsumer().as_asgi()),
 ]
