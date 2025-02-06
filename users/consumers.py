@@ -70,11 +70,15 @@ class TranscriptConsumerDeepgram(AsyncWebsocketConsumer):
         # get the transcription result from kwargs
         result = kwargs.get("result")
         if result:
-            transcript = result.channel.alternatives[0].transcript
-
-            if transcript:
-                # Send the transcript to the WebSocket client
-                await self.send(transcript)
+            transcript = max(
+                filter(
+                    lambda solution: solution.transcript, result.channel.alternatives
+                ),
+                key=lambda solution: solution.confidence,
+            ).transcript
+            print(f"Transcription result: {transcript}")
+            # Send the transcript to the WebSocket client
+            await self.send(transcript)
 
     async def on_error(self, *args, **kwargs):
         error = kwargs.get("error")
@@ -153,7 +157,12 @@ class TranscriptConsumerGooglecloud(AsyncWebsocketConsumer):
             async for response in responses:
                 for result in filter(lambda result: result.is_final, response.results):
                     # Send the transcription result back to the WebSocket client
-                    transcript = result.alternatives[0].transcript
+                    transcript = max(
+                        filter(
+                            lambda solution: solution.transcript, result.alternatives
+                        ),
+                        key=lambda solution: solution.confidence,
+                    ).transcript
                     print(f"Transcription result: {transcript}")
                     await self.send(transcript)
 
