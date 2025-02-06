@@ -1,6 +1,6 @@
 from django.urls import path
-from .consumers import selectTranscriptConsumer
+from Text2Speech.consumers import select_transcript_consumer
 
 websocket_urlpatterns = [
-    path("register/profile/ws/listen/", selectTranscriptConsumer().as_asgi()),
+    path("register/profile/ws/listen/", select_transcript_consumer().as_asgi()),
 ]

@@ -73,7 +73,7 @@ async def analyze_sentiment_with_gcloud(journal_content):
                         if abs(score) * 3.0 < 1.0
                         else "positive" if score > 0.0 else "negative"
                     ),
-                    "sentiment_score": 0.0,
+                    "sentiment_score": score,
                 },
             },
         },
@@ -81,7 +81,14 @@ async def analyze_sentiment_with_gcloud(journal_content):
     return result
 
 
-def analyze_last_journal_sentiment(request):
+def analyze_last_journal_sentiment(
+    request,
+    *,
+    analizers={
+        "DEEPGRAM_API_KEY": analyze_sentiment_with_deepgram,
+        "GOOGLE_CLOUD_CREDENTIALS_FILE": analyze_sentiment_with_gcloud,
+    },
+):
     # fetch the last unprocessed journal for the user
     journal = get_last_journal_for_user(request)
     if not journal:
@@ -100,11 +107,9 @@ def analyze_last_journal_sentiment(request):
                 },
             }
 
-        if os.getenv("DEEPGRAM_API_KEY"):
-            return await analyze_sentiment_with_deepgram(journal_content)
-
-        if os.getenv("GOOGLE_CLOUD_CREDENTIALS_FILE"):
-            return await analyze_sentiment_with_gcloud(journal_content)
+        for key, analyze_sentiment in analizers.items():
+            if os.getenv(key):
+                return await analyze_sentiment(journal_content)
 
         print("no available sentiment analysis service configured")
         return await analyze_sentiment_no_op()

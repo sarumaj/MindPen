@@ -72,7 +72,8 @@ class TranscriptConsumerDeepgram(AsyncWebsocketConsumer):
         if result:
             transcript = max(
                 filter(
-                    lambda solution: solution.transcript, result.channel.alternatives
+                    lambda solution: solution.transcript,
+                    result.channel.alternatives,
                 ),
                 key=lambda solution: solution.confidence,
             ).transcript
@@ -159,7 +160,8 @@ class TranscriptConsumerGooglecloud(AsyncWebsocketConsumer):
                     # Send the transcription result back to the WebSocket client
                     transcript = max(
                         filter(
-                            lambda solution: solution.transcript, result.alternatives
+                            lambda solution: solution.transcript,
+                            result.alternatives,
                         ),
                         key=lambda solution: solution.confidence,
                     ).transcript
@@ -171,7 +173,13 @@ class TranscriptConsumerGooglecloud(AsyncWebsocketConsumer):
             await self.send(f"Error: {e}")
 
 
-def selectTranscriptConsumer():
+def select_transcript_consumer(
+    *,
+    transcribers={
+        "DEEPGRAM_API_KEY": TranscriptConsumerDeepgram,
+        "GOOGLE_CLOUD_CREDENTIALS_FILE": TranscriptConsumerGooglecloud,
+    },
+):
     """
     Selects the appropriate TranscriptConsumer based on the available transcription
     services.
@@ -187,11 +195,9 @@ def selectTranscriptConsumer():
         async def receive(self, text_data=None, bytes_data=None):
             pass
 
-    if os.getenv("DEEPGRAM_API_KEY"):
-        return TranscriptConsumerDeepgram
-
-    if os.getenv("GOOGLE_CLOUD_CREDENTIALS_FILE"):
-        return TranscriptConsumerGooglecloud
+    for key, consumer in transcribers.items():
+        if os.getenv(key):
+            return consumer
 
     print("no available transcription service configured")
     return TranscriptConsumerNoOp
