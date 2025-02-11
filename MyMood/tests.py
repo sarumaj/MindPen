@@ -6,12 +6,11 @@ import datetime
 
 User = get_user_model()
 
+
 class UrlTests(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(
-            username="testuser",
-            email="test@email.com",
-            password="secret"
+            username="testuser", email="test@email.com", password="secret"
         )
         self.client.login(username="testuser", password="secret")
 
@@ -23,12 +22,11 @@ class UrlTests(TestCase):
         response = self.client.get("/mood_msg/")
         self.assertEqual(response.status_code, 200)
 
+
 class TemplateTests(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(
-            username="testuser",
-            email="test@email.com",
-            password="secret"
+            username="testuser", email="test@email.com", password="secret"
         )
         self.client.login(username="testuser", password="secret")
 
@@ -40,17 +38,14 @@ class TemplateTests(TestCase):
         response = self.client.get("/mood_msg/")
         self.assertTemplateUsed(response, "MyMood/mood_message.html")
 
+
 class MyMoodModelLabelTests(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(
-            username="testuser",
-            email="test@email.com",
-            password="secret"
+            username="testuser", email="test@email.com", password="secret"
         )
         DataMood.objects.create(
-            user=self.user,
-            mood_score=1,
-            mood_date=datetime.date(2025, 2, 1)
+            user=self.user, mood_score=1, mood_date=datetime.date(2025, 2, 1)
         )
 
     def test_user_label(self):
@@ -67,17 +62,14 @@ class MyMoodModelLabelTests(TestCase):
         data_mood = DataMood.objects.first()
         self.assertEqual(1, data_mood.mood_score)
 
+
 class FormTests(TestCase):
     def test_mood_model_form_valid_data(self):
-        form_data = {
-            "mood_score": 1
-        }
+        form_data = {"mood_score": 1}
         form = MoodModelForm(data=form_data)
         self.assertTrue(form.is_valid())
 
     def test_mood_model_form_invalid_data(self):
-        form_data = {
-            "mood_score": "invalid"
-        }
+        form_data = {"mood_score": "invalid"}
         form = MoodModelForm(data=form_data)
         self.assertFalse(form.is_valid())

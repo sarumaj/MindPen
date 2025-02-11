@@ -13,7 +13,9 @@ def load_data():
     df[["Sentiment", "Sentiment_Score"]] = df["Sentiment"].str.split(",\n", expand=True)
 
     # extract sentiment value without extra characters
-    df["Sentiment"] = df["Sentiment"].map(lambda x: x.split(':')[1].strip().replace('"', '').replace('}', '').strip())
+    df["Sentiment"] = df["Sentiment"].map(
+        lambda x: x.split(":")[1].strip().replace('"', "").replace("}", "").strip()
+    )
 
     df = df.drop(columns=["Sentiment_Score"])
 
@@ -36,13 +38,10 @@ def svm_model():
     x = balanced_df["Journals"]
     y = balanced_df["Sentiment"]
 
-    svm_linear = SVC(kernel='linear', random_state=42)
+    svm_linear = SVC(kernel="linear", random_state=42)
 
     # pipeline contains TF-IDF() and support vectors()
-    pipe = Pipeline([
-        ("tfidf", TfidfVectorizer()),
-        ("SVM", svm_linear)
-    ])
+    pipe = Pipeline([("tfidf", TfidfVectorizer()), ("SVM", svm_linear)])
 
     # evaluate the model, using 10 folds
     accuracy = cross_val_score(pipe, x, y, cv=10).mean()

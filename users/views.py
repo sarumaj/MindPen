@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
-from MyMood.models import DataMood
+
+# from MyMood.models import DataMood
 from Journaling.forms import JournalModelForm_2, JournalModelForm
 from .form import LoginForm
 from django.views.generic.base import TemplateView
-from django.utils import timezone
+
 # from SMS.views import send_verification_code
 from django.contrib import messages
 from Quote.views import get_quote
@@ -25,13 +26,16 @@ class CustomLogoutView(LogoutView):
 
 def register(request):
     """
-            - Handles user registration including SMS verification
+    - Handles user registration including SMS verification
     """
     if request.method == "POST":
         form = LoginForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, f"{form.cleaned_data['username']}'s account is created successfully!")
+            messages.success(
+                request,
+                f"{form.cleaned_data['username']}'s account is created successfully!",
+            )
             return redirect("login")
     else:
         form = LoginForm()
@@ -40,8 +44,9 @@ def register(request):
 
 class ProfileTemplateViews(TemplateView):
     """
-        - Django view for the user profile page
+    - Django view for the user profile page
     """
+
     template_name = "users/profile.html"
 
     def get_context_data(self, **kwargs):
@@ -75,6 +80,6 @@ class ProfileTemplateViews(TemplateView):
             journal.author = self.request.user
             journal.save()
             return redirect("/profile/")
-        last_mood = DataMood.objects.first()
+        # last_mood = DataMood.objects.first()
 
         return render(request, self.template_name, {"form": journal_form})

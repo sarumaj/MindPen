@@ -1,6 +1,7 @@
 from django.test import TestCase
 from users.form import LoginForm
 
+
 class UrlTests(TestCase):
     def test_login_url_exists_at_correct_location(self):
         response_login = self.client.get("/")
@@ -18,6 +19,7 @@ class UrlTests(TestCase):
         response_logout = self.client.post("/logout/")
         self.assertEqual(response_logout.status_code, 200)
 
+
 class TemplateTests(TestCase):
     def test_Login_template_name_correct(self):
         response = self.client.get("/")
@@ -31,20 +33,18 @@ class TemplateTests(TestCase):
         response = self.client.post("/logout/", follow=True)
         self.assertTemplateUsed(response, "users/logout.html")
 
+
 class FormTests(TestCase):
     def test_login_form_valid_data(self):
         form_data = {
             "username": "testuser",
             "password1": "secret12345",
-            "password2": "secret12345"
+            "password2": "secret12345",
         }
         form = LoginForm(data=form_data)
         self.assertTrue(form.is_valid())
 
     def test_login_form_invalid_data(self):
-        form_data = {
-            "username": "",
-            "password": "short"
-        }
+        form_data = {"username": "", "password": "short"}
         form = LoginForm(data=form_data)
         self.assertFalse(form.is_valid())

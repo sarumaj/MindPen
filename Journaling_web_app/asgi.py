@@ -4,15 +4,12 @@ from django.core.asgi import get_asgi_application
 from channels.auth import AuthMiddlewareStack
 from users.routing import websocket_urlpatterns
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Journaling_web_app.settings')
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "Journaling_web_app.settings")
 
 
-application = ProtocolTypeRouter({
-    "http": get_asgi_application(),
-    "websocket": AuthMiddlewareStack(
-        URLRouter(
-            websocket_urlpatterns
-        )
-    ),
-})
-
+application = ProtocolTypeRouter(
+    {
+        "http": get_asgi_application(),
+        "websocket": AuthMiddlewareStack(URLRouter(websocket_urlpatterns)),
+    }
+)

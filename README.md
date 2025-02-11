@@ -71,15 +71,22 @@ venv\Scripts\activate  # For Windows
 pip install -r requirements.txt
 ```
 
-### **4️⃣ Get Your Deepgram API Key 🔑** 
+### **4️⃣ Get Your Deepgram API Key 🔑 (optionally)** 
 - Go to Deepgram Console → https://console.deepgram.com/signup
 - Sign up (if you don’t have an account)
 - Generate an API Key (**$200 free** credit for new users!)
 - Keep this API Key secure 
+- Alternatively, setup GCP service account and set path as env var `GOOGLE_CLOUD_CREDENTIALS_FILE`
 
 ### **5️⃣ Create a `.env` file in the **MindPen root directory** and add:** 
 ```bash
 DEEPGRAM_API_KEY=your_deepgram_api_key
+```
+
+or 
+
+```bash
+GOOGLE_CLOUD_CREDENTIALS_FILE=/path/to/file/credentials.json
 ```
 
 ### **6️⃣ Apply Migrations & Run the Server** 
@@ -92,7 +99,6 @@ python manage.py migrate
 Since **MindPen** uses WebSockets, Daphne must be used instead of runserver!
 ```bash
 daphne -b 127.0.0.1 -p 8000 Journaling_web_app.asgi:application
-
 ```
 
 ### **🧪 Running Tests** 
